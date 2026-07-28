@@ -776,14 +776,19 @@ git commit -m "test(prumo): promote a11y checks from todo to error gate"
 - Modify: `packages/prumo/app/page.tsx`
 
 **Interfaces:**
-- Consumes: `--font-display` (Task 3), tokens de cor (Task 2)
+- Consumes: `--font-display` (Task 3), tokens de cor (Task 2), `buttonVariants` exportado de `@/components/ui/button`
 - Produces: nada consumido por outra task — a Task 8 importa `CaseStudy` dentro deste mesmo arquivo
+
+> Nota (bug pré-existente, não introduzido por este plano): o `app/page.tsx` atual tem
+> `<Button asChild size="lg">` na linha 46, e `Button` (baseado em `@base-ui/react`, não em
+> Radix) nunca implementou a prop `asChild` — `npm run build` falha o type-check nisso hoje,
+> antes de qualquer mudança. O código abaixo já corrige isso usando `buttonVariants({ size: "lg" })`
+> direto na tag `<a>`, em vez de `asChild`.
 
 - [ ] **Step 1: Substituir o arquivo inteiro**
 
 ```tsx
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { CaseStudy } from "@/components/case-study";
 import { ArrowRight, ArrowDownRight } from "lucide-react";
@@ -838,11 +843,14 @@ export default function Home() {
               Sistema de design com Next.js, shadcn/ui, Base UI e Tailwind v4.
               Tokens, primitivos e padrões de composição para construir interfaces densas e consistentes.
             </p>
-            <Button asChild size="lg" className="rounded-xl">
-              <a href="/storybook" target="_blank" rel="noreferrer">
-                Ver no Storybook <ArrowRight className="ml-2 size-4" />
-              </a>
-            </Button>
+            <a
+              href="/storybook"
+              target="_blank"
+              rel="noreferrer"
+              className={buttonVariants({ size: "lg", className: "rounded-xl" })}
+            >
+              Ver no Storybook <ArrowRight className="ml-2 size-4" />
+            </a>
           </div>
         </section>
 
