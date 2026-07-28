@@ -1,0 +1,85 @@
+{/* Tabs.mdx */}
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as TabsStories from './Tabs.stories'
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+Navegação entre seções de conteúdo relacionado dentro de um mesmo contexto.
+
+---
+
+## Variante pills (padrão)
+
+<Canvas of={TabsStories.Default} />
+
+## Variante cards
+
+<Canvas of={TabsStories.Variante} />
+
+## Com badge de contagem
+
+<Canvas of={TabsStories.ComBadge} />
+
+---
+
+## Variantes
+
+| `variant` no `TabsList` | Estilo | Uso |
+|---|---|---|
+| `default` | Pills com fundo muted | Navegação compacta, cards, painéis |
+| `line` | Underline com indicador violeta | Navegação de página, seções principais |
+
+---
+
+## Quando usar
+
+- Alternar entre visualizações do mesmo conteúdo (ex: Detalhes / Histórico / Configurações)
+- Filtrar subconjuntos de dados na mesma tela (ex: Todos / Ativos / Arquivados)
+
+## Quando NÃO usar
+
+- Não use Tabs para navegação entre páginas diferentes — use a Sidebar ou Links
+- Não use mais de 6 tabs — se precisar de mais, use Select ou Sidebar secundária
+- Não use Tabs quando o conteúdo de cada aba é radicalmente diferente — prefira páginas separadas
+- Não aninha Tabs dentro de Tabs
+
+---
+
+## Variante `line` — padrão para páginas
+
+A variante `line` usa um indicador violeta que comunica claramente a seleção ativa. É a escolha padrão para navegação no nível de página.
+
+```tsx
+<Tabs defaultValue="detalhes">
+  <TabsList variant="line">
+    <TabsTrigger value="detalhes">Detalhes</TabsTrigger>
+    <TabsTrigger value="historico">Histórico</TabsTrigger>
+    <TabsTrigger value="config">Configurações</TabsTrigger>
+  </TabsList>
+  <TabsContent value="detalhes">...</TabsContent>
+  <TabsContent value="historico">...</TabsContent>
+  <TabsContent value="config">...</TabsContent>
+</Tabs>
+```
+
+## Variante `default` — padrão para cards
+
+```tsx
+<Tabs defaultValue="dia">
+  <TabsList>
+    <TabsTrigger value="dia">Hoje</TabsTrigger>
+    <TabsTrigger value="semana">Semana</TabsTrigger>
+    <TabsTrigger value="mes">Mês</TabsTrigger>
+  </TabsList>
+</Tabs>
+```
+
+---
+
+## Acessibilidade
+
+- O componente implementa o padrão ARIA `tablist` / `tab` / `tabpanel` automaticamente
+- Navegação por teclado: `←` `→` entre tabs, `Tab` para o conteúdo
+- Não use `disabled` em tabs sem explicar por que — prefira omitir a tab ou exibir um tooltip

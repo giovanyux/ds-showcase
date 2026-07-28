@@ -1,0 +1,82 @@
+{/* Dialog.mdx */}
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as DialogStories from './Dialog.stories'
+
+<Meta of={DialogStories} />
+
+# Dialog
+
+Modal que interrompe o fluxo para ações que exigem atenção imediata ou confirmação.
+
+---
+
+## Formulário em dialog
+
+<Canvas of={DialogStories.Default} />
+
+## Confirmação de ação destrutiva
+
+<Canvas of={DialogStories.Confirmacao} />
+
+---
+
+## Anatomia
+
+```
+DialogContent
+├── DialogHeader
+│   ├── DialogTitle       ← sempre presente, mesmo que sr-only
+│   └── DialogDescription ← descreve a consequência da ação
+├── [conteúdo]
+└── DialogFooter
+    ├── [ação secundária] ← esquerda ou outline
+    └── [ação primária]   ← direita
+```
+
+---
+
+## Quando usar
+
+- Confirmação de ação destrutiva (excluir, cancelar agendamento)
+- Formulário simples que não justifica uma página própria (editar nome, adicionar item)
+- Exibição de detalhes sem sair do contexto atual
+
+## Quando NÃO usar
+
+- Formulários longos (>5 campos) — use uma página ou Drawer lateral
+- Informação apenas para leitura sem ação — use Popover ou Tooltip
+- Fluxos com múltiplas etapas — use um Stepper em página própria
+- Nunca abra um Dialog a partir de outro Dialog
+
+---
+
+## Acessibilidade
+
+- `DialogTitle` é obrigatório — se não visível, use `className="sr-only"`
+- `DialogDescription` deve descrever a **consequência**, não repetir o título
+- O foco é capturado automaticamente dentro do Dialog ao abrir
+- `Esc` fecha o Dialog — nunca remova esse comportamento
+- Não desabilite o `showCloseButton` em dialogs destrutivos
+
+---
+
+## Composição — confirmação de exclusão
+
+```tsx
+<Dialog>
+  <DialogTrigger render={<Button variant="destructive" size="sm">Excluir produto</Button>} />
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Excluir produto?</DialogTitle>
+      <DialogDescription>
+        Esta ação não pode ser desfeita. O produto será removido
+        permanentemente do catálogo.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose render={<Button variant="outline">Cancelar</Button>} />
+      <Button variant="destructive">Excluir</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```

@@ -1,0 +1,76 @@
+{/* Typography.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Fundação/Tipografia" />
+
+# Tipografia
+
+O Prumo usa **Inter** como fonte principal (`font-sans`) e `font-heading` para títulos de destaque.
+
+---
+
+## Escala de tamanhos
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 24, marginBottom: 32 }}>
+  {[
+    { name: 'text-xs', size: '12px', lineHeight: '16px', usage: 'Labels, badges, legendas' },
+    { name: 'text-sm', size: '14px', lineHeight: '20px', usage: 'Corpo principal, formulários' },
+    { name: 'text-base', size: '16px', lineHeight: '24px', usage: 'Parágrafos' },
+    { name: 'text-lg', size: '18px', lineHeight: '28px', usage: 'Sub-títulos, destaques' },
+    { name: 'text-xl', size: '20px', lineHeight: '28px', usage: 'Títulos de seção' },
+    { name: 'text-2xl', size: '24px', lineHeight: '32px', usage: 'Headings de página' },
+    { name: 'text-3xl', size: '30px', lineHeight: '36px', usage: 'Títulos de destaque' },
+  ].map(t => (
+    <div key={t.name} style={{ display: 'flex', alignItems: 'baseline', gap: 24, borderBottom: '1px solid #e2e8f0', paddingBottom: 16 }}>
+      <div style={{ width: 100, fontSize: 11, color: '#64748b', fontFamily: 'monospace', flexShrink: 0 }}>{t.name}</div>
+      <div style={{ fontSize: t.size, lineHeight: t.lineHeight, flex: 1 }}>Prumo Design System</div>
+      <div style={{ fontSize: 11, color: '#94a3b8', width: 200, flexShrink: 0 }}>{t.size} / {t.lineHeight} — {t.usage}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Pesos
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 24, marginBottom: 32 }}>
+  {[
+    { name: 'font-normal', weight: 400, label: 'Regular' },
+    { name: 'font-medium', weight: 500, label: 'Medium' },
+    { name: 'font-semibold', weight: 600, label: 'Semibold' },
+    { name: 'font-bold', weight: 700, label: 'Bold' },
+  ].map(f => (
+    <div key={f.name} style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+      <div style={{ width: 120, fontSize: 11, color: '#64748b', fontFamily: 'monospace' }}>{f.name}</div>
+      <div style={{ fontSize: 18, fontWeight: f.weight }}>Prumo — {f.label} ({f.weight})</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Uso recomendado
+
+| Contexto | Classe | Exemplo |
+|---|---|---|
+| Título de página | `text-2xl font-semibold tracking-tight` | Dashboard |
+| Título de card | `text-base font-semibold tracking-tight` | Vendas do dia |
+| Corpo | `text-sm` | Descrição do produto |
+| Label de campo | `text-sm font-medium` | Nome do negócio |
+| Legenda / hint | `text-xs text-muted-foreground` | Campo obrigatório |
+| Badge / tag | `text-xs font-semibold uppercase tracking-wider` | ATIVO |
+
+---
+
+## Heading vs Sans
+
+<div style={{ display: 'flex', gap: 48, marginTop: 24 }}>
+  <div>
+    <div style={{ fontSize: 11, color: '#64748b', marginBottom: 8, fontFamily: 'monospace' }}>font-heading (Inter, semibold)</div>
+    <div style={{ fontSize: 24, fontWeight: 600, letterSpacing: '-0.025em' }}>Prumo</div>
+  </div>
+  <div>
+    <div style={{ fontSize: 11, color: '#64748b', marginBottom: 8, fontFamily: 'monospace' }}>font-sans (Inter, regular)</div>
+    <div style={{ fontSize: 24 }}>Prumo</div>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+{/* Button.mdx */}
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as ButtonStories from './Button.stories'
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Ação principal da interface. Deve comunicar claramente o que acontece ao clicar.
+
+---
+
+## Visão geral
+
+<Canvas of={ButtonStories.TodasVariantes} />
+
+## Controles interativos
+
+Altere `variant`, `size` e `disabled` para ver o Button em tempo real.
+
+<Controls of={ButtonStories.Default} />
+
+---
+
+## Variantes
+
+| Variante | Uso |
+|---|---|
+| `default` | Ação primária da tela — deve existir apenas uma por contexto |
+| `outline` | Ação secundária ao lado de um `default` |
+| `secondary` | Ação de menor hierarquia, sem concorrer com primária |
+| `ghost` | Ações terciárias em toolbars, menus e headers |
+| `ghost-primary` | Links de ação com cor da marca, sem background |
+| `destructive` | Exclusão ou ação irreversível — sempre com confirmação antes |
+| `link` | Navegação inline dentro de texto |
+
+## Tamanhos
+
+| Size | Altura | Uso |
+|---|---|---|
+| `xs` | 28px | Tags clicáveis, filtros compactos |
+| `sm` | 32px | Ações em tabelas, cards densos |
+| `default` | 36px | Padrão — uso geral |
+| `lg` | 44px | CTAs de destaque, onboarding |
+| `icon` / `icon-sm` / `icon-lg` | quadrado | Ações com ícone sem texto |
+
+---
+
+## Escalas de tamanho
+
+<Canvas of={ButtonStories.Tamanhos} />
+
+## Com ícone
+
+<Canvas of={ButtonStories.ComIcone} />
+
+## Estado de carregamento
+
+<Canvas of={ButtonStories.Carregando} />
+
+## Efeito magnético (hover)
+
+<Canvas of={ButtonStories.EfeitoMagnetico} />
+
+---
+
+## Quando usar
+
+- Use `default` para a ação principal de uma tela (salvar, publicar, confirmar)
+- Use `outline` para ações secundárias ao lado do `default` (cancelar, voltar)
+- Use `ghost` para ações frequentes em contextos densos (editar linha de tabela, fechar tag)
+
+## Quando NÃO usar
+
+- Nunca coloque dois botões `default` lado a lado — cria ambiguidade sobre qual é a ação principal
+- Não use `destructive` sem uma etapa de confirmação (Dialog ou Popover de confirmação)
+- Não use `link` para navegação entre páginas — prefira `<Link>` do Next.js com estilo próprio
+
+---
+
+## Acessibilidade
+
+- Sempre forneça texto descritivo. Em botões `icon`, use `<span className="sr-only">` com a ação
+- O estado `disabled` remove pointer-events — nunca desabilite sem explicar ao usuário por que
+- O `focus-visible` usa `ring-offset-2` para separar o ring do fundo — não remova esse offset
+
+---
+
+## Composição comum
+
+```tsx
+// Ação primária + secundária
+<div className="flex gap-2">
+  <Button variant="outline">Cancelar</Button>
+  <Button>Salvar alterações</Button>
+</div>
+
+// Ação destrutiva com ícone
+<Button variant="destructive" size="sm">
+  <Trash2 />
+  Excluir produto
+</Button>
+
+// Ação de ícone com acessibilidade
+<Button variant="ghost" size="icon-sm">
+  <MoreHorizontal />
+  <span className="sr-only">Mais opções</span>
+</Button>
+```

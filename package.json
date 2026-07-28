@@ -1,0 +1,13 @@
+{
+  "name": "ds-showcase",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "site",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "node scripts/build-storybooks.mjs",
+    "dev": "npm run dev --workspace=site"
+  }
+}

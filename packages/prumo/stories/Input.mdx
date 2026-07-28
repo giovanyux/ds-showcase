@@ -1,0 +1,97 @@
+{/* Input.mdx */}
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as InputStories from './Input.stories'
+
+<Meta of={InputStories} />
+
+# Input
+
+Campo de texto para entrada de dados pelo usuário.
+
+---
+
+## Visão geral
+
+<Canvas of={InputStories.Default} />
+
+## Controles interativos
+
+Altere `type`, `placeholder` e `disabled` para ver o Input em tempo real.
+
+<Controls of={InputStories.Default} />
+
+---
+
+## Com label
+
+<Canvas of={InputStories.ComLabel} />
+
+## Estado de erro
+
+<Canvas of={InputStories.ComErro} />
+
+## Com ícone de busca
+
+<Canvas of={InputStories.Busca} />
+
+## Senha com toggle
+
+<Canvas of={InputStories.Senha} />
+
+---
+
+## Estados
+
+| Estado | Aparência |
+|---|---|
+| Repouso | Borda `input`, ring sutil, fundo semitransparente |
+| Focus | Borda `primary`, ring `primary/25`, glow externo sutil |
+| Disabled | Opacidade 50%, cursor `not-allowed` |
+| Erro | Borda `destructive`, ring `destructive/20` via `aria-invalid` |
+
+---
+
+## Quando usar
+
+- Coleta de texto livre: nomes, descrições, endereços, buscas
+- Sempre acompanhado de um `<Label>` associado via `htmlFor` / `id`
+
+## Quando NÃO usar
+
+- Seleção entre opções fixas → use `Select` ou `RadioGroup`
+- Seleção de data → use `DatePicker`
+- Valor numérico com range → use `Slider`
+- Múltiplas linhas → use `Textarea`
+
+---
+
+## Acessibilidade
+
+- **Sempre** use `<Label htmlFor="id">` associado. Input sem label é inacessível
+- Nunca use `placeholder` como substituto de label — ele desaparece ao digitar
+- Estados de erro devem usar `aria-invalid="true"` no input E uma mensagem de erro associada via `aria-describedby`
+- O `ring-1 ring-border/40` sempre visível é intencional: ajuda usuários de teclado a identificar o campo antes de focar
+
+---
+
+## Composição comum
+
+```tsx
+// Input com label e erro
+<div className="space-y-1.5">
+  <Label htmlFor="email">E-mail</Label>
+  <Input
+    id="email"
+    type="email"
+    placeholder="seu@email.com"
+    aria-invalid="true"
+  />
+  <p className="text-xs text-destructive">E-mail inválido</p>
+</div>
+
+// Input de busca com ícone
+<div className="relative">
+  <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+  <Input placeholder="Buscar produto..." className="pl-9" />
+</div>
+```

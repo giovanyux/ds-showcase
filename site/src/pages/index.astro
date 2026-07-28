@@ -1,0 +1,123 @@
+---
+import Base from "../layouts/Base.astro";
+import designSystems from "../data/design-systems.json";
+---
+<Base title="Design Systems Showcase">
+  <main>
+    <header>
+      <p class="eyebrow">Showcase</p>
+      <h1>Design Systems</h1>
+      <p class="subtitle">Sistemas de design em produção — tokens, primitivos e padrões de composição.</p>
+    </header>
+
+    <ul class="grid">
+      {designSystems.map((ds) => (
+        <li class="card">
+          <h2>{ds.name}</h2>
+          <p class="stack">{ds.stack.join(" · ")}</p>
+          <p class="count">{ds.componentCount} componentes</p>
+          <a class="cta" href={ds.storybookPath}>Ver Storybook <span aria-hidden="true">→</span></a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Base>
+
+<style>
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 4rem;
+  }
+
+  header {
+    margin-bottom: 3.5rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    margin: 0;
+    max-width: 40rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 16px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    transition: border-color 150ms ease, transform 150ms ease;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .card h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .stack {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .count {
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .cta {
+    margin-top: auto;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .cta:hover {
+    text-decoration: underline;
+  }
+
+  .cta span {
+    display: inline-block;
+    transition: transform 150ms ease;
+  }
+
+  .cta:hover span {
+    transform: translateX(3px);
+  }
+</style>

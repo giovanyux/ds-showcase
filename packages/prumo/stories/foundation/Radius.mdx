@@ -1,0 +1,52 @@
+{/* Radius.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Fundação/Raio de Borda" />
+
+# Raio de Borda
+
+Base: **6px** — equilíbrio entre técnico (Linear: 4px) e amigável (Notion: 8px). Escala proporcional derivada de uma única variável `--radius`.
+
+---
+
+<div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginTop: 32, marginBottom: 32, alignItems: 'flex-end' }}>
+  {[
+    { name: 'rounded-none', px: '0px', radius: '0px' },
+    { name: 'rounded-xs', px: '3px', radius: '3px' },
+    { name: 'rounded-sm', px: '4px', radius: '4px' },
+    { name: 'rounded-md', px: '6px', radius: '6px' },
+    { name: 'rounded-lg', px: '8px', radius: '8px' },
+    { name: 'rounded-xl', px: '12px', radius: '12px' },
+    { name: 'rounded-2xl', px: '16px', radius: '16px' },
+    { name: 'rounded-3xl', px: '24px', radius: '24px' },
+    { name: 'rounded-full', px: '9999px', radius: '9999px' },
+  ].map(r => (
+    <div key={r.name} style={{ textAlign: 'center' }}>
+      <div style={{
+        width: 64,
+        height: 64,
+        background: 'oklch(0.491 0.270 277 / 15%)',
+        border: '2px solid oklch(0.491 0.270 277)',
+        borderRadius: r.radius,
+        margin: '0 auto 10px',
+      }} />
+      <div style={{ fontSize: 11, fontWeight: 600, fontFamily: 'monospace' }}>{r.name}</div>
+      <div style={{ fontSize: 10, color: '#94a3b8' }}>{r.px}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Uso recomendado por componente
+
+| Componente | Raio |
+|---|---|
+| Inputs, selects, botões | `rounded-lg` (8px) |
+| Cards | `rounded-xl` (12px) |
+| Dialogs, modais | `rounded-2xl` (16px) |
+| Badges, chips | `rounded-full` (9999px) |
+| Tooltips | `rounded-xs` (3px) |
+| Kbd | `rounded-xs` (3px) |
+| Avatars | `rounded-full` |
+| Toasts (Sonner) | `rounded-xl` |

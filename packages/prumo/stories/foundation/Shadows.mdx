@@ -1,0 +1,66 @@
+{/* Shadows.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Fundação/Sombras" />
+
+# Sombras
+
+Todas as sombras têm **tinte violeta** (`oklch(0.491 0.270 277)`) para manter coerência com a identidade da Prumo. O resultado é uma profundidade mais sofisticada que as sombras neutras genéricas.
+
+---
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginTop: 32, marginBottom: 32 }}>
+  {[
+    {
+      name: 'shadow-xs',
+      value: '0 1px 2px oklch(0.491 0.270 277 / 2%)',
+      usage: 'Inputs, elementos inline',
+    },
+    {
+      name: 'shadow-sm',
+      value: '0 1px 3px oklch(0.491 0.270 277 / 4%), 0 1px 2px oklch(0 0 0 / 2%)',
+      usage: 'Botões, badges',
+    },
+    {
+      name: 'shadow-md',
+      value: '0 12px 24px -4px oklch(0.491 0.270 277 / 8%)',
+      usage: 'Cards, dropdowns',
+    },
+    {
+      name: 'shadow-lg',
+      value: '0 20px 25px -5px oklch(0.491 0.270 277 / 10%)',
+      usage: 'Modais, sheets',
+    },
+    {
+      name: 'shadow-xl',
+      value: '0 25px 50px -12px oklch(0.491 0.270 277 / 15%)',
+      usage: 'Dialogs, popovers',
+    },
+    {
+      name: 'shadow-primary',
+      value: '0 10px 15px -3px oklch(0.491 0.270 277 / 25%)',
+      usage: 'Botão primary (hover)',
+    },
+  ].map(s => (
+    <div key={s.name} style={{ width: 200 }}>
+      <div style={{
+        background: 'white',
+        height: 80,
+        borderRadius: 12,
+        boxShadow: s.value,
+        marginBottom: 12,
+        border: '1px solid rgba(0,0,0,0.04)',
+      }} />
+      <div style={{ fontSize: 13, fontWeight: 600, fontFamily: 'monospace' }}>{s.name}</div>
+      <div style={{ fontSize: 11, color: '#64748b', marginTop: 4 }}>{s.usage}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Por que tinte violeta?
+
+Sombras neutras (preto/cinza) são genéricas e não reforçam a identidade da marca. Com o tinte violeta, elementos elevados mantêm uma relação cromática com a cor primária — criando coesão visual mesmo em estados sutis como `shadow-xs`.
+
+Isso é uma técnica usada por produtos como [Linear](https://linear.app) e [Vercel](https://vercel.com) para criar uma sensação premium sem ostentação.

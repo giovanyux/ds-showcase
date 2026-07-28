@@ -1,0 +1,90 @@
+{/* Colors.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Fundação/Cores" />
+
+# Paleta de Cores
+
+Todas as cores do Prumo usam o espaço **OKLCH** — perceptualmente uniforme, garantindo contraste consistente entre light e dark mode.
+
+---
+
+## Primária
+
+<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 16, marginBottom: 32 }}>
+  {[
+    { name: 'primary', label: 'Primary', oklch: 'oklch(0.491 0.270 277)', hex: '#7C3AED', wcag: '5.9:1 ✅' },
+    { name: 'primary-foreground', label: 'Primary Foreground', oklch: 'oklch(1 0 0)', hex: '#FFFFFF', wcag: '—' },
+  ].map(c => (
+    <div key={c.name} style={{ width: 180 }}>
+      <div style={{ background: c.oklch, height: 64, borderRadius: 8, marginBottom: 8, border: '1px solid rgba(0,0,0,0.08)' }} />
+      <div style={{ fontSize: 13, fontWeight: 600 }}>{c.label}</div>
+      <div style={{ fontSize: 11, color: '#64748b', fontFamily: 'monospace' }}>{c.hex}</div>
+      <div style={{ fontSize: 11, color: '#64748b' }}>{c.wcag}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Neutros (Slate com tinte violeta)
+
+<div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 16, marginBottom: 32 }}>
+  {[
+    { label: 'background', oklch: 'oklch(1 0 0)', hex: '#FFFFFF' },
+    { label: 'card', oklch: 'oklch(1 0 0)', hex: '#FFFFFF' },
+    { label: 'muted', oklch: 'oklch(0.968 0.007 264)', hex: '#F1F5F9' },
+    { label: 'border', oklch: 'oklch(0.882 0.014 264)', hex: '#CBD5E1' },
+    { label: 'input', oklch: 'oklch(0.882 0.014 264)', hex: '#CBD5E1' },
+    { label: 'muted-fg', oklch: 'oklch(0.446 0.030 264)', hex: '#475569' },
+    { label: 'foreground', oklch: 'oklch(0.193 0.026 264)', hex: '#0F172A' },
+  ].map(c => (
+    <div key={c.label} style={{ width: 140 }}>
+      <div style={{ background: c.oklch, height: 48, borderRadius: 8, marginBottom: 6, border: '1px solid rgba(0,0,0,0.1)' }} />
+      <div style={{ fontSize: 11, fontWeight: 600 }}>{c.label}</div>
+      <div style={{ fontSize: 10, color: '#64748b', fontFamily: 'monospace' }}>{c.hex}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Semânticas
+
+<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 16, marginBottom: 32 }}>
+  {[
+    { label: 'success', oklch: 'oklch(0.527 0.154 150)', hex: '#16A34A', wcag: '4.5:1 ✅' },
+    { label: 'warning', oklch: 'oklch(0.769 0.184 80)', hex: '#D97706', wcag: '3.1:1 ⚠️' },
+    { label: 'destructive', oklch: 'oklch(0.577 0.245 27)', hex: '#DC2626', wcag: '4.9:1 ✅' },
+    { label: 'info', oklch: 'oklch(0.627 0.265 277)', hex: '#7C3AED', wcag: '4.2:1 ✅' },
+  ].map(c => (
+    <div key={c.label} style={{ width: 160 }}>
+      <div style={{ background: c.oklch, height: 56, borderRadius: 8, marginBottom: 8, border: '1px solid rgba(0,0,0,0.08)' }} />
+      <div style={{ fontSize: 13, fontWeight: 600, textTransform: 'capitalize' }}>{c.label}</div>
+      <div style={{ fontSize: 11, color: '#64748b', fontFamily: 'monospace' }}>{c.hex}</div>
+      <div style={{ fontSize: 11, color: '#64748b' }}>{c.wcag}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Dark Mode
+
+No dark mode, a cor primária muda para Violet-400 para manter contraste sobre fundo escuro.
+
+<div style={{ background: 'oklch(0.129 0.018 264)', padding: 24, borderRadius: 12, marginTop: 16 }}>
+  <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+    {[
+      { label: 'background', oklch: 'oklch(0.129 0.018 264)' },
+      { label: 'card', oklch: 'oklch(0.173 0.020 264)' },
+      { label: 'primary (dark)', oklch: 'oklch(0.702 0.240 277)' },
+      { label: 'foreground', oklch: 'oklch(0.968 0.007 264)' },
+    ].map(c => (
+      <div key={c.label} style={{ width: 140 }}>
+        <div style={{ background: c.oklch, height: 48, borderRadius: 8, marginBottom: 6, border: '1px solid rgba(255,255,255,0.1)' }} />
+        <div style={{ fontSize: 11, fontWeight: 600, color: '#e2e8f0' }}>{c.label}</div>
+      </div>
+    ))}
+  </div>
+</div>

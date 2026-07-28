@@ -1,0 +1,84 @@
+{/* Badge.mdx */}
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as BadgeStories from './Badge.stories'
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+Rótulo compacto para status, categorias e contagens. Sempre comunicativo — nunca decorativo.
+
+---
+
+## Visão geral
+
+<Canvas of={BadgeStories.TodasVariantes} />
+
+## Controles interativos
+
+Altere `variant` e `children` para ver o Badge em tempo real.
+
+<Controls of={BadgeStories.Default} />
+
+---
+
+## Variantes semânticas
+
+| Variante | Cor | Uso típico |
+|---|---|---|
+| `default` | Violeta | Status primário, categorias da marca |
+| `success` | Esmeralda | Ativo, aprovado, pago, entregue |
+| `warning` | Âmbar | Pendente, aguardando, atenção necessária |
+| `destructive` | Vermelho | Erro, cancelado, indisponível |
+| `secondary` | Cinza | Status neutro, categoria genérica |
+| `outline` | Borda | Alternativa sutil ao `secondary` |
+| `ghost` | Muted | Rótulos de baixíssima hierarquia |
+
+---
+
+## Caso de uso: status de agendamento
+
+<Canvas of={BadgeStories.StatusAgendamento} />
+
+---
+
+## Quando usar
+
+- Status de entidade: "Ativo", "Pendente", "Cancelado"
+- Categorias de produto: "Pizzas", "Bebidas"
+- Contagens compactas: "3 itens", "+12%"
+- Sempre use a variante semântica correta — `success` para positivo, `destructive` para negativo
+
+## Quando NÃO usar
+
+- Não use Badge para ações — use Button
+- Não use mais de 2 badges por linha de tabela — polui a leitura
+- Não crie variantes de cor arbitrárias fora das semânticas definidas — quebra a consistência
+
+---
+
+## Acessibilidade
+
+- Badge é `<span>` por padrão — se for clicável, passe `render={<button />}` ou `render={<a />}`
+- Cores sozinhas não comunicam significado para daltônicos — sempre acompanhe com texto descritivo
+- Evite badges com texto único de uma letra (ex: "A", "P") — use o texto completo
+
+---
+
+## Composição comum
+
+```tsx
+// Status em tabela
+<Badge variant="success">Ativo</Badge>
+<Badge variant="warning">Pendente</Badge>
+<Badge variant="destructive">Indisponível</Badge>
+
+// Categoria de produto
+<Badge variant="secondary">Pizzas</Badge>
+
+// Com ícone
+<Badge variant="success">
+  <CheckCircle2 />
+  Entregue
+</Badge>
+```

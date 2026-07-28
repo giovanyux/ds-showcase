@@ -1,0 +1,308 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   PRUMO — Token Map (Tailwind v4 / OKLCH)
+   Primary:    Teal    → oklch(0.491 0.270 165)  (revisar contraste)
+   Neutrals:   Slate   (cool-gray)
+   Semantic:   Emerald / Amber / Red / Teal(info)
+   Radius:     6px base (balanced between technical & friendly)
+   ============================================================ */
+
+@theme inline {
+  /* ── Color aliases ───────────────────────────────────────── */
+  --color-background:               var(--background);
+  --color-foreground:               var(--foreground);
+  --color-card:                     var(--card);
+  --color-card-foreground:          var(--card-foreground);
+  --color-popover:                  var(--popover);
+  --color-popover-foreground:       var(--popover-foreground);
+  --color-primary:                  var(--primary);
+  --color-primary-foreground:       var(--primary-foreground);
+  --color-secondary:                var(--secondary);
+  --color-secondary-foreground:     var(--secondary-foreground);
+  --color-muted:                    var(--muted);
+  --color-muted-foreground:         var(--muted-foreground);
+  --color-accent:                   var(--accent);
+  --color-accent-foreground:        var(--accent-foreground);
+  --color-destructive:              var(--destructive);
+  --color-destructive-foreground:   var(--destructive-foreground);
+  --color-border:                   var(--border);
+  --color-input:                    var(--input);
+  --color-ring:                     var(--ring);
+
+  /* ── Semantic extras ─────────────────────────────────────── */
+  --color-success:                  var(--success);
+  --color-success-foreground:       var(--success-foreground);
+  --color-warning:                  var(--warning);
+  --color-warning-foreground:       var(--warning-foreground);
+  --color-info:                     var(--info);
+  --color-info-foreground:          var(--info-foreground);
+
+  /* ── Charts ──────────────────────────────────────────────── */
+  --color-chart-1:                  var(--chart-1);
+  --color-chart-2:                  var(--chart-2);
+  --color-chart-3:                  var(--chart-3);
+  --color-chart-4:                  var(--chart-4);
+  --color-chart-5:                  var(--chart-5);
+
+  /* ── Sidebar ─────────────────────────────────────────────── */
+  --color-sidebar:                  var(--sidebar);
+  --color-sidebar-foreground:       var(--sidebar-foreground);
+  --color-sidebar-primary:          var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:           var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border:           var(--sidebar-border);
+  --color-sidebar-ring:             var(--sidebar-ring);
+
+  /* ── Typography ──────────────────────────────────────────── */
+  --font-sans:                      var(--font-sans);  /* Inter — injected by next/font via layout.tsx */
+  --font-mono:                      var(--font-mono);
+
+  /* ── Radius scale ────────────────────────────────────────── */
+  /* Base: 6px — balanced between technical (Linear 4px) & friendly (Notion 8px) */
+  --radius-none:                    0px;
+  --radius-xs:                      calc(var(--radius) * 0.5);   /* 3px  */
+  --radius-sm:                      calc(var(--radius) * 0.67);  /* 4px  */
+  --radius-md:                      var(--radius);               /* 6px  */
+  --radius-lg:                      calc(var(--radius) * 1.33);  /* 8px  */
+  --radius-xl:                      calc(var(--radius) * 2);     /* 12px */
+  --radius-2xl:                     calc(var(--radius) * 2.67);  /* 16px */
+  --radius-3xl:                     calc(var(--radius) * 4);     /* 24px */
+  --radius-full:                    9999px;
+
+  /* ── Shadow scale ────────────────────────────────────────── */
+  /* Multi-layer shadows with primary tint — cards feel premium */
+  --shadow-xs:   0 1px 2px oklch(0.491 0.270 165 / 2%);
+  --shadow-sm:   0 1px 3px oklch(0.491 0.270 165 / 4%), 0 1px 2px oklch(0 0 0 / 2%);
+  --shadow-md:   0 12px 24px -4px oklch(0.491 0.270 165 / 8%), 0 4px 6px -2px oklch(0.491 0.270 165 / 3%);
+  --shadow-lg:   0 20px 25px -5px oklch(0.491 0.270 165 / 10%), 0 10px 10px -5px oklch(0.491 0.270 165 / 4%);
+  --shadow-xl:   0 25px 50px -12px oklch(0.491 0.270 165 / 15%);
+  --shadow-2xl:  0 35px 60px -15px oklch(0.491 0.270 165 / 20%);
+  --shadow-primary: 0 10px 15px -3px oklch(0.491 0.270 165 / 25%), 0 4px 6px -2px oklch(0.491 0.270 165 / 10%);
+
+  /* ── Spacing scale ───────────────────────────────────────── */
+  /* Base: 4px — todos os valores são múltiplos.               */
+  /* Uso: micro → element → component → section → layout → page */
+  --spacing-micro:     0.25rem;   /* 4px  — gap entre ícone e label              */
+  --spacing-element:   0.5rem;    /* 8px  — gap entre elementos dentro de um comp */
+  --spacing-component: 1rem;      /* 16px — gap entre componentes, padding padrão */
+  --spacing-section:   1.5rem;    /* 24px — padding interno de cards e sections   */
+  --spacing-layout:    2rem;      /* 32px — gap entre seções de uma página        */
+  --spacing-page:      3rem;      /* 48px — padding do container principal        */
+
+  /* ── Transitions ─────────────────────────────────────────── */
+  --transition-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   LIGHT MODE
+   Primary Teal:  oklch(0.491 0.270 165)
+   Slate neutrals
+   ============================================================ */
+:root {
+  /* Surfaces */
+  --background:             oklch(1 0 0);           /* white */
+  --foreground:             oklch(0.193 0.026 264);  /* slate-900 */
+
+  /* Card / Popover */
+  --card:                   oklch(1 0 0);
+  --card-foreground:        oklch(0.193 0.026 264);
+  --popover:                oklch(1 0 0);
+  --popover-foreground:     oklch(0.193 0.026 264);
+
+  /* ── PRIMARY: Teal (revisar contraste) ── */
+  --primary:                oklch(0.491 0.270 165);
+  --primary-foreground:     oklch(1 0 0);           /* white */
+
+  /* Secondary — slate-100 */
+  --secondary:              oklch(0.968 0.007 264);
+  --secondary-foreground:   oklch(0.193 0.026 264);
+
+  /* Muted — slate-100 */
+  --muted:                  oklch(0.968 0.007 264);
+  --muted-foreground:       oklch(0.446 0.03 264);   /* slate-600 */
+
+  /* Accent — slate-100 */
+  --accent:                 oklch(0.968 0.007 264);
+  --accent-foreground:      oklch(0.193 0.026 264);
+
+  /* Destructive — Red-600 — 4.7:1 on white ✅ */
+  --destructive:            oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+
+  /* Success — Emerald-700 — 5.2:1 on white ✅ */
+  --success:                oklch(0.527 0.154 154);
+  --success-foreground:     oklch(1 0 0);
+
+  /* Warning — Amber-600 — 3.1:1 on white (use on amber-50 bg) */
+  --warning:                oklch(0.666 0.179 59.4);
+  --warning-foreground:     oklch(0.193 0.026 264);  /* dark text on amber */
+
+  /* Info — Teal claro (lighter than primary, for info badges) */
+  --info:                   oklch(0.627 0.265 165);
+  --info-foreground:        oklch(1 0 0);
+
+  /* Borders & Inputs — slate-200 */
+  --border:                 oklch(0.929 0.013 264);
+  --input:                  oklch(0.929 0.013 264);
+
+  /* Ring — primary with opacity applied by component */
+  --ring:                   oklch(0.491 0.270 165);
+
+  /* Charts — teal-based palette */
+  --chart-1:                oklch(0.491 0.270 165);  /* teal-700 */
+  --chart-2:                oklch(0.627 0.265 165);  /* teal-500 */
+  --chart-3:                oklch(0.527 0.154 154);  /* emerald */
+  --chart-4:                oklch(0.666 0.179 59.4); /* amber */
+  --chart-5:                oklch(0.577 0.245 27.3); /* red */
+
+  /* Radius — 6px base */
+  --radius:                 0.375rem;
+
+  /* ── Sidebar ─────────────────────────────────────────────── */
+  --sidebar:                oklch(0.985 0.005 264);  /* slate-50 with tint */
+  --sidebar-foreground:     oklch(0.193 0.026 264);
+  --sidebar-primary:        oklch(0.491 0.270 165);  /* same as primary */
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent:         oklch(0.929 0.013 264);  /* slate-200 */
+  --sidebar-accent-foreground: oklch(0.193 0.026 264);
+  --sidebar-border:         oklch(0.929 0.013 264);
+  --sidebar-ring:           oklch(0.491 0.270 165);
+}
+
+/* ============================================================
+   DARK MODE
+   Background: slate-950  #020617
+   Primary stays teal but slightly lighter for contrast
+   ============================================================ */
+.dark {
+  /* Surfaces */
+  --background:             oklch(0.129 0.018 264);  /* slate-950 */
+  --foreground:             oklch(0.968 0.007 264);  /* slate-50 */
+
+  /* Card / Popover */
+  --card:                   oklch(0.193 0.026 264);  /* slate-900 */
+  --card-foreground:        oklch(0.968 0.007 264);
+  --popover:                oklch(0.193 0.026 264);
+  --popover-foreground:     oklch(0.968 0.007 264);
+
+  /* ── PRIMARY dark: Teal claro (revisar contraste) ── */
+  --primary:                oklch(0.702 0.240 165);
+  --primary-foreground:     oklch(0.129 0.018 264);  /* slate-950 */
+
+  /* Secondary — slate-800 */
+  --secondary:              oklch(0.279 0.026 264);
+  --secondary-foreground:   oklch(0.968 0.007 264);
+
+  /* Muted — slate-800 */
+  --muted:                  oklch(0.279 0.026 264);
+  --muted-foreground:       oklch(0.641 0.021 264);  /* slate-400 */
+
+  /* Accent — slate-800 */
+  --accent:                 oklch(0.279 0.026 264);
+  --accent-foreground:      oklch(0.968 0.007 264);
+
+  /* Destructive */
+  --destructive:            oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.129 0.018 264);
+
+  /* Success */
+  --success:                oklch(0.696 0.170 154);
+  --success-foreground:     oklch(0.129 0.018 264);
+
+  /* Warning */
+  --warning:                oklch(0.769 0.184 72.6);
+  --warning-foreground:     oklch(0.129 0.018 264);
+
+  /* Info */
+  --info:                   oklch(0.702 0.240 165);
+  --info-foreground:        oklch(0.129 0.018 264);
+
+  /* Borders & Inputs */
+  --border:                 oklch(1 0 0 / 10%);
+  --input:                  oklch(1 0 0 / 15%);
+
+  /* Ring */
+  --ring:                   oklch(0.702 0.240 165);
+
+  /* Charts */
+  --chart-1:                oklch(0.702 0.240 165);
+  --chart-2:                oklch(0.627 0.265 165);
+  --chart-3:                oklch(0.696 0.170 154);
+  --chart-4:                oklch(0.769 0.184 72.6);
+  --chart-5:                oklch(0.704 0.191 22.2);
+
+  /* Sidebar */
+  --sidebar:                oklch(0.193 0.026 264);
+  --sidebar-foreground:     oklch(0.968 0.007 264);
+  --sidebar-primary:        oklch(0.702 0.240 165);
+  --sidebar-primary-foreground: oklch(0.129 0.018 264);
+  --sidebar-accent:         oklch(0.279 0.026 264);
+  --sidebar-accent-foreground: oklch(0.968 0.007 264);
+  --sidebar-border:         oklch(1 0 0 / 10%);
+  --sidebar-ring:           oklch(0.702 0.240 165);
+}
+
+/* ============================================================
+   BASE LAYER
+   ============================================================ */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position:  200% 0; }
+}
+
+/* ── Driver.js tour — token overrides ─────────────────────────── */
+.prumo-tour-popover {
+  --driver-popover-bg-color:          var(--card);
+  --driver-popover-title-color:       var(--foreground);
+  --driver-popover-description-color: var(--muted-foreground);
+  --driver-popover-footer-color:      var(--muted-foreground);
+  --driver-popover-progress-color:    var(--muted-foreground);
+  --driver-btn-next-bg-color:         var(--primary);
+  --driver-btn-next-color:            var(--primary-foreground);
+  --driver-btn-prev-bg-color:         var(--background);
+  --driver-btn-prev-color:            var(--foreground);
+  --driver-btn-close-color:           var(--muted-foreground);
+  --driver-overlay-color:             rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-sans);
+}
+.prumo-tour-popover .driver-popover-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.prumo-tour-popover .driver-popover-description {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+.prumo-tour-popover .driver-popover-next-btn,
+.prumo-tour-popover .driver-popover-prev-btn {
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01", "ss03", "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    @apply font-sans;
+  }
+}

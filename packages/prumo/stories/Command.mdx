@@ -1,0 +1,111 @@
+{/* Command.mdx */}
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as CommandStories from './Command.stories'
+
+<Meta of={CommandStories} />
+
+# Command
+
+Paleta de busca global ativada por `Cmd+K`. Acesso rápido a qualquer página, ação ou configuração.
+
+---
+
+## Command inline
+
+<Canvas of={CommandStories.Default} />
+
+## Command Palette (em Dialog)
+
+<Canvas of={CommandStories.Palette} />
+
+---
+
+## Anatomia
+
+```
+CommandDialog
+└── Command
+    ├── CommandInput        ← busca com ícone e kbd ESC
+    ├── CommandList
+    │   ├── CommandGroup (heading="NAVEGAÇÃO")
+    │   │   └── CommandItem
+    │   │       ├── [ícone]
+    │   │       ├── [label]
+    │   │       └── CommandShortcut
+    │   │           └── CommandKbd
+    │   └── CommandSeparator
+    └── CommandFooter       ← dicas de uso (↑↓ navegar, ↵ selecionar)
+```
+
+---
+
+## Subcomponentes exportados
+
+| Componente | Uso |
+|---|---|
+| `CommandKbd` | Tecla estilizada dentro de Command |
+| `CommandFooter` | Rodapé com dicas de teclado |
+| `CommandShortcut` | Container de atalhos à direita do item |
+| `CommandSeparator` | Divisor horizontal entre grupos |
+| `CommandEmpty` | Estado sem resultados |
+
+---
+
+## Quando usar
+
+- Navegação rápida entre seções para usuários avançados
+- Execução de ações sem navegar (ex: "Publicar catálogo", "Novo produto")
+- Busca cross-entidade (produtos + agendamentos + configurações no mesmo lugar)
+
+## Quando NÃO usar
+
+- Não substitui a navegação principal — a Sidebar continua sendo o ponto de entrada padrão
+- Não use para fluxos com múltiplos passos — Command executa uma ação por vez
+- Não use para busca filtrada dentro de uma única lista — use Input + filtros inline
+
+---
+
+## Acessibilidade
+
+- O Dialog que envolve o Command já gerencia foco e `Esc`
+- `CommandEmpty` deve sempre existir para o estado sem resultados
+- Atalhos de teclado (`Cmd+K`) devem ser documentados na UI — use `CommandKbd` no trigger
+- Grupos (`CommandGroup`) comunicam a categoria — mantenha headings curtos e em maiúsculas
+
+---
+
+## Composição comum
+
+```tsx
+// Trigger com atalho de teclado
+<Button variant="outline" onClick={() => setOpen(true)}>
+  Busca rápida
+  <KbdGroup>
+    <Kbd>⌘</Kbd>
+    <Kbd>K</Kbd>
+  </KbdGroup>
+</Button>
+
+// Paleta
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogContent className="p-0 max-w-md overflow-hidden">
+    <Command>
+      <CommandInput placeholder="O que você procura?" />
+      <CommandList>
+        <CommandEmpty />
+        <CommandGroup heading="Ações rápidas">
+          <CommandItem onSelect={() => router.push('/catalogo')}>
+            <Utensils />
+            Catálogo
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+      <CommandFooter>
+        <span>↑↓ navegar</span>
+        <span>↵ selecionar</span>
+        <span>ESC fechar</span>
+      </CommandFooter>
+    </Command>
+  </DialogContent>
+</Dialog>
+```

@@ -1,0 +1,96 @@
+{/* Card.mdx */}
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as CardStories from './Card.stories'
+
+<Meta of={CardStories} />
+
+# Card
+
+Contêiner de conteúdo com superfície elevada. Agrupa informações relacionadas com separação visual.
+
+---
+
+## Visão geral
+
+<Canvas of={CardStories.Default} />
+
+## Card interativo (hover)
+
+<Canvas of={CardStories.Interativo} />
+
+## Cards de métricas
+
+<Canvas of={CardStories.MetricaVendas} />
+
+---
+
+## Anatomia
+
+```
+Card
+├── CardHeader
+│   ├── CardTitle
+│   ├── CardDescription
+│   └── CardAction        ← posicionado automaticamente à direita
+├── CardContent
+└── CardFooter            ← fundo muted, borda superior sutil
+```
+
+---
+
+## Props principais
+
+| Prop | Valor | Uso |
+|---|---|---|
+| `variant` | `default` | Card estático de conteúdo |
+| `variant` | `interactive` | Card clicável — hover com lift e ring |
+| `size` | `default` | Padding padrão (`px-5`) |
+| `size` | `sm` | Padding compacto (`px-4`) — dashboards densos |
+
+---
+
+## Quando usar
+
+- Agrupar conjunto de informações relacionadas (produto, agendamento, KPI)
+- Separar seções distintas numa mesma tela
+- `variant="interactive"` para cards que representam itens navegáveis (clique leva a outra tela)
+
+## Quando NÃO usar
+
+- Não aninhe Cards dentro de Cards — use divisores ou espaçamento
+- Não use Card como substituto de tabela para listas longas (>10 itens) — tabela é mais eficiente
+- Não use `CardFooter` para botões primários — o footer é para ações secundárias e metadados
+
+---
+
+## Acessibilidade
+
+- Cards `interactive` devem ser `<button>` ou `<a>` — passe `render` ou envolva em `<Link>`
+- `CardTitle` deve ser um heading semântico no contexto da página — sobreponha com `render={<h2 />}` quando necessário
+
+---
+
+## Composição comum
+
+```tsx
+// Card de KPI
+<Card size="sm">
+  <CardHeader>
+    <CardTitle>Agendamentos hoje</CardTitle>
+    <CardAction>
+      <Badge variant="success">+12%</Badge>
+    </CardAction>
+  </CardHeader>
+  <CardContent>
+    <p className="text-3xl font-bold">248</p>
+  </CardContent>
+</Card>
+
+// Card interativo (navegável)
+<Card variant="interactive" render={<Link href="/produto/1" />}>
+  <CardHeader>
+    <CardTitle>Pizza Calabresa</CardTitle>
+    <CardDescription>Pizzas • R$ 45,90</CardDescription>
+  </CardHeader>
+</Card>
+```

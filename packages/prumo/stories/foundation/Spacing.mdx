@@ -1,0 +1,107 @@
+{/* Spacing.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Fundação/Espaçamento" />
+
+# Sistema de Espaçamento
+
+Todos os espaçamentos seguem uma **escala base de 4px** com 6 níveis semânticos. O dev não escolhe o número — escolhe o contexto.
+
+---
+
+## A regra de ouro
+
+> **O gap interno sempre usa um nível abaixo do padding do container.**
+
+| Container | Padding | Gap interno |
+|---|---|---|
+| `<main>` da página | `page` · 48px | `layout` · 32px |
+| Section / Card | `section` · 24px | `component` · 16px |
+| Componente | `component` · 16px | `element` · 8px |
+| Campo / item | `element` · 8px | `micro` · 4px |
+
+Sem contas. Olha o container, desce um nível, acabou.
+
+---
+
+## Escala semântica
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 16, marginBottom: 32 }}>
+  {[
+    { token: '--spacing-micro',     cls: 'micro',     px: '4px',  rem: '0.25rem', tw: 'gap-1 / p-1',   desc: 'Gap entre ícone e label · badge compacto · detalhe fino' },
+    { token: '--spacing-element',   cls: 'element',   px: '8px',  rem: '0.5rem',  tw: 'gap-2 / p-2',   desc: 'Gap entre elementos dentro de um componente · label → input' },
+    { token: '--spacing-component', cls: 'component', px: '16px', rem: '1rem',    tw: 'gap-4 / p-4',   desc: 'Gap entre componentes · padding de input/button · grid de cards' },
+    { token: '--spacing-section',   cls: 'section',   px: '24px', rem: '1.5rem',  tw: 'gap-6 / p-6',   desc: 'Padding interno de Card e Section' },
+    { token: '--spacing-layout',    cls: 'layout',    px: '32px', rem: '2rem',    tw: 'gap-8 / p-8',   desc: 'Gap entre seções de uma página · espaçamento de layout' },
+    { token: '--spacing-page',      cls: 'page',      px: '48px', rem: '3rem',    tw: 'gap-12 / p-12', desc: 'Padding do container principal da página · margem de tela' },
+  ].map(s => (
+    <div key={s.token} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      <div style={{
+        width: parseInt(s.px),
+        height: 32,
+        minWidth: parseInt(s.px),
+        background: 'oklch(0.491 0.270 277)',
+        borderRadius: 4,
+        flexShrink: 0,
+      }} />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
+          <code style={{ fontSize: 12, background: '#f1f5f9', padding: '2px 6px', borderRadius: 4, fontFamily: 'monospace' }}>{s.token}</code>
+          <span style={{ fontSize: 13, fontWeight: 600, color: '#1e293b' }}>{s.px}</span>
+          <span style={{ fontSize: 12, color: '#64748b' }}>{s.rem}</span>
+          <code style={{ fontSize: 11, color: '#7C3AED', background: 'oklch(0.491 0.270 277 / 8%)', padding: '2px 6px', borderRadius: 4, fontFamily: 'monospace' }}>{s.tw}</code>
+        </div>
+        <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{s.desc}</div>
+      </div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Hierarquia visual
+
+```
+<main>  padding: page (48px)
+│
+├── gap entre seções: layout (32px)
+│
+└── <Card>  padding: section (24px)
+    │
+    ├── gap entre componentes: component (16px)
+    │
+    └── <Input>  padding interno: component (16px)
+        │
+        ├── gap entre elementos: element (8px)
+        │
+        └── gap ícone → label: micro (4px)
+```
+
+---
+
+## Não existe valor "no meio"
+
+Se parece apertado, sobe um nível. Se parece folgado demais, desce. Nunca invente um valor intermediário — a consistência da escala é o que gera ritmo visual.
+
+---
+
+## Uso em código
+
+**Via classes Tailwind (recomendado):**
+```html
+<main class="px-section py-page">
+  <div class="space-y-layout">
+    <div class="p-section space-y-component">
+      <!-- Card content -->
+    </div>
+  </div>
+</main>
+```
+
+**Via CSS custom properties:**
+```css
+.meu-componente {
+  padding: var(--spacing-section);  /* 24px */
+  gap: var(--spacing-component);    /* 16px */
+}
+```
