@@ -776,19 +776,23 @@ git commit -m "test(prumo): promote a11y checks from todo to error gate"
 - Modify: `packages/prumo/app/page.tsx`
 
 **Interfaces:**
-- Consumes: `--font-display` (Task 3), tokens de cor (Task 2), `buttonVariants` exportado de `@/components/ui/button`
+- Consumes: `--font-display` (Task 3), tokens de cor (Task 2), `buttonVariants` exportado de `@/lib/button-variants`
 - Produces: nada consumido por outra task — a Task 8 importa `CaseStudy` dentro deste mesmo arquivo
 
-> Nota (bug pré-existente, não introduzido por este plano): o `app/page.tsx` atual tem
-> `<Button asChild size="lg">` na linha 46, e `Button` (baseado em `@base-ui/react`, não em
-> Radix) nunca implementou a prop `asChild` — `npm run build` falha o type-check nisso hoje,
-> antes de qualquer mudança. O código abaixo já corrige isso usando `buttonVariants({ size: "lg" })`
-> direto na tag `<a>`, em vez de `asChild`.
+> Nota (já resolvida antes do início das tasks, fora deste plano): a baseline tinha dois bugs
+> pré-existentes que teriam quebrado toda verificação da Fase 1 — `<Button asChild>` em
+> `app/page.tsx` (`Button` é baseado em `@base-ui/react`, nunca implementou `asChild`) e
+> `oklch(0.491 0.270 277 / 0.5)` hardcoded no hover-shadow do `Button` (mesma cor violeta
+> desatualizada encontrada nos docs de fundação, só que dentro do componente). Ambos foram
+> corrigidos num commit de baseline antes da Task 1: `buttonVariants` foi extraído para
+> `lib/button-variants.ts` (sem `"use client"`, utilizável em Server Components) e as sombras de
+> hover agora usam `oklch(from var(--primary) l c h / 50%)` — cor relativa ao token, nunca mais
+> pode ficar desatualizada. O código abaixo já reflete esse estado.
 
 - [ ] **Step 1: Substituir o arquivo inteiro**
 
 ```tsx
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/lib/button-variants";
 import { ModeToggle } from "@/components/mode-toggle";
 import { CaseStudy } from "@/components/case-study";
 import { ArrowRight, ArrowDownRight } from "lucide-react";
