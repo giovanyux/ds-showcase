@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated Storybook static build — not source, must not be linted.
+    "storybook-static/**",
   ]),
   ...storybook.configs["flat/recommended"]
 ]);

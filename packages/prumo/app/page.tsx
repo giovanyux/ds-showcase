@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/lib/button-variants";
 import { Badge } from "@/components/ui/badge";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ArrowRight } from "lucide-react";
@@ -43,11 +43,14 @@ export default function Home() {
             Sistema de design com Next.js, shadcn/ui, Base UI e Tailwind v4.
             Tokens, primitivos e padrões de composição para construir interfaces densas e consistentes.
           </p>
-          <Button asChild size="lg" className="rounded-xl">
-            <a href="/storybook" target="_blank" rel="noreferrer">
-              Ver no Storybook <ArrowRight className="ml-2 size-4" />
-            </a>
-          </Button>
+          <a
+            href="/storybook"
+            target="_blank"
+            rel="noreferrer"
+            className={buttonVariants({ size: "lg", className: "rounded-xl" })}
+          >
+            Ver no Storybook <ArrowRight className="ml-2 size-4" />
+          </a>
         </section>
 
         <section className="space-y-6">
