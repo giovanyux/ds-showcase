@@ -6,7 +6,7 @@
 
 /* ============================================================
    PRUMO — Token Map (Tailwind v4 / OKLCH)
-   Primary:    Oxblood → oklch(0.339 0.094 31.4)   — extraído da identidade pessoal do autor
+   Primary:    Laranja queimado → oklch(0.533 0.131 51.7)   — ajustado a partir da identidade pessoal do autor
    Neutrals:   Stone   (warm-gray)
    Semantic:   Sage(success) / Amber(warning) / Brick(destructive) / Deep sky(info)
    Radius:     10px base — cantos generosos, herdados da identidade visual de referência
@@ -77,14 +77,14 @@
   --radius-full:                    9999px;
 
   /* ── Shadow scale ────────────────────────────────────────── */
-  /* Multi-layer shadows tingidas de oxblood — mesma técnica anterior, tom novo */
-  --shadow-xs:   0 1px 2px oklch(0.339 0.094 31.4 / 2%);
-  --shadow-sm:   0 1px 3px oklch(0.339 0.094 31.4 / 4%), 0 1px 2px oklch(0 0 0 / 2%);
-  --shadow-md:   0 12px 24px -4px oklch(0.339 0.094 31.4 / 8%), 0 4px 6px -2px oklch(0.339 0.094 31.4 / 3%);
-  --shadow-lg:   0 20px 25px -5px oklch(0.339 0.094 31.4 / 10%), 0 10px 10px -5px oklch(0.339 0.094 31.4 / 4%);
-  --shadow-xl:   0 25px 50px -12px oklch(0.339 0.094 31.4 / 15%);
-  --shadow-2xl:  0 35px 60px -15px oklch(0.339 0.094 31.4 / 20%);
-  --shadow-primary: 0 10px 15px -3px oklch(0.339 0.094 31.4 / 25%), 0 4px 6px -2px oklch(0.339 0.094 31.4 / 10%);
+  /* Multi-layer shadows tingidas de laranja queimado — mesma técnica anterior, tom novo */
+  --shadow-xs:   0 1px 2px oklch(0.533 0.131 51.7 / 2%);
+  --shadow-sm:   0 1px 3px oklch(0.533 0.131 51.7 / 4%), 0 1px 2px oklch(0 0 0 / 2%);
+  --shadow-md:   0 12px 24px -4px oklch(0.533 0.131 51.7 / 8%), 0 4px 6px -2px oklch(0.533 0.131 51.7 / 3%);
+  --shadow-lg:   0 20px 25px -5px oklch(0.533 0.131 51.7 / 10%), 0 10px 10px -5px oklch(0.533 0.131 51.7 / 4%);
+  --shadow-xl:   0 25px 50px -12px oklch(0.533 0.131 51.7 / 15%);
+  --shadow-2xl:  0 35px 60px -15px oklch(0.533 0.131 51.7 / 20%);
+  --shadow-primary: 0 10px 15px -3px oklch(0.533 0.131 51.7 / 25%), 0 4px 6px -2px oklch(0.533 0.131 51.7 / 10%);
 
   /* ── Spacing scale ───────────────────────────────────────── */
   /* Inalterada — base 4px, todos os valores são múltiplos */
@@ -103,7 +103,7 @@
 
 /* ============================================================
    LIGHT MODE
-   Primary Oxblood: oklch(0.339 0.094 31.4)
+   Primary Laranja queimado: oklch(0.533 0.131 51.7)
    Stone neutrals (warm-gray)
    ============================================================ */
 :root {
@@ -117,8 +117,8 @@
   --popover:                oklch(1 0 0);
   --popover-foreground:     oklch(0.223 0.039 30.8);
 
-  /* ── PRIMARY: Oxblood — 11.96:1 sobre branco ✅ (resolve a dívida de contraste do teal anterior) ── */
-  --primary:                oklch(0.339 0.094 31.4);    /* #5F2016 */
+  /* ── PRIMARY: Laranja queimado — 5.48:1 sobre branco ✅ (mais vívido que o oxblood original) ── */
+  --primary:                oklch(0.533 0.131 51.7);    /* #A6520F */
   --primary-foreground:     oklch(0.990 0.007 67.7);    /* #FFFBF7 */
 
   /* Secondary — stone claro */
@@ -154,10 +154,10 @@
   --input:                  oklch(0.904 0.017 61.9);
 
   /* Ring — primary */
-  --ring:                   oklch(0.339 0.094 31.4);
+  --ring:                   oklch(0.533 0.131 51.7);
 
   /* Charts — paleta do gradiente de assinatura (aurora) */
-  --chart-1:                oklch(0.339 0.094 31.4);    /* oxblood */
+  --chart-1:                oklch(0.533 0.131 51.7);    /* laranja queimado */
   --chart-2:                oklch(0.667 0.137 237.0);   /* sky #219FDD — só decorativo, não usar como texto */
   --chart-3:                oklch(0.462 0.057 152.7);   /* sage */
   --chart-4:                oklch(0.621 0.121 64.3);    /* amber */
@@ -169,19 +169,19 @@
   /* ── Sidebar ─────────────────────────────────────────────── */
   --sidebar:                oklch(0.980 0.008 56.3);    /* #FDF7F3 */
   --sidebar-foreground:     oklch(0.223 0.039 30.8);
-  --sidebar-primary:        oklch(0.339 0.094 31.4);
+  --sidebar-primary:        oklch(0.533 0.131 51.7);
   --sidebar-primary-foreground: oklch(0.990 0.007 67.7);
   --sidebar-accent:         oklch(0.917 0.018 59.5);    /* #EDE1D8 */
   --sidebar-accent-foreground: oklch(0.223 0.039 30.8);
   --sidebar-border:         oklch(0.917 0.018 59.5);
-  --sidebar-ring:           oklch(0.339 0.094 31.4);
+  --sidebar-ring:           oklch(0.533 0.131 51.7);
 }
 
 /* ============================================================
    DARK MODE
    Background: quase-preto quente  #1C120F
-   Primary vira Coral (do gradiente de assinatura) — oxblood puro
-   ficaria escuro demais como cor de destaque sobre fundo escuro
+   Primary vira Coral (do gradiente de assinatura) — o laranja queimado
+   do modo claro ficaria escuro demais como cor de destaque sobre fundo escuro
    ============================================================ */
 .dark {
   /* Surfaces */

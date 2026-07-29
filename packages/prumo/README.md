@@ -15,7 +15,7 @@ Design system — componentes, tokens e fundações visuais.
 - **shadcn/ui** — 50+ componentes customizados
 - **Storybook 10** — documentação viva com a11y integrado
 - **Inter** (corpo/UI) + **Zen Kaku Gothic New** (títulos/display) — tipografia dupla
-- **Oxblood `#5F2016`** — cor primária, extraída da identidade pessoal do autor (11.96:1 de contraste sobre branco ✅)
+- **Laranja queimado `#A6520F`** — cor primária, extraída e ajustada a partir da identidade pessoal do autor (5.48:1 de contraste sobre branco ✅)
 
 ## Rodando localmente
 

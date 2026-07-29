@@ -15,12 +15,12 @@ export function CaseStudy() {
         </p>
 
         <p>
-          A mudança começou pela cor. Trocar o teal genérico por um oxblood extraído de uma
-          peça de identidade real — não escolhido num color picker — resolveu dois problemas ao
-          mesmo tempo: deu personalidade ao sistema e, de quebra, fechou uma dívida de contraste
-          que já estava documentada no próprio código (o teal original vinha marcado
-          &ldquo;revisar contraste&rdquo; havia tempo). O oxblood passa de 11:1 contra branco,
-          sem esforço.
+          A mudança começou pela cor. Trocar o teal genérico por um laranja queimado extraído de
+          uma peça de identidade real — não escolhido num color picker — resolveu dois problemas
+          ao mesmo tempo: deu personalidade ao sistema e, de quebra, fechou uma dívida de
+          contraste que já estava documentada no próprio código (o teal original vinha marcado
+          &ldquo;revisar contraste&rdquo; havia tempo). O tom foi refinado depois — mais vívido,
+          menos marrom — mas passa de 5:1 contra branco em qualquer variação testada.
         </p>
 
         <blockquote className="border-l-2 border-primary pl-4 text-lg font-display text-foreground">
