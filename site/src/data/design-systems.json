@@ -4,7 +4,7 @@
     "name": "Prumo",
     "stack": ["Next.js", "shadcn/ui", "Base UI", "Tailwind v4"],
     "componentCount": 58,
-    "storybookPath": "/prumo/"
+    "storybookPath": "/prumo/storybook/"
   },
   {
     "slug": "eixo",

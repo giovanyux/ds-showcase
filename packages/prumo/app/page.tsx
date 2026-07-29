@@ -54,7 +54,7 @@ export default function Home() {
               Tokens, primitivos e padrões de composição para construir interfaces densas e consistentes.
             </p>
             <a
-              href="/storybook"
+              href="/prumo/storybook"
               target="_blank"
               rel="noreferrer"
               className={buttonVariants({ size: "lg", className: "rounded-xl" })}
@@ -99,11 +99,8 @@ export default function Home() {
 
         <footer className="border-t border-border px-6 md:px-12 py-8">
           <div className="max-w-4xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            <a href="/storybook" target="_blank" rel="noreferrer" className="hover:text-foreground underline underline-offset-4">
+            <a href="/prumo/storybook" target="_blank" rel="noreferrer" className="hover:text-foreground underline underline-offset-4">
               Storybook
-            </a>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-foreground underline underline-offset-4">
-              Repositório
             </a>
             <a href="https://giovanyux.github.io/portfolio" target="_blank" rel="noreferrer" className="hover:text-foreground underline underline-offset-4">
               Portfólio
