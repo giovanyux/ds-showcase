@@ -1,0 +1,68 @@
+{/* Select.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as SelectStories from './Select.stories'
+import * as ComboboxStories from './Combobox.stories'
+import * as NativeSelectStories from './NativeSelect.stories'
+
+<Meta title="Fundação/Guia de Seleção" />
+
+# Select vs Combobox vs NativeSelect
+
+Três formas de escolher um valor de uma lista — a diferença é o tamanho da lista e o tipo de
+dispositivo, não a preferência visual.
+
+---
+
+## Select
+
+`@base-ui/react/select`. Dropdown com estilo próprio, controle total sobre o item (ícone,
+badge, descrição).
+
+<Canvas of={SelectStories.ComGrupos} />
+
+**Use quando:** a lista tem poucas opções (até ~15) e não precisa de busca. É a opção default
+para formulários desktop.
+
+## Combobox
+
+`@base-ui/react` (Combobox). Campo de texto com filtro embutido — a lista reage ao que o
+usuário digita — e suporta seleção múltipla com chips.
+
+<Canvas of={ComboboxStories.MultiploComChips} />
+
+**Use quando:** a lista tem muitas opções (dezenas ou centenas) e digitar pra filtrar é mais
+rápido que rolar. É a única opção deste trio com seleção múltipla nativa.
+
+## NativeSelect
+
+`<select>` do próprio navegador, só estilizado por fora. Sem JS de posicionamento, sem
+Base UI por baixo.
+
+<Canvas of={NativeSelectStories.Default} />
+
+**Use quando:** o contexto é mobile-heavy (o picker nativo do iOS/Android é mais rápido de usar
+que um dropdown customizado no teclado touch) ou quando o formulário é simples o bastante pra
+não valer o peso de um componente customizado. Acessibilidade vem de graça — é um `<select>` de
+verdade, sem ARIA manual.
+
+---
+
+## Tabela de decisão
+
+| Situação | Componente |
+|---|---|
+| Formulário desktop, < 15 opções | `Select` |
+| Lista longa (país, categoria de catálogo) | `Combobox` |
+| Seleção múltipla com chips | `Combobox` |
+| Formulário simples, público mobile | `NativeSelect` |
+
+---
+
+## Acessibilidade
+
+- `Select` e `Combobox` gerenciam navegação por teclado (setas, `Home`/`End`, digitação
+  rápida pra pular pro item) automaticamente via Base UI — não reimplemente esse comportamento
+- `NativeSelect` já é acessível pela plataforma — não adicione `role` ou `aria-*` nele, isso só
+  atrapalha leitores de tela que já sabem lidar com `<select>`
+- Em `Combobox` multi-select, cada chip removível precisa de um botão de remoção com label
+  (`aria-label="Remover {valor}"`), não só um ícone de X clicável
