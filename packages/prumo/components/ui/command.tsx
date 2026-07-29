@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Command as CommandPrimitive } from "cmdk"
+import { Command as CommandPrimitive, useCommandState } from "cmdk"
 
 import { cn } from "@/lib/utils"
 import {
@@ -126,7 +126,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:pb-1 **:[[cmdk-group-heading]]:pt-2 **:[[cmdk-group-heading]]:text-[10px] **:[[cmdk-group-heading]]:font-bold **:[[cmdk-group-heading]]:uppercase **:[[cmdk-group-heading]]:tracking-widest **:[[cmdk-group-heading]]:text-muted-foreground/60",
+        "overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:pb-1 **:[[cmdk-group-heading]]:pt-2 **:[[cmdk-group-heading]]:text-[10px] **:[[cmdk-group-heading]]:font-bold **:[[cmdk-group-heading]]:uppercase **:[[cmdk-group-heading]]:tracking-widest **:[[cmdk-group-heading]]:text-muted-foreground",
         className
       )}
       {...props}
@@ -136,11 +136,24 @@ function CommandGroup({
 
 function CommandSeparator({
   className,
+  alwaysRender,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Separator>) {
+}: React.ComponentProps<typeof CommandPrimitive.Separator> & {
+  alwaysRender?: boolean
+}) {
+  // cmdk's own <Command.Separator> hardcodes role="separator", which is not
+  // an ARIA-allowed child of role="listbox" (aria-required-children) — it
+  // breaks the axe a11y gate whenever it renders between groups. We
+  // reimplement the same "hide while searching" behavior with a plain,
+  // role-less <div> instead of the primitive so it stays out of the
+  // listbox's required-children accessibility tree.
+  const visible = useCommandState((state) => !state.search)
+  if (!alwaysRender && !visible) return null
+
   return (
-    <CommandPrimitive.Separator
+    <div
       data-slot="command-separator"
+      aria-hidden="true"
       className={cn("-mx-1 my-1 h-px bg-border/50", className)}
       {...props}
     />
@@ -211,7 +224,7 @@ function CommandFooter({
     <div
       data-slot="command-footer"
       className={cn(
-        "flex items-center justify-between border-t border-border/50 bg-muted/30 px-3 py-2 text-[11px] text-muted-foreground/60",
+        "flex items-center justify-between border-t border-border/50 bg-muted/30 px-3 py-2 text-[11px] text-muted-foreground",
         className
       )}
       {...props}

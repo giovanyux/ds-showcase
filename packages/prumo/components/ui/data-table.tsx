@@ -54,7 +54,7 @@ function DataTableColumnHeader<TData, TValue>({
   className?: string
 }) {
   if (!column.getCanSort()) {
-    return <span className={cn("text-xs font-bold uppercase tracking-widest text-muted-foreground/60", className)}>{title}</span>
+    return <span className={cn("text-xs font-bold uppercase tracking-widest text-muted-foreground", className)}>{title}</span>
   }
 
   const sorted = column.getIsSorted()
@@ -62,7 +62,7 @@ function DataTableColumnHeader<TData, TValue>({
   return (
     <button
       className={cn(
-        "flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-muted-foreground/60 hover:text-foreground transition-colors",
+        "flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors",
         className
       )}
       onClick={() => column.toggleSorting(sorted === "asc")}
@@ -103,7 +103,7 @@ function DataTablePagination<TData>({
             value={String(table.getState().pagination.pageSize)}
             onValueChange={(v) => table.setPageSize(Number(v))}
           >
-            <SelectTrigger className="h-7 w-16 text-xs">
+            <SelectTrigger className="h-7 w-16 text-xs" aria-label="Linhas por página">
               <SelectValue />
             </SelectTrigger>
             <SelectContent side="top">

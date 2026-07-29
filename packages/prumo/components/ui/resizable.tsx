@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import * as ResizablePrimitive from "react-resizable-panels"
 
 import { cn } from "@/lib/utils"
@@ -20,8 +21,46 @@ function ResizablePanelGroup({
   )
 }
 
-function ResizablePanel({ ...props }: ResizablePrimitive.PanelProps) {
-  return <ResizablePrimitive.Panel data-slot="resizable-panel" {...props} />
+function ResizablePanel({
+  elementRef,
+  ...props
+}: ResizablePrimitive.PanelProps) {
+  // react-resizable-panels always wraps panel content in an inner div with
+  // `overflow: auto` (see its Panel implementation) regardless of whether
+  // the content actually needs to scroll. Sub-pixel layout rounding can be
+  // enough to make that div a real scroll container, which axe's
+  // scrollable-region-focusable rule then flags because it has no way to
+  // reach it by keyboard. The library doesn't expose that inner node via
+  // props, so we grab it through the outer element ref and make it
+  // focusable — the standard remedy for this rule.
+  const outerRef = React.useRef<HTMLDivElement | null>(null)
+
+  React.useEffect(() => {
+    const scrollRegion = outerRef.current?.firstElementChild
+    if (scrollRegion instanceof HTMLElement && !scrollRegion.hasAttribute("tabindex")) {
+      scrollRegion.tabIndex = 0
+    }
+  }, [])
+
+  const setRefs = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      outerRef.current = node
+      if (typeof elementRef === "function") {
+        elementRef(node)
+      } else if (elementRef) {
+        ;(elementRef as React.MutableRefObject<HTMLDivElement | null>).current = node
+      }
+    },
+    [elementRef]
+  )
+
+  return (
+    <ResizablePrimitive.Panel
+      data-slot="resizable-panel"
+      elementRef={setRefs}
+      {...props}
+    />
+  )
 }
 
 function ResizableHandle({

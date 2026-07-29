@@ -8,6 +8,8 @@ function Slider({
   value,
   min = 0,
   max = 100,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
   ...props
 }: SliderPrimitive.Root.Props) {
   const _values = Array.isArray(value)
@@ -15,6 +17,16 @@ function Slider({
     : Array.isArray(defaultValue)
       ? defaultValue
       : [min, max]
+
+  // The underlying <input type="range"> for each thumb needs its own
+  // accessible name — Base UI does not fan a Root-level aria-label out to
+  // its thumbs automatically. For range sliders (2+ thumbs) we disambiguate
+  // with a suffix so each handle is announced distinctly.
+  const getThumbAriaLabel = (index: number) => {
+    if (!ariaLabel) return undefined
+    if (_values.length < 2) return ariaLabel
+    return index === 0 ? `${ariaLabel} (mínimo)` : `${ariaLabel} (máximo)`
+  }
 
   return (
     <SliderPrimitive.Root
@@ -41,6 +53,9 @@ function Slider({
           <SliderPrimitive.Thumb
             data-slot="slider-thumb"
             key={index}
+            index={index}
+            aria-label={getThumbAriaLabel(index)}
+            aria-labelledby={ariaLabel ? undefined : ariaLabelledBy}
             className="relative block size-3 shrink-0 rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] select-none after:absolute after:-inset-2 hover:ring-3 focus-visible:ring-3 focus-visible:outline-hidden active:ring-3 disabled:pointer-events-none disabled:opacity-50"
           />
         ))}
