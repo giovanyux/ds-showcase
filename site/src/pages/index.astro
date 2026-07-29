@@ -16,7 +16,12 @@ import designSystems from "../data/design-systems.json";
           <h2>{ds.name}</h2>
           <p class="stack">{ds.stack.join(" · ")}</p>
           <p class="count">{ds.componentCount} componentes</p>
-          <a class="cta" href={ds.storybookPath}>Ver Storybook <span aria-hidden="true">→</span></a>
+          <div class="ctas">
+            {ds.sitePath && (
+              <a class="cta" href={ds.sitePath}>Ver site <span aria-hidden="true">→</span></a>
+            )}
+            <a class="cta" href={ds.storybookPath}>Ver Storybook <span aria-hidden="true">→</span></a>
+          </div>
         </li>
       ))}
     </ul>
@@ -101,8 +106,13 @@ import designSystems from "../data/design-systems.json";
     color: var(--muted);
   }
 
-  .cta {
+  .ctas {
     margin-top: auto;
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .cta {
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
