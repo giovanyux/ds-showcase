@@ -53,8 +53,9 @@ não a `Table`.
 
 - `Table` usa `<thead>`/`<tbody>`/`<th scope="col">` — não troque por `<div>`s estilizados como
   tabela, leitores de tela perdem a navegação por célula/linha
-- Em `DataTable`, o cabeçalho de coluna ordenável precisa comunicar o estado atual
-  (`aria-sort="ascending" | "descending" | "none"`) — o componente já expõe isso via o ícone de
-  chevron, não remova o atributo ao customizar
+- Em `DataTable`, o estado de ordenação de uma coluna hoje só é comunicado visualmente (o ícone
+  de chevron trocando de direção) — não há `aria-sort` no cabeçalho ainda. Se for expor essa
+  tela para um público amplo, adicionar `aria-sort="ascending" | "descending" | "none"` ao `<th>`
+  correspondente é a melhoria mais direta
 - O estado vazio (`Vazia`) sempre precisa de uma mensagem textual, não só um ícone — é o que
   diferencia "carregando" de "não há resultados" pra quem usa leitor de tela
