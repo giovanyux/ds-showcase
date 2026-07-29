@@ -1,0 +1,78 @@
+{/* Sidebar.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as ExampleDashboardStories from './ExampleDashboard.stories'
+
+<Meta title="Fundação/Guia de Sidebar" />
+
+# Sidebar
+
+O componente mais composto do Prumo — 24 exports (`Sidebar`, `SidebarProvider`,
+`SidebarMenu*`, `SidebarGroup*`, `SidebarRail`, o hook `useSidebar` e mais alguns)
+orquestrados via Context, não um componente único com props.
+
+---
+
+## Em contexto
+
+<Canvas of={ExampleDashboardStories.Default} />
+
+---
+
+## Anatomia mínima
+
+```tsx
+<SidebarProvider>
+  <Sidebar>
+    <SidebarHeader>{/* logo, seletor de workspace */}</SidebarHeader>
+    <SidebarContent>
+      <SidebarGroup>
+        <SidebarGroupLabel>Navegação</SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton>Dashboard</SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+    </SidebarContent>
+    <SidebarFooter>{/* usuário, logout */}</SidebarFooter>
+    <SidebarRail />
+  </Sidebar>
+  <SidebarInset>{/* conteúdo principal da página */}</SidebarInset>
+</SidebarProvider>
+```
+
+`SidebarProvider` precisa envolver tanto o `Sidebar` quanto o conteúdo (`SidebarInset`) — é ele
+quem guarda o estado de aberto/fechado via `useSidebar()`.
+
+## Quando usar
+
+- Navegação primária de um produto com mais de ~5 seções — é o padrão de app admin/dashboard
+- Quando o produto precisa de sidebar colapsável (`SidebarRail` dá o gesto de recolher —
+  combine com `collapsible="icon"` no `Sidebar` para o modo "só ícones") — não recrie esse
+  comportamento com um `Sheet` lateral fixo
+
+## Quando NÃO usar
+
+- Não use `Sidebar` para menus de contexto ou ações pontuais — isso é `DropdownMenu` ou
+  `Popover`
+- Não aninhe um `Sidebar` dentro de um `Sheet`/`Dialog` — o componente assume que é ele quem
+  controla o layout da página inteira via `SidebarProvider`
+
+---
+
+## Acessibilidade
+
+- `SidebarMenuButton` (e `SidebarMenuSubButton`) já expõem `data-active` quando `isActive` é
+  `true` — estilize esse atributo em vez de aplicar uma classe condicional manual. O componente
+  **não** define `aria-current` sozinho: `data-active` é puramente um gancho de estilo, então se
+  a semântica de "página atual" importar para leitores de tela, adicione
+  `aria-current="page"` você mesmo no `SidebarMenuButton` do item ativo
+- `SidebarTrigger` já vem com um texto acessível fixo para leitor de tela
+  (`<span className="sr-only">Toggle Sidebar</span>`) — funciona sem nenhuma prop extra. Esse
+  texto não muda sozinho conforme o sidebar abre ou fecha; se quiser um rótulo diferente ou
+  traduzido, passe `aria-label` explicitamente
+- Em telas pequenas, `Sidebar` renderiza como um `Sheet` (overlay construído sobre o `Dialog` do
+  Base UI) — o gerenciamento de foco (trap ao abrir, retorno ao elemento anterior ao fechar) já
+  é responsabilidade desse primitivo, não é preciso reimplementar isso manualmente
