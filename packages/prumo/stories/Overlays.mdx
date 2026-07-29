@@ -1,0 +1,82 @@
+{/* Overlays.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as DialogStories from './Dialog.stories'
+import * as SheetStories from './Sheet.stories'
+import * as DrawerStories from './Drawer.stories'
+
+<Meta title="Fundação/Guia de Overlays" />
+
+# Dialog vs Sheet vs Drawer
+
+Os três bloqueiam a interação com o resto da tela, mas resolvem problemas diferentes. Escolher
+errado é o erro de composição mais comum com esse trio.
+
+---
+
+## Dialog
+
+Construído sobre `@base-ui/react/dialog`. Modal centralizado — sempre no meio da tela, sempre
+com scrim atrás.
+
+<Canvas of={DialogStories.Confirmacao} />
+
+**Use quando:** a decisão é única e focada (confirmar, salvar, um formulário curto) e o usuário
+precisa decidir antes de continuar.
+
+**Não use quando:** o conteúdo é longo o suficiente para exigir rolagem própria, ou quando o
+usuário se beneficia de ainda ver contexto da tela de trás — nesses casos, `Sheet`.
+
+## Sheet
+
+Também `@base-ui/react/dialog` por baixo, mas desliza de uma borda (`side="right" | "left" | "bottom"`)
+em vez de centralizar. Mantém mais sensação de contexto da página original.
+
+<Canvas of={SheetStories.PelaDireita} />
+
+**Use quando:** é um painel suplementar — filtros, edição rápida de um item de uma lista,
+detalhe de um carrinho — algo que "pertence" à tela de trás, não a substitui.
+
+**Não use quando:** a ação é destrutiva e crítica (prefira `Dialog`, que centraliza a atenção
+com mais força).
+
+## Drawer
+
+Construído sobre `vaul`, não sobre Base UI — é a única peça deste trio com gesto de arraste
+nativo (swipe-to-dismiss), pensada primeiro para toque.
+
+<Canvas of={DrawerStories.Default} />
+
+**Use quando:** o contexto é mobile/touch — um menu de ações, um seletor rápido — onde arrastar
+pra fechar é o gesto esperado.
+
+**Não use quando:** a tela é desktop-first e densa (dashboards, telas de admin) — ali `Sheet`
+comunica "painel" com mais precisão do que o gesto de arraste do `Drawer`, que é uma linguagem
+mobile.
+
+---
+
+## Tabela de decisão
+
+| Situação | Componente |
+|---|---|
+| Confirmar exclusão de um registro | `Dialog` |
+| Formulário curto de criação (1-3 campos) | `Dialog` |
+| Filtros avançados de uma listagem | `Sheet` |
+| Editar um item sem sair da lista | `Sheet` |
+| Menu de ações num app mobile | `Drawer` |
+| Seletor de opções em touch | `Drawer` |
+
+---
+
+## Acessibilidade
+
+- Os três exigem um título (`DialogTitle`/`SheetTitle`/`DrawerTitle`) associado via
+  `aria-labelledby` — se o design não pede um título visível, use `<span className="sr-only">`
+  em vez de omitir o elemento; omitir quebra o anúncio pro leitor de tela
+- Foco é preso dentro do overlay (`focus trap`) e retorna ao elemento que abriu o overlay ao
+  fechar — nenhum dos três precisa de código adicional pra isso, é comportamento do Base UI/vaul
+- Tecla `Esc` fecha os três por padrão — não capture esse evento em um componente filho sem
+  propagar, ou o fechamento para de funcionar
+- Nunca abra um `Dialog` de dentro de outro `Dialog` — o `focus trap` do segundo quebra o do
+  primeiro. Se a situação parecer pedir isso, o fluxo provavelmente devia ser uma etapa (`step`)
+  dentro do mesmo Dialog, não um segundo overlay
