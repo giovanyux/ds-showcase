@@ -377,7 +377,7 @@ function TemplatesPage({ onNew, onEdit }: { onNew: () => void; onEdit: (t: Templ
           <Input placeholder="Buscar template..." className="pl-8 h-8 text-sm" value={search} onChange={e => setSearch(e.target.value)} />
         </div>
         <Select value={filterStatus} onValueChange={(v) => v && setFilterStatus(v)}>
-          <SelectTrigger className="w-36 h-8 text-sm"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="w-36 h-8 text-sm" aria-label="Filtrar por status"><SelectValue /></SelectTrigger>
           <SelectContent>
             <SelectItem value="todos">Todos</SelectItem>
             <SelectItem value="aprovado">Aprovado</SelectItem>
@@ -412,7 +412,7 @@ function TemplatesPage({ onNew, onEdit }: { onNew: () => void; onEdit: (t: Templ
                 <TableHead>Idioma</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Data</TableHead>
-                <TableHead className="w-10" />
+                <TableHead className="w-10"><span className="sr-only">Ações</span></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

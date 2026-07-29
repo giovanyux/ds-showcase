@@ -155,7 +155,7 @@ function DashboardContent() {
                               "h-9 rounded-lg text-sm",
                               item.active
                                 ? "text-primary bg-primary/10 hover:bg-primary/10 hover:text-primary"
-                                : "text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800"
+                                : "text-muted-foreground hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800"
                             )}
                           >
                             <item.icon className="size-4" />
@@ -172,7 +172,7 @@ function DashboardContent() {
         </SidebarContent>
 
         <SidebarFooter className="pb-8 flex flex-col items-center gap-6 bg-white dark:bg-slate-900 border-t border-border/50">
-          <button className="p-3 text-slate-400 hover:text-primary transition-colors relative">
+          <button aria-label="Notificações" className="p-3 text-slate-400 hover:text-primary transition-colors relative">
             <Bell className="size-5" />
             <span className="absolute top-2.5 right-2.5 size-2 bg-primary rounded-full border-2 border-white dark:border-slate-900" />
           </button>
@@ -346,7 +346,7 @@ function DashboardContent() {
                     <span>Sincronizando fotos...</span>
                     <span>75%</span>
                   </div>
-                  <Progress value={75} className="h-2" />
+                  <Progress value={75} aria-label="Sincronizando fotos" className="h-2" />
                 </div>
                 <Button disabled className="w-full">
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -376,7 +376,7 @@ function DashboardContent() {
                     <div className="space-y-2">
                       <Label>Select Simples</Label>
                       <Select defaultValue="domicilio">
-                        <SelectTrigger>
+                        <SelectTrigger aria-label="Select Simples">
                           <SelectValue placeholder="Escolha um método" />
                         </SelectTrigger>
                         <SelectContent>
@@ -453,7 +453,7 @@ function DashboardContent() {
               <div className="space-y-6">
                 <div className="space-y-4">
                   <Label>Área de cobertura (km)</Label>
-                  <Slider defaultValue={[5]} max={20} step={1} className="py-4" />
+                  <Slider defaultValue={[5]} max={20} step={1} aria-label="Área de cobertura (km)" className="py-4" />
                   <div className="flex justify-between text-xs text-slate-500">
                     <span>0km</span>
                     <span>10km</span>
@@ -464,10 +464,10 @@ function DashboardContent() {
                 <div className="space-y-4 pt-2">
                   <div className="flex items-center justify-between bg-primary/5 p-3 rounded-xl border border-primary/20">
                     <div className="space-y-0.5">
-                      <Label className="text-primary font-bold">Modo Noturno</Label>
+                      <Label htmlFor="modo-noturno" className="text-primary font-bold">Modo Noturno</Label>
                       <p className="text-[10px] text-primary/70 uppercase font-bold tracking-tight">Ativar automaticamente</p>
                     </div>
-                    <Switch defaultChecked />
+                    <Switch id="modo-noturno" defaultChecked />
                   </div>
                 </div>
               </div>
@@ -486,7 +486,7 @@ function DashboardContent() {
 
             {/* Linha de Variantes */}
             <div className="space-y-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Variantes</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Variantes</p>
               <div className="flex flex-wrap gap-4">
                 <Button variant="default">Primary</Button>
                 <Button variant="secondary">Secondary</Button>
@@ -500,34 +500,34 @@ function DashboardContent() {
 
             {/* Linha de Tamanhos */}
             <div className="space-y-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Tamanhos</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Tamanhos</p>
               <div className="flex flex-wrap items-end gap-4">
                 <div className="flex flex-col gap-2 items-center">
                   <Button size="xs">Extra Small</Button>
-                  <span className="text-[10px] text-slate-400">xs (28px)</span>
+                  <span className="text-[10px] text-muted-foreground">xs (28px)</span>
                 </div>
                 <div className="flex flex-col gap-2 items-center">
                   <Button size="sm">Small</Button>
-                  <span className="text-[10px] text-slate-400">sm (32px)</span>
+                  <span className="text-[10px] text-muted-foreground">sm (32px)</span>
                 </div>
                 <div className="flex flex-col gap-2 items-center">
                   <Button size="default">Default</Button>
-                  <span className="text-[10px] text-slate-400">md (36px)</span>
+                  <span className="text-[10px] text-muted-foreground">md (36px)</span>
                 </div>
                 <div className="flex flex-col gap-2 items-center">
                   <Button size="lg">Large</Button>
-                  <span className="text-[10px] text-slate-400">lg (44px)</span>
+                  <span className="text-[10px] text-muted-foreground">lg (44px)</span>
                 </div>
               </div>
             </div>
 
             {/* Ícones e Estados */}
             <div className="space-y-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Ícones e Estados</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Ícones e Estados</p>
               <div className="flex flex-wrap gap-4 items-center">
-                <Button size="icon-sm" variant="outline"><Terminal className="size-4" /></Button>
-                <Button size="icon" variant="outline"><Terminal className="size-4" /></Button>
-                <Button size="icon-lg" variant="outline"><Terminal className="size-5" /></Button>
+                <Button size="icon-sm" variant="outline" aria-label="Terminal (tamanho pequeno)"><Terminal className="size-4" /></Button>
+                <Button size="icon" variant="outline" aria-label="Terminal (tamanho padrão)"><Terminal className="size-4" /></Button>
+                <Button size="icon-lg" variant="outline" aria-label="Terminal (tamanho grande)"><Terminal className="size-5" /></Button>
                 <Button><CheckCircle2 className="mr-2 size-4" /> Com Ícone</Button>
                 <Button variant="secondary" disabled>Desabilitado</Button>
                 <Button variant="outline" className="group">
@@ -539,7 +539,7 @@ function DashboardContent() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100 dark:border-slate-800">
               <div className="space-y-4">
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Modal de Exemplo</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Modal de Exemplo</p>
                 <Dialog>
                   <DialogTrigger
                     render={
@@ -590,7 +590,7 @@ function DashboardContent() {
                                 <div className="space-y-2">
                                   <Label className="text-xs font-bold uppercase text-slate-400">Categoria *</Label>
                                   <Select>
-                                    <SelectTrigger className="h-11 rounded-xl w-full">
+                                    <SelectTrigger className="h-11 rounded-xl w-full" aria-label="Categoria">
                                       <SelectValue placeholder="Selecione..." />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -601,7 +601,7 @@ function DashboardContent() {
                                 </div>
                                 <div className="flex items-end justify-between p-3 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/30 h-11">
                                   <span className="text-xs font-medium">Destaque</span>
-                                  <Switch />
+                                  <Switch aria-label="Destaque" />
                                 </div>
                               </div>
 
@@ -647,7 +647,7 @@ function DashboardContent() {
                                 <div className="space-y-2">
                                   <Label className="text-xs font-bold uppercase text-slate-400">Unidade de medida</Label>
                                   <Select defaultValue="un">
-                                    <SelectTrigger className="h-10 rounded-xl w-full">
+                                    <SelectTrigger className="h-10 rounded-xl w-full" aria-label="Unidade de medida">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -659,7 +659,7 @@ function DashboardContent() {
                                 <div className="space-y-2">
                                   <Label className="text-xs font-bold uppercase text-slate-400">Destino de roteamento</Label>
                                   <Select defaultValue="a">
-                                    <SelectTrigger className="h-10 rounded-xl w-full">
+                                    <SelectTrigger className="h-10 rounded-xl w-full" aria-label="Destino de roteamento">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -676,7 +676,7 @@ function DashboardContent() {
                                   "Esconder botões de quantidades"
                                 ].map((opt) => (
                                   <div key={opt} className="flex items-center gap-3">
-                                    <Switch />
+                                    <Switch aria-label={opt} />
                                     <span className="text-sm text-slate-600 dark:text-slate-400">{opt}</span>
                                   </div>
                                 ))}
@@ -820,10 +820,10 @@ function DashboardContent() {
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
-                        <Button variant="ghost" size="icon" className="size-8 rounded-lg">
+                        <Button variant="ghost" size="icon" className="size-8 rounded-lg" aria-label={`Editar ${product.name}`}>
                           <Edit3 className="size-4 text-slate-400" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="size-8 rounded-lg hover:text-destructive">
+                        <Button variant="ghost" size="icon" className="size-8 rounded-lg hover:text-destructive" aria-label={`Excluir ${product.name}`}>
                           <Trash2 className="size-4 text-slate-400" />
                         </Button>
                       </div>
@@ -857,11 +857,11 @@ function DashboardContent() {
         {/* ── FOOTER ── */}
         <footer className="text-center pb-12 space-y-2 border-t border-border pt-8">
           <div className="flex justify-center gap-2">
-            <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Next.js 16</Badge>
-            <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Tailwind v4</Badge>
-            <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Shadcn/UI</Badge>
+            <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Next.js 16</Badge>
+            <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Tailwind v4</Badge>
+            <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Shadcn/UI</Badge>
           </div>
-          <p className="text-xs text-slate-400">Prumo — Design System</p>
+          <p className="text-xs text-muted-foreground">Prumo — Design System</p>
         </footer>
         </div>
       </SidebarInset>

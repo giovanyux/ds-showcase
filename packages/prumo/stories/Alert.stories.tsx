@@ -35,20 +35,26 @@ export const Destrutivo: Story = {
 
 export const Sucesso: Story = {
   render: () => (
-    <Alert className="w-96 border-success/30 bg-success/5 text-success">
+    // `text-success` is calibrated for use as a fill/border accent, not as
+    // small body text on a near-white tint — it falls short of 4.5:1 there.
+    // emerald-700/400 is the same combination already verified accessible
+    // for success text-on-tint in the Badge component.
+    <Alert className="w-96 border-success/30 bg-success/5 text-emerald-700 dark:text-emerald-400">
       <CheckCircle2 className="size-4" />
       <AlertTitle>Agendamento confirmado</AlertTitle>
-      <AlertDescription className="text-success/80">O agendamento #1042 foi confirmado e está em preparo.</AlertDescription>
+      <AlertDescription className="text-emerald-700 dark:text-emerald-400">O agendamento #1042 foi confirmado e está em preparo.</AlertDescription>
     </Alert>
   ),
 }
 
 export const Aviso: Story = {
   render: () => (
-    <Alert className="w-96 border-warning/30 bg-warning/5 text-warning">
+    // Same rationale as Sucesso above, mirroring Badge's verified
+    // amber-700/400 warning text-on-tint combination.
+    <Alert className="w-96 border-warning/30 bg-warning/5 text-amber-700 dark:text-amber-400">
       <AlertTriangle className="size-4" />
       <AlertTitle>Plano expirando</AlertTitle>
-      <AlertDescription className="text-warning/80">Seu plano expira em 3 dias. Renove para continuar recebendo agendamentos.</AlertDescription>
+      <AlertDescription className="text-amber-700 dark:text-amber-400">Seu plano expira em 3 dias. Renove para continuar recebendo agendamentos.</AlertDescription>
     </Alert>
   ),
 }

@@ -93,7 +93,7 @@ const colunasAgendamento: ColumnDef<Agendamento>[] = [
   },
   {
     id: 'actions',
-    header: () => null,
+    header: () => <span className="sr-only">Ações</span>,
     cell: () => (
       <Button variant="ghost" size="icon-sm" aria-label="Mais opções">
         <MoreHorizontal />

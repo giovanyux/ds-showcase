@@ -118,7 +118,7 @@ function Sidebar({ active, onNav }: { active: Page; onNav: (p: Page) => void }) 
           <p className="text-[10px] text-muted-foreground truncate">Negócio Exemplo</p>
         </div>
       </div>
-      <nav id="tour-nav" className="flex flex-col gap-0.5 p-2 flex-1">
+      <nav id="tour-nav" aria-label="Navegação principal" className="flex flex-col gap-0.5 p-2 flex-1">
         {NAV.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
@@ -242,7 +242,7 @@ function DashboardPage() {
             <p className="text-sm font-medium">Seu negócio está crescendo!</p>
             <p className="text-xs text-muted-foreground">Receita 12% acima da semana passada. Continue assim!</p>
           </div>
-          <Button variant="ghost" size="icon-sm" onClick={() => setBannerVisible(false)}>
+          <Button variant="ghost" size="icon-sm" onClick={() => setBannerVisible(false)} aria-label="Dispensar aviso">
             <X className="size-3.5" />
           </Button>
         </div>
@@ -325,7 +325,7 @@ function DashboardPage() {
                   <span className="font-medium truncate">{nome}</span>
                   <span className="text-muted-foreground shrink-0 ml-2">{count}×</span>
                 </div>
-                <Progress value={pct} className="h-1.5" />
+                <Progress value={pct} aria-label={nome} className="h-1.5" />
               </div>
             ))}
           </CardContent>
@@ -345,7 +345,7 @@ function DashboardPage() {
                     <span>{metodo}</span>
                     <span className="text-muted-foreground">{pct}%</span>
                   </div>
-                  <Progress value={pct} className="h-1.5" />
+                  <Progress value={pct} aria-label={metodo} className="h-1.5" />
                 </div>
                 <span className="text-xs font-semibold shrink-0">{value}</span>
               </div>
@@ -564,8 +564,12 @@ function ServicosPage() {
       </div>
 
       <div className="grid grid-cols-2 gap-3">
+        {/* `opacity-*` on the whole card would uniformly dim descendant text
+            too, dropping small badge text below the 4.5:1 contrast floor
+            even though it's compliant at full strength. `grayscale` conveys
+            the same "inactive" affordance without touching alpha. */}
         {filtered.map(item => (
-          <Card key={item.id} className={cn(!item.ativo && 'opacity-60')}>
+          <Card key={item.id} className={cn(!item.ativo && 'grayscale')}>
             <CardContent className="p-4">
               <div className="flex items-start justify-between gap-2">
                 <div className="flex-1 min-w-0">
@@ -777,7 +781,7 @@ function ClientesPage() {
                 <div className="text-xs text-muted-foreground shrink-0 hidden md:block">
                   Último: {c.ultimo}
                 </div>
-                <Button size="sm" variant="ghost" onClick={() => openCliente(c)}>
+                <Button size="sm" variant="ghost" onClick={() => openCliente(c)} aria-label={`Ver detalhes de ${c.nome}`}>
                   <ChevronRight className="size-4" />
                 </Button>
               </div>
@@ -883,7 +887,7 @@ function ConfiguracoesPage() {
 
   return (
     <div className="flex h-full">
-      <nav className="w-44 shrink-0 border-r border-border p-2 space-y-0.5">
+      <nav aria-label="Seções de configuração" className="w-44 shrink-0 border-r border-border p-2 space-y-0.5">
         {sections.map(s => (
           <button
             key={s.id}

@@ -24,7 +24,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <Select>
-      <SelectTrigger className="w-56">
+      <SelectTrigger className="w-56" aria-label="Categoria">
         <SelectValue placeholder="Selecione a categoria" />
       </SelectTrigger>
       <SelectContent>
@@ -43,7 +43,7 @@ export const ComLabel: Story = {
     <div className="flex flex-col gap-2 w-56">
       <Label>Categoria do serviço</Label>
       <Select>
-        <SelectTrigger>
+        <SelectTrigger aria-label="Categoria do serviço">
           <SelectValue placeholder="Escolha..." />
         </SelectTrigger>
         <SelectContent>
@@ -61,7 +61,7 @@ export const ComGrupos: Story = {
   name: 'Com grupos',
   render: () => (
     <Select>
-      <SelectTrigger className="w-56">
+      <SelectTrigger className="w-56" aria-label="Item do cardápio">
         <SelectValue placeholder="Selecione..." />
       </SelectTrigger>
       <SelectContent>
@@ -84,7 +84,7 @@ export const ComGrupos: Story = {
 export const Desabilitado: Story = {
   render: () => (
     <Select disabled>
-      <SelectTrigger className="w-56">
+      <SelectTrigger className="w-56" aria-label="Categoria (indisponível)">
         <SelectValue placeholder="Indisponível" />
       </SelectTrigger>
       <SelectContent>

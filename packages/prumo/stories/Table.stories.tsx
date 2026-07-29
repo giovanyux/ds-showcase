@@ -83,7 +83,7 @@ export const ComAcoes: Story = {
           <TableHead>Categoria</TableHead>
           <TableHead>Preço</TableHead>
           <TableHead>Status</TableHead>
-          <TableHead className="w-20" />
+          <TableHead className="w-20"><span className="sr-only">Ações</span></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

@@ -43,12 +43,15 @@ export const ListaOpcoes: Story = {
   name: 'Lista de opções',
   render: () => (
     <div className="flex flex-col gap-3">
-      {['Opção A', 'Opção B', 'Opção C', 'Opção D'].map(op => (
-        <div key={op} className="flex items-center gap-2">
-          <Checkbox id={op} />
-          <Label htmlFor={op}>{op}</Label>
-        </div>
-      ))}
+      {['Opção A', 'Opção B', 'Opção C', 'Opção D'].map(op => {
+        const id = op.toLowerCase().replace(/\s+/g, '-')
+        return (
+          <div key={op} className="flex items-center gap-2">
+            <Checkbox id={id} />
+            <Label htmlFor={id}>{op}</Label>
+          </div>
+        )
+      })}
     </div>
   ),
 }
