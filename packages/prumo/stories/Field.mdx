@@ -1,0 +1,61 @@
+{/* Field.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as ShowcaseFormsStories from './ShowcaseForms.stories'
+
+<Meta title="Fundação/Guia de Formulários (Field)" />
+
+# Field
+
+`Field` não é um input — é a camada de composição em volta de um input (label, descrição, erro,
+agrupamento). O Prumo não tem um componente `Form` monolítico; formulários são montados
+combinando `Field*` com `Input`, `Select`, `Checkbox`, etc.
+
+---
+
+## Em contexto
+
+<Canvas of={ShowcaseFormsStories.NovoItem} />
+
+---
+
+## Anatomia
+
+| Peça | Papel |
+|---|---|
+| `FieldSet` + `FieldLegend` | Agrupa campos relacionados (ex: "Tipo de venda") com um rótulo de grupo semântico (`<fieldset>`/`<legend>`) |
+| `Field` | Container de um campo — controla orientação (`vertical` \| `horizontal` \| `responsive`) |
+| `FieldLabel` | Label associado ao input via `htmlFor` (herda de `Label`) |
+| `FieldContent` | Agrupa label + descrição quando o input fica ao lado (orientação `horizontal`) |
+| `FieldDescription` | Texto de ajuda abaixo do campo — usa `text-muted-foreground` |
+| `FieldError` | Mensagem de erro — só renderiza se houver `children` ou `errors` |
+| `FieldSeparator` | Divisor entre grupos de campos, com label opcional no meio (ex: "ou") |
+
+---
+
+## Quando usar `FieldSet` vs `Field` solto
+
+- Use `FieldSet` quando 2+ campos formam uma decisão conjunta (ex: um grupo de checkbox de
+  "Disponível para", um conjunto de rádio de frequência) — o `<legend>` dá contexto que um
+  `<label>` solto em cada item não dá
+- Use `Field` sozinho para um campo independente (um `Input` de nome, um `Select` de categoria)
+
+## Quando NÃO usar
+
+- Não decore `FieldLabel` fora de um `Field`/`FieldContent` — as classes de `FieldLabel`
+  dependem dos seletores `group-data-*` do pai pra estado de disabled/checked funcionar
+- Não omita `FieldDescription` em campos com formato específico (CPF, telefone, senha) — o
+  hint é o que evita o usuário errar antes de submeter, não depois
+
+---
+
+## Acessibilidade
+
+- `FieldError` usa `role="alert"` — o leitor de tela anuncia o erro assim que ele aparece no
+  DOM, sem precisar de foco manual
+- `FieldSet`/`FieldLegend` usam elementos HTML nativos (`<fieldset>`/`<legend>`), não `<div>`
+  estilizado — isso é o que faz o leitor de tela anunciar "grupo: Tipo de venda" ao entrar no
+  primeiro campo do grupo
+- Os primitivos `Field*` não geram nem amarram `id`/`aria-describedby` automaticamente — nenhum
+  componente do Prumo, incluindo `Input`, `NativeSelect` e `Checkbox`, faz essa amarração por
+  conta própria. Sempre associe `FieldDescription`/`FieldError` ao input manualmente, gerando
+  um `id` (ex: com `useId`) e passando `aria-describedby={id}` no input
