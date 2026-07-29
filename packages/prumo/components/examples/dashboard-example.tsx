@@ -125,22 +125,22 @@ function DashboardContent() {
   return (
     <>
       {/* ── SIDEBAR (SHADCN) ── */}
-      <Sidebar collapsible="icon" className="bg-white dark:bg-slate-900 border-r border-border">
+      <Sidebar collapsible="icon" className="bg-card border-r border-border">
         <SidebarHeader className="h-16 flex flex-row items-center gap-3 px-4 border-b border-border/50 shrink-0">
           <div className="size-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 shrink-0">
             <Store className="size-6 text-white" />
           </div>
-          <span className="text-lg font-bold text-slate-900 dark:text-white truncate group-data-[collapsible=icon]:hidden">
+          <span className="text-lg font-bold text-foreground truncate group-data-[collapsible=icon]:hidden">
             Dashboard
           </span>
         </SidebarHeader>
 
-        <SidebarContent className="bg-white dark:bg-slate-900">
+        <SidebarContent className="bg-card">
           <SidebarMenu className="gap-1 p-2">
             {NAV_MODULES.map((module) => (
               <SidebarMenuItem key={module.id}>
                 <Collapsible defaultOpen={module.id === 'agendamentos'} className="group/collapsible w-full">
-                  <CollapsibleTrigger className="flex w-full items-center gap-2 h-10 rounded-xl px-2 text-sm font-medium text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                  <CollapsibleTrigger className="flex w-full items-center gap-2 h-10 rounded-xl px-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-muted transition-colors">
                     <module.icon className="size-5 shrink-0" />
                     <span className="group-data-[collapsible=icon]:hidden">{module.label}</span>
                     <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 group-data-[collapsible=icon]:hidden" />
@@ -155,7 +155,7 @@ function DashboardContent() {
                               "h-9 rounded-lg text-sm",
                               item.active
                                 ? "text-primary bg-primary/10 hover:bg-primary/10 hover:text-primary"
-                                : "text-muted-foreground hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800"
+                                : "text-muted-foreground hover:text-primary hover:bg-muted"
                             )}
                           >
                             <item.icon className="size-4" />
@@ -171,10 +171,10 @@ function DashboardContent() {
           </SidebarMenu>
         </SidebarContent>
 
-        <SidebarFooter className="pb-8 flex flex-col items-center gap-6 bg-white dark:bg-slate-900 border-t border-border/50">
-          <button aria-label="Notificações" className="p-3 text-slate-400 hover:text-primary transition-colors relative">
+        <SidebarFooter className="pb-8 flex flex-col items-center gap-6 bg-card border-t border-border/50">
+          <button aria-label="Notificações" className="p-3 text-muted-foreground hover:text-primary transition-colors relative">
             <Bell className="size-5" />
-            <span className="absolute top-2.5 right-2.5 size-2 bg-primary rounded-full border-2 border-white dark:border-slate-900" />
+            <span className="absolute top-2.5 right-2.5 size-2 bg-primary rounded-full border-2 border-card" />
           </button>
           <Avatar className="size-10 border-2 border-transparent hover:border-primary transition-all cursor-pointer">
             <AvatarImage src="https://github.com/shadcn.png" />
@@ -184,16 +184,16 @@ function DashboardContent() {
       </Sidebar>
 
       {/* ── CONTEÚDO PRINCIPAL ── */}
-      <SidebarInset className="overflow-auto bg-white dark:bg-slate-950">
+      <SidebarInset className="overflow-auto bg-background">
         <div className="px-6 py-8 md:px-12 md:py-10 space-y-16">
           {/* ── HEADER ── */}
           <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-border pb-8">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <SidebarTrigger className="size-10 rounded-xl bg-white dark:bg-slate-900 border border-border shadow-sm hover:bg-slate-50 transition-colors" />
-                <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Design System</h1>
+                <SidebarTrigger className="size-10 rounded-xl bg-card border border-border shadow-sm hover:bg-muted transition-colors" />
+                <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">Design System</h1>
               </div>
-                <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl">
+                  <p className="text-muted-foreground text-lg max-w-2xl">
                   Ambiente de validação visual dos tokens e componentes.
                   Foco em <span className="text-primary font-medium">acessibilidade WCAG</span> e <span className="text-primary font-medium">estética premium</span>.
                 </p>
@@ -213,23 +213,23 @@ function DashboardContent() {
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { label: "Primary", token: "var(--primary)", text: "#0D9488", contrast: "AA (revisar)", fg: "white" },
+                { label: "Primary", token: "var(--primary)", text: "#5F2016", contrast: "11.96:1 ✅", fg: "white" },
                 { label: "Secondary", token: "var(--secondary)", text: "Slate 100", contrast: "UI Element", fg: "var(--secondary-foreground)" },
-                { label: "Destructive", token: "var(--destructive)", text: "Red 600", contrast: "AA (revisar)", fg: "white" },
-                { label: "Success", token: "var(--success)", text: "Emerald 700", contrast: "AA (revisar)", fg: "white" },
+                { label: "Destructive", token: "var(--destructive)", text: "Red 600", contrast: "6.54:1 ✅", fg: "white" },
+                { label: "Success", token: "var(--success)", text: "Emerald 700", contrast: "6.87:1 ✅", fg: "white" },
                 { label: "Warning", token: "var(--warning)", text: "Amber 600", contrast: "Safe Read", fg: "black" },
-                { label: "Info", token: "var(--info)", text: "Teal 500", contrast: "AA (revisar)", fg: "white" },
+                { label: "Info", token: "var(--info)", text: "#186A99", contrast: "5.90:1 ✅", fg: "white" },
                 { label: "Muted", token: "var(--muted)", text: "Low Priority", contrast: "UI", fg: "var(--muted-foreground)" },
                 { label: "Accent", token: "var(--accent)", text: "Hover/Active", contrast: "UI", fg: "var(--accent-foreground)" },
               ].map((c) => (
-                <div key={c.label} className="group relative bg-white dark:bg-slate-900 p-3 rounded-2xl border border-border shadow-sm hover:shadow-md transition-all">
+                <div key={c.label} className="group relative bg-card p-3 rounded-2xl border border-border shadow-sm hover:shadow-md transition-all">
                   <div className="w-full h-24 rounded-xl mb-3 flex items-center justify-center text-xs font-bold uppercase tracking-widest"
                        style={{ backgroundColor: c.token, color: c.fg }}>
                     {c.label}
                   </div>
                   <div className="space-y-1">
-                    <p className="text-sm font-semibold text-slate-900 dark:text-white">{c.label}</p>
-                    <p className="text-[10px] text-slate-500 uppercase font-medium">{c.contrast}</p>
+                    <p className="text-sm font-semibold text-foreground">{c.label}</p>
+                    <p className="text-[10px] text-muted-foreground uppercase font-medium">{c.contrast}</p>
                   </div>
                 </div>
               ))}
@@ -241,12 +241,12 @@ function DashboardContent() {
               <div className="w-2 h-6 bg-primary rounded-full" />
               Tipografia: Inter
             </h2>
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-border space-y-4 shadow-sm">
-              <p className="text-4xl font-bold tracking-tighter text-slate-900 dark:text-white">Bold 700</p>
-              <p className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">Semibold 600</p>
-              <p className="text-2xl font-medium text-slate-900 dark:text-white">Medium 500</p>
-              <p className="text-xl font-normal text-slate-600 dark:text-slate-400">Regular 400</p>
-              <p className="text-sm text-slate-500 leading-relaxed">
+            <div className="bg-card p-6 rounded-2xl border border-border space-y-4 shadow-sm">
+              <p className="text-4xl font-bold tracking-tighter text-foreground">Bold 700</p>
+              <p className="text-3xl font-semibold tracking-tight text-foreground">Semibold 600</p>
+              <p className="text-2xl font-medium text-foreground">Medium 500</p>
+              <p className="text-xl font-normal text-muted-foreground">Regular 400</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Inter é uma fonte desenhada especificamente para interfaces.
                 Altíssima legibilidade em tamanhos pequenos.
               </p>
@@ -260,7 +260,7 @@ function DashboardContent() {
             <div className="w-2 h-6 bg-primary rounded-full" />
             Iconografia (Lucide Icons)
           </h2>
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-border shadow-sm">
+          <div className="bg-card p-8 rounded-2xl border border-border shadow-sm">
             <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-8">
               {[
                 { Icon: Store, label: "Loja" },
@@ -285,10 +285,10 @@ function DashboardContent() {
                 { Icon: HelpCircle, label: "Suporte" },
               ].map(({ Icon, label }) => (
                 <div key={label} className="flex flex-col items-center gap-2 group">
-                  <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 group-hover:border-primary/50 group-hover:bg-primary/5 transition-all">
-                    <Icon className="size-5 text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors" />
+                  <div className="p-3 rounded-xl bg-muted border border-border group-hover:border-primary/50 group-hover:bg-primary/5 transition-all">
+                    <Icon className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
                   </div>
-                  <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors uppercase tracking-tight">{label}</span>
+                  <span className="text-[10px] font-medium text-muted-foreground group-hover:text-primary transition-colors uppercase tracking-tight">{label}</span>
                 </div>
               ))}
             </div>
@@ -328,7 +328,7 @@ function DashboardContent() {
               </Alert>
             </div>
 
-            <Card className="shadow-xl shadow-slate-200/50 dark:shadow-none border-border">
+            <Card className="shadow-xl shadow-foreground/10 dark:shadow-none border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">Loading e Skeleton</CardTitle>
                 <CardDescription>Estados de carregamento do sistema</CardDescription>
@@ -342,7 +342,7 @@ function DashboardContent() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <div className="flex justify-between text-xs font-medium text-slate-500">
+                  <div className="flex justify-between text-xs font-medium text-muted-foreground">
                     <span>Sincronizando fotos...</span>
                     <span>75%</span>
                   </div>
@@ -392,14 +392,14 @@ function DashboardContent() {
                       <Popover>
                         <PopoverTrigger render={
                           <Button variant="outline" className="w-full h-9 justify-between font-normal border-input">
-                            <span className="text-slate-500">Selecionar itens...</span>
+                            <span className="text-muted-foreground">Selecionar itens...</span>
                             <ChevronDownIcon className="size-4 opacity-50" />
                           </Button>
                         } />
-                        <PopoverContent className="w-(--anchor-width) p-2 bg-white dark:bg-slate-950 shadow-xl border-border">
+                        <PopoverContent className="w-(--anchor-width) p-2 bg-popover shadow-xl border-border">
                           <div className="space-y-1">
                             {MULTI_SELECT_OPTIONS.map((opt) => (
-                              <div key={opt.id} className="flex items-center gap-3 p-2 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg cursor-pointer transition-colors group">
+                              <div key={opt.id} className="flex items-center gap-3 p-2 hover:bg-muted rounded-lg cursor-pointer transition-colors group">
                                 <Checkbox id={opt.id} />
                                 <Label htmlFor={opt.id} className="text-sm font-medium cursor-pointer group-hover:text-primary transition-colors">{opt.label}</Label>
                               </div>
@@ -424,7 +424,7 @@ function DashboardContent() {
               <div className="space-y-6">
                 <div className="space-y-3">
                   <Label>Opções de Entrega</Label>
-                  <div className="flex items-center space-x-2 bg-slate-50 dark:bg-slate-900 p-3 rounded-lg border border-border">
+                  <div className="flex items-center space-x-2 bg-muted p-3 rounded-lg border border-border">
                     <Checkbox id="c1" defaultChecked />
                     <Label htmlFor="c1" className="text-sm font-normal">Domicílio Próprio</Label>
                   </div>
@@ -454,7 +454,7 @@ function DashboardContent() {
                 <div className="space-y-4">
                   <Label>Área de cobertura (km)</Label>
                   <Slider defaultValue={[5]} max={20} step={1} aria-label="Área de cobertura (km)" className="py-4" />
-                  <div className="flex justify-between text-xs text-slate-500">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span>0km</span>
                     <span>10km</span>
                     <span>20km</span>
@@ -482,7 +482,7 @@ function DashboardContent() {
             <div className="w-2 h-6 bg-primary rounded-full" />
             Interação (Buttons & Variants)
           </h2>
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-border shadow-sm space-y-10">
+          <div className="bg-card p-8 rounded-2xl border border-border shadow-sm space-y-10">
 
             {/* Linha de Variantes */}
             <div className="space-y-4">
@@ -537,7 +537,7 @@ function DashboardContent() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100 dark:border-slate-800">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-border">
               <div className="space-y-4">
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Modal de Exemplo</p>
                 <Dialog>
@@ -548,33 +548,33 @@ function DashboardContent() {
                       </Button>
                     }
                   />
-                  <DialogContent className="max-w-4xl p-0 gap-0 overflow-hidden bg-white dark:bg-slate-950 border-none shadow-2xl ring-1 ring-border/50">
+                  <DialogContent className="max-w-4xl p-0 gap-0 overflow-hidden bg-popover border-none shadow-2xl ring-1 ring-border/50">
                     <Tabs defaultValue="info" className="w-full">
-                      <div className="border-b border-border/50 bg-slate-50 dark:bg-slate-900/50 px-6 pt-6">
+                      <div className="border-b border-border/50 bg-muted/50 px-6 pt-6">
                         <TabsList className="bg-transparent h-12 w-full justify-start gap-8 p-0">
-                          <TabsTrigger value="info" className="relative h-12 rounded-none border-b-2 border-transparent bg-transparent px-0 pb-3 pt-2 text-xs font-bold uppercase tracking-widest text-slate-400 data-[state=active]:border-primary data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-none transition-all">
+                          <TabsTrigger value="info" className="relative h-12 rounded-none border-b-2 border-transparent bg-transparent px-0 pb-3 pt-2 text-xs font-bold uppercase tracking-widest text-muted-foreground data-[state=active]:border-primary data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-none transition-all">
                             Informações
                           </TabsTrigger>
-                          <TabsTrigger value="addons" className="relative h-12 rounded-none border-b-2 border-transparent bg-transparent px-0 pb-3 pt-2 text-xs font-bold uppercase tracking-widest text-slate-400 data-[state=active]:border-primary data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-none transition-all">
+                          <TabsTrigger value="addons" className="relative h-12 rounded-none border-b-2 border-transparent bg-transparent px-0 pb-3 pt-2 text-xs font-bold uppercase tracking-widest text-muted-foreground data-[state=active]:border-primary data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-none transition-all">
                             Complementos
                           </TabsTrigger>
-                          <TabsTrigger value="availability" className="relative h-12 rounded-none border-b-2 border-transparent bg-transparent px-0 pb-3 pt-2 text-xs font-bold uppercase tracking-widest text-slate-400 data-[state=active]:border-primary data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-none transition-all">
+                          <TabsTrigger value="availability" className="relative h-12 rounded-none border-b-2 border-transparent bg-transparent px-0 pb-3 pt-2 text-xs font-bold uppercase tracking-widest text-muted-foreground data-[state=active]:border-primary data-[state=active]:text-primary dark:data-[state=active]:text-white data-[state=active]:shadow-none transition-all">
                             Disponibilidade
                           </TabsTrigger>
                         </TabsList>
                       </div>
 
-                      <div className="p-8 max-h-[85vh] overflow-y-auto custom-scrollbar bg-white dark:bg-slate-950">
+                      <div className="p-8 max-h-[85vh] overflow-y-auto custom-scrollbar bg-popover">
                         <TabsContent value="info" className="mt-0 space-y-8">
                           {/* Top Section: Image + Basic Info */}
                           <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8">
                             <div className="space-y-4">
-                              <div className="aspect-square rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-3 bg-slate-50 dark:bg-slate-950/50 text-slate-400 hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer group">
-                                <div className="p-4 rounded-full bg-white dark:bg-slate-900 shadow-sm group-hover:scale-110 transition-transform">
+                              <div className="aspect-square rounded-2xl border-2 border-dashed border-border flex flex-col items-center justify-center gap-3 bg-muted text-muted-foreground hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer group">
+                                <div className="p-4 rounded-full bg-card shadow-sm group-hover:scale-110 transition-transform">
                                   <ImagePlus className="size-8 text-primary" />
                                 </div>
                                 <div className="text-center px-4">
-                                  <p className="text-xs font-bold text-slate-600 dark:text-slate-300">Selecione uma imagem</p>
+                                  <p className="text-xs font-bold text-foreground">Selecione uma imagem</p>
                                   <p className="text-[10px]">ou arraste e solte</p>
                                 </div>
                               </div>
@@ -582,13 +582,13 @@ function DashboardContent() {
 
                             <div className="space-y-6">
                               <div className="space-y-2">
-                                <Label className="text-xs font-bold uppercase text-slate-400">Nome do item *</Label>
+                                <Label className="text-xs font-bold uppercase text-muted-foreground">Nome do item *</Label>
                                 <Input placeholder="Ex: Item Lorem Especial" className="h-11 rounded-xl" />
                               </div>
 
                               <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                  <Label className="text-xs font-bold uppercase text-slate-400">Categoria *</Label>
+                                  <Label className="text-xs font-bold uppercase text-muted-foreground">Categoria *</Label>
                                   <Select>
                                     <SelectTrigger className="h-11 rounded-xl w-full" aria-label="Categoria">
                                       <SelectValue placeholder="Selecione..." />
@@ -599,7 +599,7 @@ function DashboardContent() {
                                     </SelectContent>
                                   </Select>
                                 </div>
-                                <div className="flex items-end justify-between p-3 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/30 h-11">
+                                <div className="flex items-end justify-between p-3 rounded-xl border border-border bg-muted h-11">
                                   <span className="text-xs font-medium">Destaque</span>
                                   <Switch aria-label="Destaque" />
                                 </div>
@@ -607,9 +607,9 @@ function DashboardContent() {
 
                               <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                  <Label className="text-xs font-bold uppercase text-slate-400">Preço de venda *</Label>
+                                  <Label className="text-xs font-bold uppercase text-muted-foreground">Preço de venda *</Label>
                                   <div className="relative">
-                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">R$</span>
+                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">R$</span>
                                     <Input defaultValue="0,00" className="h-11 rounded-xl pl-10" />
                                   </div>
                                 </div>
@@ -622,30 +622,30 @@ function DashboardContent() {
                           </div>
 
                           {/* Description Section */}
-                          <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                          <div className="space-y-4 pt-4 border-t border-border">
                             <div className="flex items-center justify-between">
-                              <Label className="text-xs font-bold uppercase text-slate-400">Descrição do item</Label>
+                              <Label className="text-xs font-bold uppercase text-muted-foreground">Descrição do item</Label>
                               <Button variant="ghost-primary" size="xs" className="h-8 rounded-lg border border-primary/20">
                                 <Star className="mr-2 size-3 fill-primary" /> Melhorar descrição com IA
                               </Button>
                             </div>
                             <Textarea placeholder="Descreva os detalhes do produto..." className="min-h-32 rounded-2xl resize-none" />
-                            <p className="text-[10px] text-slate-400">
+                            <p className="text-[10px] text-muted-foreground">
                               Estilize a descrição com <span className="font-bold">negrito</span> (*texto*), <span className="italic">itálico</span> (_texto_) ou <span className="line-through">riscado</span> (~texto~).
                             </p>
                           </div>
 
                           {/* Advanced Section */}
-                          <Collapsible className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
-                            <CollapsibleTrigger className="flex items-center gap-2 text-xs font-bold uppercase text-slate-400 hover:text-primary transition-colors group w-full">
+                          <Collapsible className="space-y-4 pt-4 border-t border-border">
+                            <CollapsibleTrigger className="flex items-center gap-2 text-xs font-bold uppercase text-muted-foreground hover:text-primary transition-colors group w-full">
                               <ChevronRight className="size-4 transition-transform group-data-[state=open]:rotate-90" />
                               Configurações Avançadas
-                              <div className="flex-1 h-px bg-slate-100 dark:bg-slate-800 ml-2" />
+                              <div className="flex-1 h-px bg-border ml-2" />
                             </CollapsibleTrigger>
                             <CollapsibleContent className="space-y-6 pt-4">
                               <div className="grid grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                  <Label className="text-xs font-bold uppercase text-slate-400">Unidade de medida</Label>
+                                  <Label className="text-xs font-bold uppercase text-muted-foreground">Unidade de medida</Label>
                                   <Select defaultValue="un">
                                     <SelectTrigger className="h-10 rounded-xl w-full" aria-label="Unidade de medida">
                                       <SelectValue />
@@ -657,7 +657,7 @@ function DashboardContent() {
                                   </Select>
                                 </div>
                                 <div className="space-y-2">
-                                  <Label className="text-xs font-bold uppercase text-slate-400">Destino de roteamento</Label>
+                                  <Label className="text-xs font-bold uppercase text-muted-foreground">Destino de roteamento</Label>
                                   <Select defaultValue="a">
                                     <SelectTrigger className="h-10 rounded-xl w-full" aria-label="Destino de roteamento">
                                       <SelectValue />
@@ -677,7 +677,7 @@ function DashboardContent() {
                                 ].map((opt) => (
                                   <div key={opt} className="flex items-center gap-3">
                                     <Switch aria-label={opt} />
-                                    <span className="text-sm text-slate-600 dark:text-slate-400">{opt}</span>
+                                    <span className="text-sm text-muted-foreground">{opt}</span>
                                   </div>
                                 ))}
                               </div>
@@ -687,7 +687,7 @@ function DashboardContent() {
                       </div>
                     </Tabs>
 
-                    <DialogFooter className="p-6 bg-slate-50 dark:bg-slate-950/50 border-t border-border flex flex-row items-center justify-between sm:justify-between">
+                    <DialogFooter className="p-6 bg-muted/50 border-t border-border flex flex-row items-center justify-between sm:justify-between">
                       <DialogClose
                         render={
                           <Button variant="ghost" className="rounded-xl">Cancelar</Button>
@@ -700,7 +700,7 @@ function DashboardContent() {
               </div>
 
               <Tabs defaultValue="overview" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 bg-slate-100 dark:bg-slate-800">
+                <TabsList className="grid w-full grid-cols-3 bg-muted">
                   <TabsTrigger value="overview">Visão Geral</TabsTrigger>
                   <TabsTrigger value="products">Produtos</TabsTrigger>
                   <TabsTrigger value="settings">Ajustes</TabsTrigger>
@@ -713,10 +713,10 @@ function DashboardContent() {
                     </Avatar>
                     <div>
                       <p className="text-sm font-bold">Giovany Junior</p>
-                      <p className="text-xs text-slate-500">Administrador</p>
+                      <p className="text-xs text-muted-foreground">Administrador</p>
                     </div>
                   </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Aqui você verá os principais indicadores do seu negócio hoje.
                     Vendas, novos clientes e tempo médio de entrega.
                   </p>
@@ -726,13 +726,13 @@ function DashboardContent() {
               <Accordion className="w-full">
                 <AccordionItem value="item-1" className="border-border">
                   <AccordionTrigger className="text-sm font-bold hover:no-underline">Como funciona a cobrança?</AccordionTrigger>
-                  <AccordionContent className="text-sm text-slate-500">
+                  <AccordionContent className="text-sm text-muted-foreground">
                     A cobrança é feita mensalmente, com uma taxa fixa de 5% sobre o valor processado.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2" className="border-border">
                   <AccordionTrigger className="text-sm font-bold hover:no-underline">Posso pausar a loja?</AccordionTrigger>
-                  <AccordionContent className="text-sm text-slate-500">
+                  <AccordionContent className="text-sm text-muted-foreground">
                     Sim, você pode usar o Switch de status no topo da página para pausar
                     o recebimento de agendamentos instantaneamente.
                   </AccordionContent>
@@ -748,8 +748,8 @@ function DashboardContent() {
             <div className="w-2 h-6 bg-primary rounded-full" />
             Inventário de Componentes ({UI_COMPONENTS.length})
           </h2>
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-border shadow-sm">
-            <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+          <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
+            <p className="text-sm text-muted-foreground mb-6">
               Todos os componentes shadcn instalados no diretório <code className="text-primary font-bold">components/ui</code>.
             </p>
             <div className="flex flex-wrap gap-2">
@@ -757,7 +757,7 @@ function DashboardContent() {
                 <Badge
                   key={comp}
                   variant="outline"
-                  className="bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 capitalize px-3 py-1"
+                  className="bg-muted border-border text-muted-foreground capitalize px-3 py-1"
                 >
                   {comp.replace(/-/g, " ")}
                 </Badge>
@@ -775,7 +775,7 @@ function DashboardContent() {
             </h2>
             <div className="flex items-center gap-3">
               <div className="relative w-full md:w-64">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                 <Input placeholder="Buscar item..." className="h-9 pl-9 rounded-lg" />
               </div>
               <Button size="sm" className="rounded-lg">
@@ -784,9 +784,9 @@ function DashboardContent() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-border shadow-md overflow-hidden transition-all duration-300">
+          <div className="bg-card rounded-2xl border border-border shadow-md overflow-hidden transition-all duration-300">
             <Table>
-              <TableHeader className="bg-slate-50/50 dark:bg-slate-800/30">
+              <TableHeader className="bg-muted/50">
                 <TableRow>
                   <TableHead className="w-20">Foto</TableHead>
                   <TableHead>Item</TableHead>
@@ -808,11 +808,11 @@ function DashboardContent() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={product.img} alt="" width={40} height={40} className="size-10 rounded-lg object-cover border border-border shadow-sm" />
                     </TableCell>
-                    <TableCell className="font-bold text-slate-900 dark:text-white">{product.name}</TableCell>
+                    <TableCell className="font-bold text-foreground">{product.name}</TableCell>
                     <TableCell>
                       <Badge variant="secondary" className="rounded-md">{product.category}</Badge>
                     </TableCell>
-                    <TableCell className="font-medium text-slate-600 dark:text-slate-400">R$ {product.price}</TableCell>
+                    <TableCell className="font-medium text-muted-foreground">R$ {product.price}</TableCell>
                     <TableCell>
                       <Badge variant={product.status === "Ativo" ? "success" : "destructive"}>
                         {product.status}
@@ -821,10 +821,10 @@ function DashboardContent() {
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
                         <Button variant="ghost" size="icon" className="size-8 rounded-lg" aria-label={`Editar ${product.name}`}>
-                          <Edit3 className="size-4 text-slate-400" />
+                          <Edit3 className="size-4 text-muted-foreground" />
                         </Button>
                         <Button variant="ghost" size="icon" className="size-8 rounded-lg hover:text-destructive" aria-label={`Excluir ${product.name}`}>
-                          <Trash2 className="size-4 text-slate-400" />
+                          <Trash2 className="size-4 text-muted-foreground" />
                         </Button>
                       </div>
                     </TableCell>
@@ -836,16 +836,16 @@ function DashboardContent() {
         </section>
 
         {/* ── 7. EMPTY STATE (ESTADO VAZIO) ── */}
-        <section className="bg-white dark:bg-slate-900/50 border-2 border-dashed border-border rounded-3xl p-16 text-center space-y-6">
-          <div className="relative mx-auto size-24 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
-            <Package className="size-10 text-slate-400" />
-            <div className="absolute -bottom-1 -right-1 size-8 bg-white dark:bg-slate-900 rounded-full flex items-center justify-center border border-border shadow-sm">
+        <section className="bg-card/50 border-2 border-dashed border-border rounded-3xl p-16 text-center space-y-6">
+          <div className="relative mx-auto size-24 bg-muted rounded-full flex items-center justify-center">
+            <Package className="size-10 text-muted-foreground" />
+            <div className="absolute -bottom-1 -right-1 size-8 bg-card rounded-full flex items-center justify-center border border-border shadow-sm">
               <Search className="size-4 text-primary" />
             </div>
           </div>
           <div className="space-y-2">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Nenhum item encontrado</h3>
-            <p className="text-slate-500 max-w-sm mx-auto">
+            <h3 className="text-xl font-bold text-foreground">Nenhum item encontrado</h3>
+            <p className="text-muted-foreground max-w-sm mx-auto">
               Não encontramos nenhum item com esses filtros. Tente ajustar sua busca ou limpar os filtros.
             </p>
           </div>

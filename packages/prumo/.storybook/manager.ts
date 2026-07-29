@@ -10,26 +10,26 @@ const theme = create({
   fontBase: '"Inter", -apple-system, sans-serif',
   fontCode: '"JetBrains Mono", monospace',
 
-  colorPrimary: '#0D9488',
-  colorSecondary: '#0D9488',
+  colorPrimary: '#5F2016',
+  colorSecondary: '#5F2016',
 
-  appBg: '#F8FAFC',
+  appBg: '#FFFBF7',
   appContentBg: '#FFFFFF',
-  appBorderColor: '#E2E8F0',
-  appBorderRadius: 6,
+  appBorderColor: '#E8DDD4',
+  appBorderRadius: 10,
 
-  textColor: '#0F172A',
+  textColor: '#2B1410',
   textInverseColor: '#FFFFFF',
 
-  barTextColor: '#64748B',
-  barSelectedColor: '#0D9488',
-  barHoverColor: '#0D9488',
+  barTextColor: '#7A5C50',
+  barSelectedColor: '#5F2016',
+  barHoverColor: '#5F2016',
   barBg: '#FFFFFF',
 
   inputBg: '#FFFFFF',
-  inputBorder: '#E2E8F0',
-  inputTextColor: '#0F172A',
-  inputBorderRadius: 6,
+  inputBorder: '#E8DDD4',
+  inputTextColor: '#2B1410',
+  inputBorderRadius: 10,
 })
 
 addons.setConfig({ theme })
