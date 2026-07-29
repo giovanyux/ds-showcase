@@ -5,28 +5,28 @@ import { Meta } from '@storybook/addon-docs/blocks'
 
 # Raio de Borda
 
-Base: **6px** — equilíbrio entre técnico (Linear: 4px) e amigável (Notion: 8px). Escala proporcional derivada de uma única variável `--radius`.
+Base: **10px** — cantos generosos, herdados diretamente da identidade visual de referência do Prumo (o chip de link e os cards da peça original já usavam esse raio). Escala proporcional derivada de uma única variável `--radius` (era 6px antes da reforma de identidade).
 
 ---
 
 <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginTop: 32, marginBottom: 32, alignItems: 'flex-end' }}>
   {[
     { name: 'rounded-none', px: '0px', radius: '0px' },
-    { name: 'rounded-xs', px: '3px', radius: '3px' },
-    { name: 'rounded-sm', px: '4px', radius: '4px' },
-    { name: 'rounded-md', px: '6px', radius: '6px' },
-    { name: 'rounded-lg', px: '8px', radius: '8px' },
-    { name: 'rounded-xl', px: '12px', radius: '12px' },
-    { name: 'rounded-2xl', px: '16px', radius: '16px' },
-    { name: 'rounded-3xl', px: '24px', radius: '24px' },
+    { name: 'rounded-xs', px: '5px', radius: '5px' },
+    { name: 'rounded-sm', px: '7px', radius: '7px' },
+    { name: 'rounded-md', px: '10px', radius: '10px' },
+    { name: 'rounded-lg', px: '13px', radius: '13px' },
+    { name: 'rounded-xl', px: '20px', radius: '20px' },
+    { name: 'rounded-2xl', px: '27px', radius: '27px' },
+    { name: 'rounded-3xl', px: '40px', radius: '40px' },
     { name: 'rounded-full', px: '9999px', radius: '9999px' },
   ].map(r => (
     <div key={r.name} style={{ textAlign: 'center' }}>
       <div style={{
         width: 64,
         height: 64,
-        background: 'oklch(0.491 0.270 277 / 15%)',
-        border: '2px solid oklch(0.491 0.270 277)',
+        background: 'oklch(0.339 0.094 31.4 / 15%)',
+        border: '2px solid oklch(0.339 0.094 31.4)',
         borderRadius: r.radius,
         margin: '0 auto 10px',
       }} />

@@ -5,7 +5,7 @@ import { Meta } from '@storybook/addon-docs/blocks'
 
 # Tipografia
 
-O Prumo usa **Inter** como fonte principal (`font-sans`) e `font-heading` para títulos de destaque.
+O Prumo usa duas famílias: **Inter** (`font-sans`) no corpo e em UI densa — formulários, tabelas, texto pequeno — e **Zen Kaku Gothic New** (`font-display`) em títulos de marketing e destaque. É a mesma gótica japonesa usada na identidade pessoal do autor, substituindo a Hiragino Sans original (fonte de sistema da Apple, não licenciada para web).
 
 ---
 
@@ -54,6 +54,7 @@ O Prumo usa **Inter** como fonte principal (`font-sans`) e `font-heading` para t
 | Contexto | Classe | Exemplo |
 |---|---|---|
 | Título de página | `text-2xl font-semibold tracking-tight` | Dashboard |
+| Título hero / marketing | `font-display text-4xl md:text-5xl` | Prumo |
 | Título de card | `text-base font-semibold tracking-tight` | Vendas do dia |
 | Corpo | `text-sm` | Descrição do produto |
 | Label de campo | `text-sm font-medium` | Nome do negócio |
@@ -62,15 +63,15 @@ O Prumo usa **Inter** como fonte principal (`font-sans`) e `font-heading` para t
 
 ---
 
-## Heading vs Sans
+## Display vs Sans
 
 <div style={{ display: 'flex', gap: 48, marginTop: 24 }}>
   <div>
-    <div style={{ fontSize: 11, color: '#64748b', marginBottom: 8, fontFamily: 'monospace' }}>font-heading (Inter, semibold)</div>
-    <div style={{ fontSize: 24, fontWeight: 600, letterSpacing: '-0.025em' }}>Prumo</div>
+    <div style={{ fontSize: 11, color: '#64748b', marginBottom: 8, fontFamily: 'monospace' }}>font-display (Zen Kaku Gothic New, 700)</div>
+    <div className="font-display" style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-0.01em' }}>Prumo</div>
   </div>
   <div>
     <div style={{ fontSize: 11, color: '#64748b', marginBottom: 8, fontFamily: 'monospace' }}>font-sans (Inter, regular)</div>
-    <div style={{ fontSize: 24 }}>Prumo</div>
+    <div style={{ fontSize: 28 }}>Prumo</div>
   </div>
 </div>

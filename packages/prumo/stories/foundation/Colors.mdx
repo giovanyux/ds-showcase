@@ -13,8 +13,8 @@ Todas as cores do Prumo usam o espaço **OKLCH** — perceptualmente uniforme, g
 
 <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 16, marginBottom: 32 }}>
   {[
-    { name: 'primary', label: 'Primary', oklch: 'oklch(0.491 0.270 277)', hex: '#7C3AED', wcag: '5.9:1 ✅' },
-    { name: 'primary-foreground', label: 'Primary Foreground', oklch: 'oklch(1 0 0)', hex: '#FFFFFF', wcag: '—' },
+    { name: 'primary', label: 'Primary', oklch: 'oklch(0.339 0.094 31.4)', hex: '#5F2016', wcag: '11.96:1 sobre branco ✅' },
+    { name: 'primary-foreground', label: 'Primary Foreground', oklch: 'oklch(0.990 0.007 67.7)', hex: '#FFFBF7', wcag: '—' },
   ].map(c => (
     <div key={c.name} style={{ width: 180 }}>
       <div style={{ background: c.oklch, height: 64, borderRadius: 8, marginBottom: 8, border: '1px solid rgba(0,0,0,0.08)' }} />
@@ -27,17 +27,17 @@ Todas as cores do Prumo usam o espaço **OKLCH** — perceptualmente uniforme, g
 
 ---
 
-## Neutros (Slate com tinte violeta)
+## Neutros (Stone quente)
 
 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 16, marginBottom: 32 }}>
   {[
-    { label: 'background', oklch: 'oklch(1 0 0)', hex: '#FFFFFF' },
+    { label: 'background', oklch: 'oklch(0.990 0.007 67.7)', hex: '#FFFBF7' },
     { label: 'card', oklch: 'oklch(1 0 0)', hex: '#FFFFFF' },
-    { label: 'muted', oklch: 'oklch(0.968 0.007 264)', hex: '#F1F5F9' },
-    { label: 'border', oklch: 'oklch(0.882 0.014 264)', hex: '#CBD5E1' },
-    { label: 'input', oklch: 'oklch(0.882 0.014 264)', hex: '#CBD5E1' },
-    { label: 'muted-fg', oklch: 'oklch(0.446 0.030 264)', hex: '#475569' },
-    { label: 'foreground', oklch: 'oklch(0.193 0.026 264)', hex: '#0F172A' },
+    { label: 'muted', oklch: 'oklch(0.951 0.012 59.6)', hex: '#F5EDE7' },
+    { label: 'border', oklch: 'oklch(0.904 0.017 61.9)', hex: '#E8DDD4' },
+    { label: 'input', oklch: 'oklch(0.904 0.017 61.9)', hex: '#E8DDD4' },
+    { label: 'muted-fg', oklch: 'oklch(0.502 0.044 42.8)', hex: '#7A5C50' },
+    { label: 'foreground', oklch: 'oklch(0.223 0.039 30.8)', hex: '#2B1410' },
   ].map(c => (
     <div key={c.label} style={{ width: 140 }}>
       <div style={{ background: c.oklch, height: 48, borderRadius: 8, marginBottom: 6, border: '1px solid rgba(0,0,0,0.1)' }} />
@@ -53,10 +53,10 @@ Todas as cores do Prumo usam o espaço **OKLCH** — perceptualmente uniforme, g
 
 <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 16, marginBottom: 32 }}>
   {[
-    { label: 'success', oklch: 'oklch(0.527 0.154 150)', hex: '#16A34A', wcag: '4.5:1 ✅' },
-    { label: 'warning', oklch: 'oklch(0.769 0.184 80)', hex: '#D97706', wcag: '3.1:1 ⚠️' },
-    { label: 'destructive', oklch: 'oklch(0.577 0.245 27)', hex: '#DC2626', wcag: '4.9:1 ✅' },
-    { label: 'info', oklch: 'oklch(0.627 0.265 277)', hex: '#7C3AED', wcag: '4.2:1 ✅' },
+    { label: 'success', oklch: 'oklch(0.462 0.057 152.7)', hex: '#3F6249', wcag: '6.87:1 ✅' },
+    { label: 'warning', oklch: 'oklch(0.621 0.121 64.3)', hex: '#B8752B', wcag: '4.64:1 (texto escuro) ✅' },
+    { label: 'destructive', oklch: 'oklch(0.501 0.178 28.7)', hex: '#B3261E', wcag: '6.54:1 ✅' },
+    { label: 'info', oklch: 'oklch(0.501 0.105 240.1)', hex: '#186A99', wcag: '5.90:1 ✅' },
   ].map(c => (
     <div key={c.label} style={{ width: 160 }}>
       <div style={{ background: c.oklch, height: 56, borderRadius: 8, marginBottom: 8, border: '1px solid rgba(0,0,0,0.08)' }} />
@@ -71,15 +71,15 @@ Todas as cores do Prumo usam o espaço **OKLCH** — perceptualmente uniforme, g
 
 ## Dark Mode
 
-No dark mode, a cor primária muda para Violet-400 para manter contraste sobre fundo escuro.
+No dark mode, a cor primária vira Coral — o mesmo tom do gradiente de assinatura usado na landing — porque o oxblood puro ficaria escuro demais como cor de destaque sobre um fundo já escuro.
 
-<div style={{ background: 'oklch(0.129 0.018 264)', padding: 24, borderRadius: 12, marginTop: 16 }}>
+<div style={{ background: 'oklch(0.194 0.018 37.4)', padding: 24, borderRadius: 12, marginTop: 16 }}>
   <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
     {[
-      { label: 'background', oklch: 'oklch(0.129 0.018 264)' },
-      { label: 'card', oklch: 'oklch(0.173 0.020 264)' },
-      { label: 'primary (dark)', oklch: 'oklch(0.702 0.240 277)' },
-      { label: 'foreground', oklch: 'oklch(0.968 0.007 264)' },
+      { label: 'background', oklch: 'oklch(0.194 0.018 37.4)' },
+      { label: 'card', oklch: 'oklch(0.247 0.024 40.5)' },
+      { label: 'primary (dark)', oklch: 'oklch(0.746 0.147 33.3)' },
+      { label: 'foreground', oklch: 'oklch(0.942 0.016 52.6)' },
     ].map(c => (
       <div key={c.label} style={{ width: 140 }}>
         <div style={{ background: c.oklch, height: 48, borderRadius: 8, marginBottom: 6, border: '1px solid rgba(255,255,255,0.1)' }} />
