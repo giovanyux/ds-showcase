@@ -1,0 +1,60 @@
+{/* Table.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as TableStories from './Table.stories'
+import * as DataTableStories from './DataTable.stories'
+
+<Meta title="Fundação/Guia de Tabelas" />
+
+# Table vs DataTable
+
+`Table` é marcação semântica pura. `DataTable` é `Table` por baixo, mas orquestrado pelo
+TanStack React Table — ordenação, filtro, paginação e seleção de linha vêm prontos.
+
+---
+
+## Table
+
+HTML de tabela estilizado, sem estado, sem dependência.
+
+<Canvas of={TableStories.ComAcoes} />
+
+**Use quando:** os dados são pequenos e estáticos (uma lista de 5-10 itens, um resumo) e nenhuma
+interação além de rolar é necessária.
+
+## DataTable
+
+`@tanstack/react-table` por baixo — `getCoreRowModel`, `getFilteredRowModel`,
+`getPaginationRowModel`, `getSortedRowModel` já configurados no componente.
+
+<Canvas of={DataTableStories.ComBusca} />
+
+Estado vazio já vem coberto:
+
+<Canvas of={DataTableStories.Vazia} />
+
+**Use quando:** os dados vêm de uma API, crescem com o tempo, ou o usuário precisa buscar,
+ordenar ou paginar. Qualquer tela de "listagem" de um painel admin é candidata a `DataTable`,
+não a `Table`.
+
+---
+
+## Tabela de decisão
+
+| Situação | Componente |
+|---|---|
+| Resumo de pedido, 5 linhas fixas | `Table` |
+| Log de atividade recente (poucas linhas) | `Table` |
+| Listagem de clientes/produtos de um painel | `DataTable` |
+| Qualquer tabela que vai crescer além de ~20 linhas | `DataTable` |
+
+---
+
+## Acessibilidade
+
+- `Table` usa `<thead>`/`<tbody>`/`<th scope="col">` — não troque por `<div>`s estilizados como
+  tabela, leitores de tela perdem a navegação por célula/linha
+- Em `DataTable`, o cabeçalho de coluna ordenável precisa comunicar o estado atual
+  (`aria-sort="ascending" | "descending" | "none"`) — o componente já expõe isso via o ícone de
+  chevron, não remova o atributo ao customizar
+- O estado vazio (`Vazia`) sempre precisa de uma mensagem textual, não só um ícone — é o que
+  diferencia "carregando" de "não há resultados" pra quem usa leitor de tela
