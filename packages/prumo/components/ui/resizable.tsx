@@ -48,13 +48,50 @@ function ResizablePanel({
   // reach it by keyboard. The library doesn't expose that inner node via
   // props, so we grab it through the outer element ref and make it
   // focusable — the standard remedy for this rule.
+  //
+  // We start focusable+labeled on mount (cheap, and avoids a startup race:
+  // panel sizes settle over a couple of layout passes, so a synchronous
+  // "does it overflow yet?" read at mount is unreliable) and then use
+  // ResizeObserver — which fires once with the settled layout and again on
+  // every subsequent resize — to drop the tabindex/role/label once we can
+  // actually confirm the region doesn't need it. This keeps panels that
+  // never scroll from being a permanent silent, unlabeled keyboard stop,
+  // without racing a one-shot measurement against layout that hasn't
+  // finished settling.
   const outerRef = React.useRef<HTMLDivElement | null>(null)
 
   React.useEffect(() => {
     const scrollRegion = outerRef.current?.firstElementChild
-    if (scrollRegion instanceof HTMLElement && !scrollRegion.hasAttribute("tabindex")) {
-      scrollRegion.setAttribute("tabindex", "0")
+    if (!(scrollRegion instanceof HTMLElement)) {
+      return
     }
+
+    scrollRegion.setAttribute("tabindex", "0")
+    scrollRegion.setAttribute("role", "group")
+    if (!scrollRegion.hasAttribute("aria-label")) {
+      scrollRegion.setAttribute("aria-label", "Área com rolagem")
+    }
+
+    const syncScrollAffordance = () => {
+      const overflows =
+        scrollRegion.scrollHeight > scrollRegion.clientHeight ||
+        scrollRegion.scrollWidth > scrollRegion.clientWidth
+      if (overflows) {
+        scrollRegion.setAttribute("tabindex", "0")
+        scrollRegion.setAttribute("role", "group")
+        if (!scrollRegion.hasAttribute("aria-label")) {
+          scrollRegion.setAttribute("aria-label", "Área com rolagem")
+        }
+      } else {
+        scrollRegion.removeAttribute("tabindex")
+        scrollRegion.removeAttribute("role")
+        scrollRegion.removeAttribute("aria-label")
+      }
+    }
+
+    const observer = new ResizeObserver(syncScrollAffordance)
+    observer.observe(scrollRegion)
+    return () => observer.disconnect()
   }, [])
 
   const setRefs = React.useCallback(

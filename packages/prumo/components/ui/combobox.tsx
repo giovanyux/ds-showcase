@@ -22,13 +22,20 @@ function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
 function ComboboxTrigger({
   className,
   children,
-  "aria-label": ariaLabel = "Abrir opções",
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
   ...props
 }: ComboboxPrimitive.Trigger.Props) {
+  // Only fall back to the generic default when the consumer hasn't taken
+  // responsibility for labeling via either aria-label or aria-labelledby —
+  // aria-label wins over aria-labelledby per accname resolution order, so
+  // defaulting it unconditionally would silently override a real label.
+  const resolvedAriaLabel = ariaLabel ?? (ariaLabelledBy ? undefined : "Abrir opções")
   return (
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
-      aria-label={ariaLabel}
+      aria-label={resolvedAriaLabel}
+      aria-labelledby={ariaLabelledBy}
       className={cn("[&_svg:not([class*='size-'])]:size-4", className)}
       {...props}
     >
@@ -40,13 +47,16 @@ function ComboboxTrigger({
 
 function ComboboxClear({
   className,
-  "aria-label": ariaLabel = "Limpar seleção",
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
   ...props
 }: ComboboxPrimitive.Clear.Props) {
+  const resolvedAriaLabel = ariaLabel ?? (ariaLabelledBy ? undefined : "Limpar seleção")
   return (
     <ComboboxPrimitive.Clear
       data-slot="combobox-clear"
-      aria-label={ariaLabel}
+      aria-label={resolvedAriaLabel}
+      aria-labelledby={ariaLabelledBy}
       render={<InputGroupButton variant="ghost" size="icon-xs" />}
       className={cn(className)}
       {...props}
