@@ -40,7 +40,7 @@ export default function Home() {
           className="px-6 py-16 md:px-12 md:py-24 space-y-6"
           style={{
             background:
-              "radial-gradient(circle at 15% 20%, oklch(0.951 0.012 59.6) 0%, var(--background) 55%)",
+              "radial-gradient(circle at 15% 20%, var(--secondary) 0%, var(--background) 55%)",
           }}
         >
           <div className="max-w-4xl mx-auto space-y-6">
