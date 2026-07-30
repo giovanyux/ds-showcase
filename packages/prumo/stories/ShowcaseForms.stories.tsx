@@ -541,7 +541,7 @@ function ConfiguracoesForm() {
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta = {
-  title: 'Showcases/Forms',
+  title: 'Componentes/Exemplos/Formulários',
   parameters: {
     layout: 'fullscreen',
     docs: {

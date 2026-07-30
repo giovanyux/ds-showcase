@@ -49,15 +49,15 @@ interface Template {
 }
 
 const TEMPLATES: Template[] = [
-  { id: '1', nome: 'boas_vindas_cliente', categoria: 'Marketing', idioma: 'pt-BR', status: 'aprovado', data: '12/04/2026', body: 'Olá, {{1}}! Seja bem-vindo ao *{{2}}*. Seu cadastro foi confirmado com sucesso 🎉', footer: 'Negócio Exemplo' },
-  { id: '2', nome: 'agendamento_confirmado', categoria: 'Transacional', idioma: 'pt-BR', status: 'aprovado', data: '10/04/2026', body: 'Seu agendamento *#{{1}}* foi confirmado! Valor: *R$ {{2}}*. Horário: {{3}}.', footer: 'Negócio Exemplo' },
+  { id: '1', nome: 'boas_vindas_cliente', categoria: 'Marketing', idioma: 'pt-BR', status: 'aprovado', data: '12/04/2026', body: 'Olá, {{1}}! Seja bem-vindo ao *{{2}}*. Seu cadastro foi confirmado com sucesso 🎉', footer: 'Studio Bela' },
+  { id: '2', nome: 'agendamento_confirmado', categoria: 'Transacional', idioma: 'pt-BR', status: 'aprovado', data: '10/04/2026', body: 'Seu agendamento *#{{1}}* foi confirmado! Valor: *R$ {{2}}*. Horário: {{3}}.', footer: 'Studio Bela' },
   { id: '3', nome: 'nova_campanha_abril', categoria: 'Marketing', idioma: 'pt-BR', status: 'pendente', data: '28/04/2026', body: 'Aproveite nossas promoções de abril! Use o cupom *{{1}}* e ganhe {{2}}% de desconto.' },
   { id: '4', nome: 'lembrete_agendamento', categoria: 'Marketing', idioma: 'pt-BR', status: 'rejeitado', data: '20/04/2026', body: 'Oi {{1}}, você tem um agendamento marcado. Confirme sua presença!' },
   { id: '5', nome: 'feedback_atendimento', categoria: 'Transacional', idioma: 'pt-BR', status: 'rascunho', data: '29/04/2026', body: 'Olá {{1}}, seu atendimento foi concluído! Como foi a experiência? Responda de 1 a 5.' },
 ]
 
 const PAGINAS = [
-  { id: 'p1', nome: 'Negócio Exemplo', seguidores: '2.4k', foto: 'NE' },
+  { id: 'p1', nome: 'Studio Bela', seguidores: '2.4k', foto: 'SB' },
   { id: 'p2', nome: 'Página Oficial', seguidores: '8.1k', foto: 'PO' },
 ]
 
@@ -114,7 +114,7 @@ function MessagePreview({ body, footer, buttons }: {
           <MessageSquare className="size-4" />
         </div>
         <div>
-          <p className="text-primary-foreground text-xs font-semibold">Negócio Exemplo</p>
+          <p className="text-primary-foreground text-xs font-semibold">Studio Bela</p>
           <p className="text-primary-foreground/70 text-[10px]">Canal verificado</p>
         </div>
       </div>
@@ -582,7 +582,7 @@ function CreateTemplatePage({ template, onBack }: { template?: Template; onBack:
           <Card>
             <CardHeader><CardTitle className="text-base">Rodapé <span className="text-muted-foreground font-normal text-sm">(opcional)</span></CardTitle></CardHeader>
             <CardContent>
-              <Input value={footer} onChange={e => setFooter(e.target.value)} placeholder="Ex: Negócio Exemplo" maxLength={60} />
+              <Input value={footer} onChange={e => setFooter(e.target.value)} placeholder="Ex: Studio Bela" maxLength={60} />
               <p className="text-xs text-muted-foreground mt-1.5 text-right">{footer.length}/60</p>
             </CardContent>
           </Card>

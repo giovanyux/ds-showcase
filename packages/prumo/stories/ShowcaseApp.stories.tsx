@@ -115,7 +115,7 @@ function Sidebar({ active, onNav }: { active: Page; onNav: (p: Page) => void }) 
         </div>
         <div className="min-w-0">
           <p className="text-sm font-semibold leading-tight truncate">Painel do negócio</p>
-          <p className="text-[10px] text-muted-foreground truncate">Negócio Exemplo</p>
+          <p className="text-[10px] text-muted-foreground truncate">Studio Bela</p>
         </div>
       </div>
       <nav id="tour-nav" aria-label="Navegação principal" className="flex flex-col gap-0.5 p-2 flex-1">
@@ -854,7 +854,7 @@ function ConfiguracoesPage() {
   type Section = 'geral' | 'horarios' | 'domicilio' | 'pagamentos'
   const [section, setSection] = useState<Section>('geral')
   const [saved, setSaved] = useState(false)
-  const [nome, setNome] = useState('Negócio Exemplo')
+  const [nome, setNome] = useState('Studio Bela')
   const [telefone, setTelefone] = useState('(11) 98765-4321')
   const [endereco, setEndereco] = useState('Rua das Flores, 123 — São Paulo')
   const [horarios, setHorarios] = useState({

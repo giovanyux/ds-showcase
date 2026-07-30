@@ -140,7 +140,7 @@ function BusinessStep({ onNext, onBack }: { onNext: () => void; onBack: () => vo
       <div className="space-y-4">
         <div className="space-y-1.5">
           <Label htmlFor="ob-nome">Nome do negócio</Label>
-          <Input id="ob-nome" defaultValue="Negócio Exemplo" />
+          <Input id="ob-nome" defaultValue="Studio Bela" />
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="ob-tel">Telefone</Label>
@@ -330,7 +330,7 @@ function ProntoStep() {
       <div className="rounded-xl border border-border bg-muted/40 p-4 text-left space-y-2.5">
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Resumo</p>
         {[
-          'Negócio Exemplo · São Paulo',
+          'Studio Bela · São Paulo',
           'Atendimento a domicílio · área de 5 km',
           'Pix, Cartão de crédito e Dinheiro',
           'Aberto Seg–Sab',

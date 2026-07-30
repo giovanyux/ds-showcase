@@ -38,7 +38,7 @@ const preview: Preview = {
       storySort: {
         order: [
           'Showcases',
-          ['Painel do Negócio', 'Dashboard', 'Forms', 'Mensageria', 'Onboarding'],
+          ['Painel do Negócio', 'Onboarding', 'Mensageria'],
           'Fundação',
           [
             'Cores',

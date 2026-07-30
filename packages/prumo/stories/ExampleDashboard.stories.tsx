@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { DashboardExample } from '@/components/examples/dashboard-example'
 
 const meta = {
-  title: 'Showcases/Dashboard',
+  title: 'Componentes/Exemplos/Dashboard Denso',
   component: DashboardExample,
   parameters: { layout: 'fullscreen' },
   tags: [],
