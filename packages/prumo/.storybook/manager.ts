@@ -11,8 +11,8 @@ const theme = create({
   fontBase: '"Inter", -apple-system, sans-serif',
   fontCode: '"JetBrains Mono", monospace',
 
-  colorPrimary: '#A6520F',
-  colorSecondary: '#A6520F',
+  colorPrimary: '#AE4526',
+  colorSecondary: '#AE4526',
 
   appBg: '#FFFBF7',
   appContentBg: '#FFFFFF',
@@ -23,8 +23,8 @@ const theme = create({
   textInverseColor: '#FFFFFF',
 
   barTextColor: '#7A5C50',
-  barSelectedColor: '#A6520F',
-  barHoverColor: '#A6520F',
+  barSelectedColor: '#AE4526',
+  barHoverColor: '#AE4526',
   barBg: '#FFFFFF',
 
   inputBg: '#FFFFFF',
@@ -57,7 +57,7 @@ addons.register('prumo/portfolio-link', () => {
             borderRadius: 6,
             fontSize: 12,
             fontWeight: 600,
-            color: '#A6520F',
+            color: '#AE4526',
             textDecoration: 'none',
             whiteSpace: 'nowrap',
           },

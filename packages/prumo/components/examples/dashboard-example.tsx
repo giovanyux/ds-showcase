@@ -213,7 +213,7 @@ function DashboardContent() {
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { label: "Primary", token: "var(--primary)", text: "#A6520F", contrast: "5.48:1 ✅", fg: "white" },
+                { label: "Primary", token: "var(--primary)", text: "#AE4526", contrast: "5.48:1 ✅", fg: "white" },
                 { label: "Secondary", token: "var(--secondary)", text: "Slate 100", contrast: "UI Element", fg: "var(--secondary-foreground)" },
                 { label: "Destructive", token: "var(--destructive)", text: "Red 600", contrast: "6.54:1 ✅", fg: "white" },
                 { label: "Success", token: "var(--success)", text: "Emerald 700", contrast: "6.87:1 ✅", fg: "white" },
