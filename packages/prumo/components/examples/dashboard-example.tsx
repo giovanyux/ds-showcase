@@ -52,7 +52,6 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
-import { ModeToggle } from "@/components/mode-toggle";
 import {
   Popover, PopoverContent, PopoverTrigger
 } from "@/components/ui/popover";
@@ -199,7 +198,6 @@ function DashboardContent() {
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <ModeToggle />
                 <Button className="hidden sm:flex rounded-xl shadow-lg shadow-primary/20">Publicar DS</Button>
               </div>
             </header>

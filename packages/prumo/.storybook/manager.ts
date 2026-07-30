@@ -8,29 +8,29 @@ const theme = create({
   brandUrl: '/',
   brandTarget: '_self',
 
-  fontBase: '"Inter", -apple-system, sans-serif',
+  fontBase: '"Archivo", -apple-system, sans-serif',
   fontCode: '"JetBrains Mono", monospace',
 
-  colorPrimary: '#AE4526',
-  colorSecondary: '#AE4526',
+  colorPrimary: '#2411ED',
+  colorSecondary: '#2411ED',
 
-  appBg: '#FFFBF7',
+  appBg: '#FFFFFF',
   appContentBg: '#FFFFFF',
-  appBorderColor: '#E8DDD4',
-  appBorderRadius: 10,
+  appBorderColor: '#121110',
+  appBorderRadius: 0,
 
-  textColor: '#2B1410',
-  textInverseColor: '#FFFFFF',
+  textColor: '#121110',
+  textInverseColor: '#FFF8EE',
 
-  barTextColor: '#7A5C50',
-  barSelectedColor: '#AE4526',
-  barHoverColor: '#AE4526',
+  barTextColor: '#4A4744',
+  barSelectedColor: '#2411ED',
+  barHoverColor: '#2411ED',
   barBg: '#FFFFFF',
 
   inputBg: '#FFFFFF',
-  inputBorder: '#E8DDD4',
-  inputTextColor: '#2B1410',
-  inputBorderRadius: 10,
+  inputBorder: '#121110',
+  inputTextColor: '#121110',
+  inputBorderRadius: 0,
 })
 
 addons.setConfig({ theme })
@@ -54,10 +54,10 @@ addons.register('prumo/portfolio-link', () => {
             height: 28,
             padding: '0 10px',
             marginLeft: 8,
-            borderRadius: 6,
+            borderRadius: 0,
             fontSize: 12,
             fontWeight: 600,
-            color: '#AE4526',
+            color: '#2411ED',
             textDecoration: 'none',
             whiteSpace: 'nowrap',
           },
