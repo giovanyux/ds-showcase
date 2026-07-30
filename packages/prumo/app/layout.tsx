@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Zen_Kaku_Gothic_New } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
-const inter = Inter({
+const archivo = Archivo({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "700", "900"],
+});
+
+const archivoDisplay = Archivo({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["700", "900"],
 });
 
 const jetBrainsMono = JetBrains_Mono({
@@ -14,18 +20,10 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const zenKakuGothicNew = Zen_Kaku_Gothic_New({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["500", "700"],
-});
-
 export const metadata: Metadata = {
   title: "Prumo",
   description: "Prumo — sistema de design com Next.js, shadcn/ui, Base UI e Tailwind v4",
 };
-
-import { ThemeProvider } from "@/components/theme-provider";
 
 export default function RootLayout({
   children,
@@ -35,18 +33,10 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${jetBrainsMono.variable} ${zenKakuGothicNew.variable} h-full antialiased`}
-      suppressHydrationWarning
+      className={`${archivo.variable} ${archivoDisplay.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <TooltipProvider>{children}</TooltipProvider>
-        </ThemeProvider>
+        <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
   );

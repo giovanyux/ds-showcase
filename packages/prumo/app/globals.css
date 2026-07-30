@@ -2,14 +2,20 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Mantido apesar de não haver mais .dark no DOM: sem este override, o
+   variante padrão dark: do Tailwind v4 cairia para @media
+   (prefers-color-scheme: dark), reativando dark mode via SO em qualquer
+   classe dark: ainda presente em components/ui/* (a remover em task futura
+   de limpeza de componente — ver design.md § Tema). Com o override, essas
+   classes ficam permanentemente inertes. */
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
    PRUMO — Token Map (Tailwind v4 / OKLCH)
-   Primary:    Laranja queimado → oklch(0.527 0.145 36.8)   — ajustado a partir da identidade pessoal do autor
-   Neutrals:   Stone   (warm-gray)
-   Semantic:   Sage(success) / Amber(warning) / Brick(destructive) / Deep sky(info)
-   Radius:     10px base — cantos generosos, herdados da identidade visual de referência
+   Identidade brutalista/suíça: papel branco puro, tinta quase-preta,
+   acento duplo amarelo (--primary) / vermelho (--destructive, --ring).
+   Raio zero, sombras de "registro de impressão" (deslocamento sólido,
+   sem blur). Tema único — sem dark mode. Ver design.md § Tokens.
    ============================================================ */
 
 @theme inline {
@@ -60,31 +66,32 @@
   --color-sidebar-ring:             var(--sidebar-ring);
 
   /* ── Typography ──────────────────────────────────────────── */
-  --font-sans:                      var(--font-sans);     /* Inter — corpo e UI densa */
-  --font-display:                   var(--font-display);  /* Zen Kaku Gothic New — títulos e marketing */
+  --font-sans:                      var(--font-sans);     /* Archivo (400/500) — corpo e UI densa */
+  --font-display:                   var(--font-display);  /* Archivo (700/900) — títulos e marketing */
   --font-mono:                      var(--font-mono);
 
   /* ── Radius scale ────────────────────────────────────────── */
-  /* Base: 10px — cantos generosos, ecoando a identidade visual de referência (chip pill, cards) */
+  /* Base: 0px — raio zero, identidade brutalista. Escala inteira colapsa com a base. */
+  /* Exceção: rounded-full (avatares, switches, spinners) continua círculo — ver design.md § Radius. */
   --radius-none:                    0px;
-  --radius-xs:                      calc(var(--radius) * 0.5);   /* 5px  */
-  --radius-sm:                      calc(var(--radius) * 0.67);  /* 7px  */
-  --radius-md:                      var(--radius);               /* 10px */
-  --radius-lg:                      calc(var(--radius) * 1.33);  /* 13px */
-  --radius-xl:                      calc(var(--radius) * 2);     /* 20px */
-  --radius-2xl:                     calc(var(--radius) * 2.67);  /* 27px */
-  --radius-3xl:                     calc(var(--radius) * 4);     /* 40px */
+  --radius-xs:                      calc(var(--radius) * 0.5);
+  --radius-sm:                      calc(var(--radius) * 0.67);
+  --radius-md:                      var(--radius);
+  --radius-lg:                      calc(var(--radius) * 1.33);
+  --radius-xl:                      calc(var(--radius) * 2);
+  --radius-2xl:                     calc(var(--radius) * 2.67);
+  --radius-3xl:                     calc(var(--radius) * 4);
   --radius-full:                    9999px;
 
   /* ── Shadow scale ────────────────────────────────────────── */
-  /* Multi-layer shadows tingidas de laranja queimado — mesma técnica anterior, tom novo */
-  --shadow-xs:   0 1px 2px oklch(0.527 0.145 36.8 / 2%);
-  --shadow-sm:   0 1px 3px oklch(0.527 0.145 36.8 / 4%), 0 1px 2px oklch(0 0 0 / 2%);
-  --shadow-md:   0 12px 24px -4px oklch(0.527 0.145 36.8 / 8%), 0 4px 6px -2px oklch(0.527 0.145 36.8 / 3%);
-  --shadow-lg:   0 20px 25px -5px oklch(0.527 0.145 36.8 / 10%), 0 10px 10px -5px oklch(0.527 0.145 36.8 / 4%);
-  --shadow-xl:   0 25px 50px -12px oklch(0.527 0.145 36.8 / 15%);
-  --shadow-2xl:  0 35px 60px -15px oklch(0.527 0.145 36.8 / 20%);
-  --shadow-primary: 0 10px 15px -3px oklch(0.527 0.145 36.8 / 25%), 0 4px 6px -2px oklch(0.527 0.145 36.8 / 10%);
+  /* "Registro de impressão" — deslocamento sólido, sem blur, cor = --foreground. Ver design.md § Shadows. */
+  --shadow-xs:      2px 2px 0 var(--foreground);
+  --shadow-sm:      3px 3px 0 var(--foreground);
+  --shadow-md:      4px 4px 0 var(--foreground);
+  --shadow-lg:      6px 6px 0 var(--foreground);
+  --shadow-xl:      8px 8px 0 var(--foreground);
+  --shadow-2xl:     10px 10px 0 var(--foreground);
+  --shadow-primary: 4px 4px 0 var(--foreground);
 
   /* ── Spacing scale ───────────────────────────────────────── */
   /* Inalterada — base 4px, todos os valores são múltiplos */
@@ -102,153 +109,77 @@
 }
 
 /* ============================================================
-   LIGHT MODE
-   Primary Laranja queimado: oklch(0.527 0.145 36.8)
-   Stone neutrals (warm-gray)
+   TEMA ÚNICO — papel branco / tinta quase-preta
+   Acento duplo: amarelo (--primary) / vermelho (--destructive, --ring)
+   Sem dark mode — ver design.md § Tema.
    ============================================================ */
 :root {
   /* Surfaces */
-  --background:             oklch(0.990 0.007 67.7);   /* #FFFBF7 — quase branco, tingido de quente */
-  --foreground:              oklch(0.223 0.039 30.8);   /* #2B1410 */
+  --background:             oklch(1.000 0.000 89.9);   /* #FFFFFF */
+  --foreground:              oklch(0.178 0.003 67.7);   /* #121110 */
 
-  /* Card / Popover */
-  --card:                   oklch(1 0 0);               /* #FFFFFF */
-  --card-foreground:        oklch(0.223 0.039 30.8);
-  --popover:                oklch(1 0 0);
-  --popover-foreground:     oklch(0.223 0.039 30.8);
+  /* Card / Popover — mesma superfície do papel */
+  --card:                   oklch(1.000 0.000 89.9);
+  --card-foreground:        oklch(0.178 0.003 67.7);
+  --popover:                oklch(1.000 0.000 89.9);
+  --popover-foreground:     oklch(0.178 0.003 67.7);
 
-  /* ── PRIMARY: Laranja queimado — 5.48:1 sobre branco ✅ (mais vívido que o oxblood original) ── */
-  --primary:                oklch(0.527 0.145 36.8);    /* #AE4526 */
-  --primary-foreground:     oklch(0.990 0.007 67.7);    /* #FFFBF7 */
+  /* ── PRIMARY: amarelo — acento de ação primária ── */
+  --primary:                oklch(0.835 0.167 90.6);    /* #F2C318 */
+  --primary-foreground:     oklch(0.178 0.003 67.7);    /* #121110 */
 
-  /* Secondary — stone claro */
-  --secondary:              oklch(0.951 0.012 59.6);    /* #F5EDE7 */
-  --secondary-foreground:   oklch(0.223 0.039 30.8);
+  /* Secondary / Muted / Accent — mesma superfície neutra clara */
+  --secondary:              oklch(0.952 0.008 91.5);    /* #F1EFE9 */
+  --secondary-foreground:   oklch(0.178 0.003 67.7);
 
-  /* Muted — stone claro, texto em stone médio (5.22:1 sobre muted) */
-  --muted:                  oklch(0.951 0.012 59.6);
-  --muted-foreground:       oklch(0.502 0.044 42.8);    /* #7A5C50 */
+  --muted:                  oklch(0.952 0.008 91.5);
+  --muted-foreground:       oklch(0.400 0.006 67.6);    /* #4A4744 */
 
-  /* Accent — stone claro */
-  --accent:                 oklch(0.951 0.012 59.6);
-  --accent-foreground:      oklch(0.223 0.039 30.8);
+  --accent:                 oklch(0.952 0.008 91.5);
+  --accent-foreground:      oklch(0.178 0.003 67.7);
 
-  /* Destructive — brick red — 6.54:1 sobre branco ✅ */
-  --destructive:            oklch(0.501 0.178 28.7);    /* #B3261E */
-  --destructive-foreground: oklch(1 0 0);
-
-  /* Success — sage escuro — 6.87:1 sobre branco ✅ */
-  --success:                oklch(0.462 0.057 152.7);   /* #3F6249 */
-  --success-foreground:     oklch(1 0 0);
-
-  /* Warning — amber — 4.64:1 com texto escuro (branco não fecha AA nesse tom) */
-  --warning:                oklch(0.621 0.121 64.3);    /* #B8752B */
-  --warning-foreground:     oklch(0.223 0.039 30.8);
-
-  /* Info — sky escurecido para fechar AA com texto branco — 5.90:1 ✅ */
-  --info:                   oklch(0.501 0.105 240.1);   /* #186A99 */
-  --info-foreground:        oklch(1 0 0);
-
-  /* Borders & Inputs — stone */
-  --border:                 oklch(0.904 0.017 61.9);    /* #E8DDD4 */
-  --input:                  oklch(0.904 0.017 61.9);
-
-  /* Ring — primary */
-  --ring:                   oklch(0.527 0.145 36.8);
-
-  /* Charts — paleta do gradiente de assinatura (aurora) */
-  --chart-1:                oklch(0.527 0.145 36.8);    /* laranja queimado */
-  --chart-2:                oklch(0.667 0.137 237.0);   /* sky #219FDD — só decorativo, não usar como texto */
-  --chart-3:                oklch(0.462 0.057 152.7);   /* sage */
-  --chart-4:                oklch(0.621 0.121 64.3);    /* amber */
-  --chart-5:                oklch(0.746 0.147 33.3);    /* coral */
-
-  /* Radius — 10px base */
-  --radius:                 0.625rem;
-
-  /* ── Sidebar ─────────────────────────────────────────────── */
-  --sidebar:                oklch(0.980 0.008 56.3);    /* #FDF7F3 */
-  --sidebar-foreground:     oklch(0.223 0.039 30.8);
-  --sidebar-primary:        oklch(0.527 0.145 36.8);
-  --sidebar-primary-foreground: oklch(0.990 0.007 67.7);
-  --sidebar-accent:         oklch(0.917 0.018 59.5);    /* #EDE1D8 */
-  --sidebar-accent-foreground: oklch(0.223 0.039 30.8);
-  --sidebar-border:         oklch(0.917 0.018 59.5);
-  --sidebar-ring:           oklch(0.527 0.145 36.8);
-}
-
-/* ============================================================
-   DARK MODE
-   Background: quase-preto quente  #1C120F
-   Primary vira Coral (do gradiente de assinatura) — o laranja queimado
-   do modo claro ficaria escuro demais como cor de destaque sobre fundo escuro
-   ============================================================ */
-.dark {
-  /* Surfaces */
-  --background:             oklch(0.194 0.018 37.4);    /* #1C120F */
-  --foreground:              oklch(0.942 0.016 52.6);    /* #F5E9E2 */
-
-  /* Card / Popover */
-  --card:                   oklch(0.247 0.024 40.5);    /* #2B1D18 */
-  --card-foreground:        oklch(0.942 0.016 52.6);
-  --popover:                oklch(0.247 0.024 40.5);
-  --popover-foreground:     oklch(0.942 0.016 52.6);
-
-  /* ── PRIMARY dark: Coral (do gradiente de assinatura) — 7.69:1 ✅ ── */
-  --primary:                oklch(0.746 0.147 33.3);    /* #FB876E */
-  --primary-foreground:     oklch(0.194 0.018 37.4);    /* #1C120F */
-
-  /* Secondary — stone escuro */
-  --secondary:              oklch(0.279 0.024 44.3);    /* #33251F */
-  --secondary-foreground:   oklch(0.942 0.016 52.6);
-
-  /* Muted */
-  --muted:                  oklch(0.279 0.024 44.3);
-  --muted-foreground:       oklch(0.715 0.039 45.5);    /* #B99C8F */
-
-  /* Accent */
-  --accent:                 oklch(0.279 0.024 44.3);
-  --accent-foreground:      oklch(0.942 0.016 52.6);
-
-  /* Destructive */
-  --destructive:            oklch(0.692 0.138 26.6);    /* #E5776D */
-  --destructive-foreground: oklch(0.194 0.018 37.4);
+  /* Destructive — vermelho — também usado no foco (--ring) */
+  --destructive:            oklch(0.554 0.186 32.4);    /* #C8371D */
+  --destructive-foreground: oklch(0.982 0.015 77.1);    /* #FFF8EE */
 
   /* Success */
-  --success:                oklch(0.707 0.072 152.2);   /* #7FAE8B */
-  --success-foreground:     oklch(0.194 0.018 37.4);
+  --success:                oklch(0.403 0.066 146.9);   /* #2F5233 */
+  --success-foreground:     oklch(0.982 0.015 77.1);
 
   /* Warning */
-  --warning:                oklch(0.768 0.118 74.5);    /* #E0A857 */
-  --warning-foreground:     oklch(0.194 0.018 37.4);
+  --warning:                oklch(0.478 0.107 54.6);    /* #8A4A16 */
+  --warning-foreground:     oklch(0.982 0.015 77.1);
 
   /* Info */
-  --info:                   oklch(0.779 0.104 231.7);   /* #6CC3EE */
-  --info-foreground:        oklch(0.194 0.018 37.4);
+  --info:                   oklch(0.409 0.066 251.9);   /* #2E4C6D */
+  --info-foreground:        oklch(0.982 0.015 77.1);
 
-  /* Borders & Inputs */
-  --border:                 oklch(1 0 0 / 10%);
-  --input:                  oklch(1 0 0 / 15%);
+  /* Borders & Inputs — tinta, sempre sólida (nunca opacidade) */
+  --border:                 oklch(0.178 0.003 67.7);    /* #121110 */
+  --input:                  oklch(0.178 0.003 67.7);
 
-  /* Ring */
-  --ring:                   oklch(0.746 0.147 33.3);
+  /* Ring — sempre vermelho, nunca amarelo (ver design.md § Microinteractions stance) */
+  --ring:                   oklch(0.554 0.186 32.4);    /* #C8371D */
 
-  /* Charts */
-  --chart-1:                oklch(0.746 0.147 33.3);
-  --chart-2:                oklch(0.779 0.104 231.7);
-  --chart-3:                oklch(0.707 0.072 152.2);
-  --chart-4:                oklch(0.768 0.118 74.5);
-  --chart-5:                oklch(0.692 0.138 26.6);
+  /* Charts — ink, amarelo, vermelho, success, info (nessa ordem) */
+  --chart-1:                oklch(0.178 0.003 67.7);    /* ink */
+  --chart-2:                oklch(0.835 0.167 90.6);    /* amarelo */
+  --chart-3:                oklch(0.554 0.186 32.4);    /* vermelho */
+  --chart-4:                oklch(0.403 0.066 146.9);   /* success */
+  --chart-5:                oklch(0.409 0.066 251.9);   /* info */
 
-  /* Sidebar */
-  --sidebar:                oklch(0.212 0.017 37.4);    /* #201613 */
-  --sidebar-foreground:     oklch(0.942 0.016 52.6);
-  --sidebar-primary:        oklch(0.746 0.147 33.3);
-  --sidebar-primary-foreground: oklch(0.194 0.018 37.4);
-  --sidebar-accent:         oklch(0.279 0.024 44.3);
-  --sidebar-accent-foreground: oklch(0.942 0.016 52.6);
-  --sidebar-border:         oklch(1 0 0 / 10%);
-  --sidebar-ring:           oklch(0.746 0.147 33.3);
+  /* Radius — zero. Identidade brutalista, sem cantos arredondados (exceto rounded-full). */
+  --radius:                 0px;
+
+  /* ── Sidebar — sem superfície própria; herda paper/ink/amarelo/tinta ── */
+  --sidebar:                oklch(1.000 0.000 89.9);    /* = background */
+  --sidebar-foreground:     oklch(0.178 0.003 67.7);    /* = foreground */
+  --sidebar-primary:        oklch(0.835 0.167 90.6);    /* = primary */
+  --sidebar-primary-foreground: oklch(0.178 0.003 67.7); /* = primary-foreground */
+  --sidebar-accent:         oklch(0.952 0.008 91.5);    /* = secondary */
+  --sidebar-accent-foreground: oklch(0.178 0.003 67.7); /* = secondary-foreground */
+  --sidebar-border:         oklch(0.178 0.003 67.7);    /* = border */
+  --sidebar-ring:           oklch(0.554 0.186 32.4);    /* = ring */
 }
 
 /* ============================================================

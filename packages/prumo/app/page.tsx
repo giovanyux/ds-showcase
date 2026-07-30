@@ -1,5 +1,4 @@
 import { buttonVariants } from "@/lib/button-variants";
-import { ModeToggle } from "@/components/mode-toggle";
 import { CaseStudy } from "@/components/case-study";
 import { ArrowRight, ArrowDownRight } from "lucide-react";
 
@@ -32,7 +31,6 @@ export default function Home() {
     <div className="min-h-full flex flex-col">
       <header className="border-b border-border px-6 py-4 flex items-center justify-between">
         <span className="font-display text-lg font-bold tracking-tight">Prumo</span>
-        <ModeToggle />
       </header>
 
       <main className="flex-1 w-full">
