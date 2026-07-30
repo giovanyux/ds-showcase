@@ -30,7 +30,14 @@ export default function Home() {
   return (
     <div className="min-h-full flex flex-col">
       <header className="border-b border-border px-6 py-4 flex items-center justify-between">
-        <span className="font-display text-lg font-bold tracking-tight">Prumo</span>
+        <a
+          href="https://giovanyux.github.io/portfolio"
+          target="_blank"
+          rel="noreferrer"
+          className="font-display text-lg font-bold tracking-tight hover:text-primary"
+        >
+          Prumo
+        </a>
       </header>
 
       <main className="flex-1 w-full">
@@ -100,8 +107,8 @@ export default function Home() {
             <a href="/prumo/storybook" target="_blank" rel="noreferrer" className="hover:text-foreground underline underline-offset-4">
               Storybook
             </a>
-            <a href="https://giovanyux.github.io/portfolio" target="_blank" rel="noreferrer" className="hover:text-foreground underline underline-offset-4">
-              Portfólio
+            <a href="https://www.linkedin.com/in/giovany-designer/" target="_blank" rel="noreferrer" className="hover:text-foreground underline underline-offset-4">
+              Feito por Giovany
             </a>
           </div>
         </footer>

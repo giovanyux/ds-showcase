@@ -5,8 +5,8 @@ import { create } from 'storybook/theming/create'
 const theme = create({
   base: 'light',
   brandTitle: 'Prumo',
-  brandUrl: '/',
-  brandTarget: '_self',
+  brandUrl: 'https://giovanyux.github.io/portfolio',
+  brandTarget: '_blank',
 
   fontBase: '"Archivo", -apple-system, sans-serif',
   fontCode: '"JetBrains Mono", monospace',
@@ -35,16 +35,16 @@ const theme = create({
 
 addons.setConfig({ theme })
 
-addons.register('prumo/portfolio-link', () => {
-  addons.add('prumo/portfolio-link', {
+addons.register('prumo/linkedin-link', () => {
+  addons.add('prumo/linkedin-link', {
     type: types.TOOL,
-    title: 'Portfólio',
+    title: 'Feito por Giovany',
     match: () => true,
     render: () =>
       React.createElement(
         'a',
         {
-          href: 'https://giovanyux.github.io/portfolio',
+          href: 'https://www.linkedin.com/in/giovany-designer/',
           target: '_blank',
           rel: 'noreferrer',
           style: {
@@ -62,7 +62,7 @@ addons.register('prumo/portfolio-link', () => {
             whiteSpace: 'nowrap',
           },
         },
-        'Portfólio ↗'
+        'Feito por Giovany ↗'
       ),
   })
 })
