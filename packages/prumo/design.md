@@ -47,8 +47,8 @@ qualquer mudança de cor; todos os pares abaixo já passam):
 | `--secondary` / `--muted` / `--accent` (surface) | `#F1EFE9` | `oklch(0.952 0.008 91.5)` |
 | `--secondary-foreground` / `--accent-foreground` | `#121110` | `oklch(0.178 0.003 67.7)` |
 | `--muted-foreground` | `#4A4744` | `oklch(0.400 0.006 67.6)` |
-| `--primary` (acento amarelo) | `#F2C318` | `oklch(0.835 0.167 90.6)` |
-| `--primary-foreground` | `#121110` | `oklch(0.178 0.003 67.7)` |
+| `--primary` (acento azul) | `#2411ED` | `oklch(0.443 0.286 268.3)` |
+| `--primary-foreground` | `#FFF8EE` | `oklch(0.982 0.015 77.1)` |
 | `--destructive` (acento vermelho) | `#C8371D` | `oklch(0.554 0.186 32.4)` |
 | `--destructive-foreground` | `#FFF8EE` | `oklch(0.982 0.015 77.1)` |
 | `--success` | `#2F5233` | `oklch(0.403 0.066 146.9)` |
@@ -58,9 +58,9 @@ qualquer mudança de cor; todos os pares abaixo já passam):
 | `--info` | `#2E4C6D` | `oklch(0.409 0.066 251.9)` |
 | `--info-foreground` | `#FFF8EE` | `oklch(0.982 0.015 77.1)` |
 | `--border` / `--input` | `#121110` | `oklch(0.178 0.003 67.7)` |
-| `--ring` (foco — sempre vermelho, nunca amarelo) | `#C8371D` | `oklch(0.554 0.186 32.4)` |
+| `--ring` (foco — sempre vermelho, nunca azul) | `#C8371D` | `oklch(0.554 0.186 32.4)` |
 
-`--chart-1..5`: ink, amarelo, vermelho, success, info (nessa ordem) — cobre a
+`--chart-1..5`: ink, azul, vermelho, success, info (nessa ordem) — cobre a
 paleta inteira sem inventar cor nova. `--sidebar*`: mesmos valores de
 background/foreground/border/ring do sistema (paper/ink) — a sidebar não tem
 superfície própria diferenciada nesta identidade.
@@ -132,21 +132,20 @@ continua exatamente como está.
 
 ## Microinteractions stance
 
-- Foco = sempre vermelho (`--ring`), nunca amarelo — amarelo sobre botão
-  amarelo falha contraste; vermelho passa 3:1+ contra papel e contra amarelo
-  (ver tabela de contraste do script).
+- Foco = sempre vermelho (`--ring`), nunca azul — o anel de foco usa sempre
+  `ring-offset`/`outline-offset` contra o papel ao redor do elemento, nunca
+  encostando direto no preenchimento (ver tabela de contraste do script).
 - Sucesso silencioso, confirmação só para ação destrutiva irreversível — sem
   mudança em relação à disciplina padrão do Hallmark.
 
 ## CTA voice
 
-- Primário: preenchimento amarelo, texto ink, versalete tracked, sem raio,
-  hover = print-register.
+- Primário: preenchimento azul, texto `--primary-foreground` (papel), versalete
+  tracked, sem raio, hover = print-register.
 - Secundário/outline: borda ink 3px, fundo papel, mesmo hover.
 - Destrutivo: preenchimento vermelho, texto `--destructive-foreground`.
-- Nunca usar os dois acentos (amarelo + vermelho) no mesmo componente
-
-  interativo — vermelho é reservado para destrutivo/foco; amarelo para ação
+- Nunca usar os dois acentos (azul + vermelho) no mesmo componente
+  interativo — vermelho é reservado para destrutivo/foco; azul para ação
   primária/positiva. Um card ou tile decorativo pode combinar os dois (como
   na landing), mas um único botão nunca.
 
@@ -204,8 +203,8 @@ uso (ver `## Typography` acima), não um weight 400 aplicado em tudo.
 :root {
   --background: oklch(1.000 0.000 89.9);
   --foreground: oklch(0.178 0.003 67.7);
-  --primary: oklch(0.835 0.167 90.6);
-  --primary-foreground: oklch(0.178 0.003 67.7);
+  --primary: oklch(0.443 0.286 268.3);
+  --primary-foreground: oklch(0.982 0.015 77.1);
   --destructive: oklch(0.554 0.186 32.4);
   --destructive-foreground: oklch(0.982 0.015 77.1);
   --ring: oklch(0.554 0.186 32.4);

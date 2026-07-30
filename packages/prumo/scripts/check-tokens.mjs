@@ -55,13 +55,17 @@ const pairs = [
   ['ink on paper-dim (muted surface)', '#121110', '#F1EFE9', AA_NORMAL],
   ['ink-soft on paper (muted-foreground)', '#4A4744', '#FFFFFF', AA_NORMAL],
   ['ink-soft on paper-dim', '#4A4744', '#F1EFE9', AA_NORMAL],
-  ['ink on yellow (primary fill text)', '#121110', '#F2C318', AA_NORMAL],
+  ['paper on primary (primary fill text)', '#FFF8EE', '#2411ED', AA_NORMAL],
+  ['primary as text on paper (badge/link usage)', '#2411ED', '#FFFFFF', AA_NORMAL],
+  ['primary as text on paper-dim', '#2411ED', '#F1EFE9', AA_NORMAL],
   ['paper on red (destructive fill text)', '#FFF8EE', '#C8371D', AA_NORMAL],
   ['paper on success fill text', '#FFF8EE', '#2F5233', AA_NORMAL],
   ['paper on warning fill text', '#FFF8EE', '#8A4A16', AA_NORMAL],
   ['paper on info fill text', '#FFF8EE', '#2E4C6D', AA_NORMAL],
-  ['red focus ring on paper (UI, not text)', '#C8371D', '#FFFFFF', AA_LARGE],
-  ['red focus ring on yellow (UI, not text)', '#C8371D', '#F2C318', AA_LARGE],
+  // O anel de foco sempre usa ring-offset/outline-offset contra o papel —
+  // nunca encosta direto no preenchimento do próprio elemento — então o par
+  // relevante é vermelho vs papel (abaixo), não vermelho vs acento direto.
+  ['red focus ring on paper (via ring-offset, UI not text)', '#C8371D', '#FFFFFF', AA_LARGE],
   ['ink border on paper (UI, not text)', '#121110', '#FFFFFF', AA_LARGE],
 ];
 
@@ -80,8 +84,8 @@ const swatches = {
   'paper-dim (muted/secondary surface)': '#F1EFE9',
   'ink (foreground/border/ring-base)': '#121110',
   'ink-soft (muted-foreground)': '#4A4744',
-  'accent yellow (primary)': '#F2C318',
-  'accent yellow-ink (text on primary)': '#121110',
+  'accent blue (primary)': '#2411ED',
+  'accent blue-ink (text on primary)': '#FFF8EE',
   'accent red (destructive + focus)': '#C8371D',
   'accent red-ink (text on destructive)': '#FFF8EE',
   'success': '#2F5233',

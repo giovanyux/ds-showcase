@@ -124,9 +124,9 @@
   --popover:                oklch(1.000 0.000 89.9);
   --popover-foreground:     oklch(0.178 0.003 67.7);
 
-  /* ── PRIMARY: amarelo — acento de ação primária ── */
-  --primary:                oklch(0.835 0.167 90.6);    /* #F2C318 */
-  --primary-foreground:     oklch(0.178 0.003 67.7);    /* #121110 */
+  /* ── PRIMARY: azul — acento de ação primária ── */
+  --primary:                oklch(0.443 0.286 268.3);   /* #2411ED */
+  --primary-foreground:     oklch(0.982 0.015 77.1);    /* #FFF8EE */
 
   /* Secondary / Muted / Accent — mesma superfície neutra clara */
   --secondary:              oklch(0.952 0.008 91.5);    /* #F1EFE9 */
@@ -163,7 +163,7 @@
 
   /* Charts — ink, amarelo, vermelho, success, info (nessa ordem) */
   --chart-1:                oklch(0.178 0.003 67.7);    /* ink */
-  --chart-2:                oklch(0.835 0.167 90.6);    /* amarelo */
+  --chart-2:                oklch(0.443 0.286 268.3);   /* azul */
   --chart-3:                oklch(0.554 0.186 32.4);    /* vermelho */
   --chart-4:                oklch(0.403 0.066 146.9);   /* success */
   --chart-5:                oklch(0.409 0.066 251.9);   /* info */
@@ -174,8 +174,8 @@
   /* ── Sidebar — sem superfície própria; herda paper/ink/amarelo/tinta ── */
   --sidebar:                oklch(1.000 0.000 89.9);    /* = background */
   --sidebar-foreground:     oklch(0.178 0.003 67.7);    /* = foreground */
-  --sidebar-primary:        oklch(0.835 0.167 90.6);    /* = primary */
-  --sidebar-primary-foreground: oklch(0.178 0.003 67.7); /* = primary-foreground */
+  --sidebar-primary:        oklch(0.443 0.286 268.3);   /* = primary */
+  --sidebar-primary-foreground: oklch(0.982 0.015 77.1); /* = primary-foreground */
   --sidebar-accent:         oklch(0.952 0.008 91.5);    /* = secondary */
   --sidebar-accent-foreground: oklch(0.178 0.003 67.7); /* = secondary-foreground */
   --sidebar-border:         oklch(0.178 0.003 67.7);    /* = border */

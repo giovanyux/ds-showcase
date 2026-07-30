@@ -3,12 +3,6 @@ import React from 'react'
 import '../app/globals.css'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
-const withTheme: Decorator = (Story, context) => {
-  const theme = context.globals?.theme ?? 'light'
-  document.documentElement.classList.toggle('dark', theme === 'dark')
-  return Story()
-}
-
 const withTooltipProvider: Decorator = (Story) => (
   <TooltipProvider>
     <Story />
@@ -16,22 +10,7 @@ const withTooltipProvider: Decorator = (Story) => (
 )
 
 const preview: Preview = {
-  decorators: [withTheme, withTooltipProvider],
-  globalTypes: {
-    theme: {
-      description: 'Tema global dos componentes',
-      defaultValue: 'light',
-      toolbar: {
-        title: 'Tema',
-        icon: 'circlehollow',
-        items: [
-          { value: 'light', icon: 'sun', title: 'Light' },
-          { value: 'dark', icon: 'moon', title: 'Dark' },
-        ],
-        dynamicTitle: true,
-      },
-    },
-  },
+  decorators: [withTooltipProvider],
   parameters: {
     backgrounds: { disable: true },
     options: {
