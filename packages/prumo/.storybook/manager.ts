@@ -1,4 +1,5 @@
-import { addons } from 'storybook/manager-api'
+import React from 'react'
+import { addons, types } from 'storybook/manager-api'
 import { create } from 'storybook/theming/create'
 
 const theme = create({
@@ -10,8 +11,8 @@ const theme = create({
   fontBase: '"Inter", -apple-system, sans-serif',
   fontCode: '"JetBrains Mono", monospace',
 
-  colorPrimary: '#5F2016',
-  colorSecondary: '#5F2016',
+  colorPrimary: '#A6520F',
+  colorSecondary: '#A6520F',
 
   appBg: '#FFFBF7',
   appContentBg: '#FFFFFF',
@@ -22,8 +23,8 @@ const theme = create({
   textInverseColor: '#FFFFFF',
 
   barTextColor: '#7A5C50',
-  barSelectedColor: '#5F2016',
-  barHoverColor: '#5F2016',
+  barSelectedColor: '#A6520F',
+  barHoverColor: '#A6520F',
   barBg: '#FFFFFF',
 
   inputBg: '#FFFFFF',
@@ -33,3 +34,35 @@ const theme = create({
 })
 
 addons.setConfig({ theme })
+
+addons.register('prumo/portfolio-link', () => {
+  addons.add('prumo/portfolio-link', {
+    type: types.TOOL,
+    title: 'Portfólio',
+    match: () => true,
+    render: () =>
+      React.createElement(
+        'a',
+        {
+          href: 'https://giovanyux.github.io/portfolio',
+          target: '_blank',
+          rel: 'noreferrer',
+          style: {
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 4,
+            height: 28,
+            padding: '0 10px',
+            marginLeft: 8,
+            borderRadius: 6,
+            fontSize: 12,
+            fontWeight: 600,
+            color: '#A6520F',
+            textDecoration: 'none',
+            whiteSpace: 'nowrap',
+          },
+        },
+        'Portfólio ↗'
+      ),
+  })
+})

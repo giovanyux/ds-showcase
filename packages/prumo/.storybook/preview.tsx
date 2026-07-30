@@ -34,6 +34,28 @@ const preview: Preview = {
   },
   parameters: {
     backgrounds: { disable: true },
+    options: {
+      storySort: {
+        order: [
+          'Showcases',
+          ['Painel do Negócio', 'Dashboard', 'Forms', 'Mensageria', 'Onboarding'],
+          'Fundação',
+          [
+            'Cores',
+            'Tipografia',
+            'Raio de Borda',
+            'Sombras',
+            'Espaçamento',
+            'Guia de Overlays',
+            'Guia de Seleção',
+            'Guia de Tabelas',
+            'Guia de Formulários (Field)',
+            'Guia de Sidebar',
+          ],
+          'Componentes',
+        ],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
