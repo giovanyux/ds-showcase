@@ -11,7 +11,7 @@
     "slug": "eixo",
     "name": "Eixo",
     "stack": ["Vite", "React", "shadcn/ui", "Tailwind"],
-    "componentCount": 27,
+    "componentCount": 48,
     "storybookPath": "/eixo/"
   }
 ]
