@@ -1,75 +1,111 @@
-/* Eixo — tema Reto (bordas retas, base âmbar) */
+/* Eixo — Neo Tactile
+ * Monocromático azul-acinzentado + primária índigo, profundidade só por
+ * sombra dupla (raised/inset/pressed), sem cor de superfície diferenciada.
+ * Botão segue o tratamento tátil específico (gloss + anel + inset no pressed).
+ * As classes .theme-reto/.theme-suave apontam pro mesmo token set — o
+ * pacote tinha duas variantes genéricas sem identidade própria; agora é uma
+ * identidade só, com o seletor de tema preservado por compatibilidade.
+ */
 
-.theme-reto {
-  --background: oklch(0.99 0.005 45);
-  --foreground: oklch(0.18 0.04 45);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.04 45);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.04 45);
-  --primary: oklch(0.42 0.18 45);
-  --primary-foreground: oklch(0.99 0.005 45);
-  --secondary: oklch(0.95 0.03 45);
-  --secondary-foreground: oklch(0.42 0.18 45);
-  --accent: oklch(0.85 0.16 85);
-  --accent-foreground: oklch(0.18 0.04 45);
-  --muted: oklch(0.96 0.01 45);
-  --muted-foreground: oklch(0.50 0.04 45);
-  --destructive: oklch(0.62 0.23 25);
-  --destructive-foreground: oklch(0.99 0.005 45);
-  --border: oklch(0.92 0.02 45);
-  --input: oklch(0.92 0.02 45);
-  --ring: oklch(0.55 0.20 45);
-  --chart-1: oklch(0.42 0.18 45);
-  --chart-2: oklch(0.85 0.16 85);
-  --chart-3: oklch(0.62 0.23 25);
-  --chart-4: oklch(0.55 0.20 15);
-  --chart-5: oklch(0.65 0.18 200);
-  --sidebar: oklch(0.97 0.005 45);
-  --sidebar-foreground: oklch(0.18 0.04 45);
-  --sidebar-primary: oklch(0.42 0.18 45);
-  --sidebar-primary-foreground: oklch(0.99 0.005 45);
-  --sidebar-accent: oklch(0.93 0.02 45);
-  --sidebar-accent-foreground: oklch(0.18 0.04 45);
-  --sidebar-border: oklch(0.92 0.02 45);
-  --sidebar-ring: oklch(0.55 0.20 45);
-  --radius: 0.5rem;
-  --font-sans: Inter, system-ui, sans-serif;
-  --font-serif: ui-serif, Georgia, serif;
-  --font-mono: ui-monospace, monospace;
+.theme-reto,
+.theme-suave {
+  --background:               oklch(0.944 0.008 253.9);   /* #E9EDF2 */
+  --foreground:                oklch(0.447 0.034 261.3);   /* #4A5568 */
+  --card:                     var(--background);
+  --card-foreground:          var(--foreground);
+  --popover:                  var(--background);
+  --popover-foreground:       var(--foreground);
+  --primary:                  oklch(0.536 0.219 271.6);   /* #4657E9 */
+  --primary-foreground:       oklch(1 0 0);
+  --primary-ring:             oklch(0.546 0.219 271.8);   /* #495AED */
+  --secondary:                var(--background);
+  --secondary-foreground:     var(--foreground);
+  --muted:                    var(--background);
+  --muted-foreground:         oklch(0.519 0.040 261.8);   /* #5C6980 */
+  --accent:                   var(--background);
+  --accent-foreground:        var(--foreground);
+  --destructive:               oklch(0.521 0.158 29.9);    /* #B23A2C */
+  --destructive-foreground:    oklch(1 0 0);
+  --border:                   oklch(0.7 0.02 262 / 18%);
+  --input:                    oklch(0.7 0.02 262 / 18%);
+  --ring:                     var(--primary);
+  --chart-1:                  oklch(0.536 0.219 271.6);   /* índigo (primary) */
+  --chart-2:                  oklch(0.75 0.15 200);       /* ciano */
+  --chart-3:                  oklch(0.80 0.15 85);        /* âmbar */
+  --chart-4:                  oklch(0.65 0.20 155);       /* verde */
+  --chart-5:                  oklch(0.65 0.20 350);       /* rosa */
+  --sidebar:                  var(--background);
+  --sidebar-foreground:       var(--foreground);
+  --sidebar-primary:          var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent:           var(--background);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border:           var(--border);
+  --sidebar-ring:             var(--primary);
+
+  --radius:                   1rem;
+  --font-sans:                Inter, system-ui, sans-serif;
+  --font-serif:                ui-serif, Georgia, serif;
+  --font-mono:                 ui-monospace, monospace;
+
+  /* ── Sombras táteis (neumorphism) ────────────────────────── */
+  /* Raised: elemento "flutua" sobre a base — luz clara no canto
+     superior-esquerdo, sombra escura no inferior-direito. */
+  --shadow-raised:             -8px -8px 16px rgba(255,255,255,0.85), 8px 8px 16px rgba(163,177,198,0.55);
+  --shadow-raised-sm:          -5px -5px 10px rgba(255,255,255,0.8), 5px 5px 10px rgba(163,177,198,0.5);
+  /* Inset: elemento "afundado" na base — inverte a direção da sombra. */
+  --shadow-inset:               inset 4px 4px 8px rgba(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.8);
+  /* Pressed: mesma ideia do inset, mais intensa — estado de clique. */
+  --shadow-pressed:             inset 3px 3px 6px rgba(163,177,198,0.55), inset -3px -3px 6px rgba(255,255,255,0.65);
+
+  /* ── Botão tátil (Figma: Satisfying Tactile Haptic Buttons) ── */
+  --shadow-btn:                 0 1px 2px rgba(0,0,0,0.2), 0 0 0 1px var(--primary-ring);
+  --shadow-btn-pressed:         inset 0 2px 2px rgba(0,0,0,0.08);
+  --gradient-btn-gloss:         linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
 }
 
-.theme-reto.dark {
-  --background: oklch(0.12 0.04 45);
-  --foreground: oklch(0.98 0.01 45);
-  --card: oklch(0.18 0.05 45);
-  --card-foreground: oklch(0.98 0.01 45);
-  --popover: oklch(0.18 0.05 45);
-  --popover-foreground: oklch(0.98 0.01 45);
-  --primary: oklch(0.72 0.18 45);
-  --primary-foreground: oklch(0.12 0.04 45);
-  --secondary: oklch(0.25 0.06 45);
-  --secondary-foreground: oklch(0.98 0.01 45);
-  --accent: oklch(0.85 0.16 85);
-  --accent-foreground: oklch(0.12 0.04 45);
-  --muted: oklch(0.22 0.05 45);
-  --muted-foreground: oklch(0.70 0.04 45);
-  --destructive: oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(0.98 0.01 45);
-  --border: oklch(0.28 0.06 45);
-  --input: oklch(0.28 0.06 45);
-  --ring: oklch(0.72 0.18 45);
-  --chart-1: oklch(0.72 0.18 45);
-  --chart-2: oklch(0.85 0.16 85);
-  --chart-3: oklch(0.65 0.22 25);
-  --chart-4: oklch(0.65 0.20 15);
-  --chart-5: oklch(0.70 0.18 200);
-  --sidebar: oklch(0.10 0.03 45);
-  --sidebar-foreground: oklch(0.98 0.01 45);
-  --sidebar-primary: oklch(0.85 0.16 85);
-  --sidebar-primary-foreground: oklch(0.12 0.04 45);
-  --sidebar-accent: oklch(0.18 0.05 45);
-  --sidebar-accent-foreground: oklch(0.98 0.01 45);
-  --sidebar-border: oklch(0.22 0.05 45);
-  --sidebar-ring: oklch(0.72 0.18 45);
+.theme-reto.dark,
+.theme-suave.dark {
+  --background:                oklch(0.247 0.023 262.4);  /* #1B212C */
+  --foreground:                 oklch(0.930 0.012 264.5);  /* #E4E8F0 */
+  --card:                      var(--background);
+  --card-foreground:           var(--foreground);
+  --popover:                   var(--background);
+  --popover-foreground:        var(--foreground);
+  --primary:                   oklch(0.669 0.159 275.7);  /* #7B89F5 */
+  --primary-foreground:        var(--background);
+  --primary-ring:              oklch(0.706 0.150 275.9);  /* levemente mais claro */
+  --secondary:                 var(--background);
+  --secondary-foreground:      var(--foreground);
+  --muted:                     var(--background);
+  --muted-foreground:          oklch(0.720 0.030 263.4);  /* #9BA5B8 */
+  --accent:                    var(--background);
+  --accent-foreground:         var(--foreground);
+  --destructive:                oklch(0.673 0.161 28.8);   /* #E8695A */
+  --destructive-foreground:     var(--background);
+  --border:                    oklch(1 0 0 / 8%);
+  --input:                     oklch(1 0 0 / 10%);
+  --ring:                      var(--primary);
+  --chart-1:                   oklch(0.669 0.159 275.7);
+  --chart-2:                   oklch(0.75 0.15 200);
+  --chart-3:                   oklch(0.80 0.15 85);
+  --chart-4:                   oklch(0.65 0.20 155);
+  --chart-5:                   oklch(0.65 0.20 350);
+  --sidebar:                   var(--background);
+  --sidebar-foreground:        var(--foreground);
+  --sidebar-primary:           var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent:            var(--background);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border:            var(--border);
+  --sidebar-ring:              var(--primary);
+
+  --shadow-raised:              -8px -8px 16px rgba(255,255,255,0.03), 8px 8px 16px rgba(0,0,0,0.55);
+  --shadow-raised-sm:           -5px -5px 10px rgba(255,255,255,0.03), 5px 5px 10px rgba(0,0,0,0.5);
+  --shadow-inset:                inset 4px 4px 8px rgba(0,0,0,0.5), inset -4px -4px 8px rgba(255,255,255,0.03);
+  --shadow-pressed:              inset 3px 3px 6px rgba(0,0,0,0.55), inset -3px -3px 6px rgba(255,255,255,0.02);
+
+  --shadow-btn:                  0 1px 2px rgba(0,0,0,0.4), 0 0 0 1px var(--primary-ring);
+  --shadow-btn-pressed:          inset 0 2px 2px rgba(0,0,0,0.3);
+  --gradient-btn-gloss:          linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 100%);
 }

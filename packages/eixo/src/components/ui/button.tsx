@@ -10,14 +10,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground duration-200 hover:bg-primary/90 hover:shadow-md hover:-translate-y-px active:translate-y-0 active:shadow-sm",
+          "relative bg-primary text-primary-foreground bg-[image:var(--gradient-btn-gloss)] shadow-[var(--shadow-btn)] duration-150 hover:brightness-105 active:shadow-[var(--shadow-btn-pressed)] active:bg-none active:translate-y-px active:text-primary-foreground/90",
         destructive:
-          "bg-destructive text-destructive-foreground duration-200 hover:bg-destructive/90 hover:shadow-md hover:-translate-y-px active:translate-y-0 active:shadow-sm",
+          "relative bg-destructive text-destructive-foreground bg-[image:var(--gradient-btn-gloss)] shadow-[0_1px_2px_rgba(0,0,0,0.2),0_0_0_1px_var(--destructive)] duration-150 hover:brightness-105 active:shadow-[var(--shadow-btn-pressed)] active:bg-none active:translate-y-px active:text-destructive-foreground/90",
         outline:
-          "border border-input bg-background duration-200 hover:bg-accent/50 hover:border-primary/40 hover:text-accent-foreground active:bg-accent",
+          "bg-background text-foreground shadow-[var(--shadow-raised-sm)] duration-150 hover:text-primary active:shadow-[var(--shadow-pressed)] active:translate-y-px",
         secondary:
-          "bg-secondary text-secondary-foreground duration-200 hover:bg-secondary/80 hover:shadow-sm active:shadow-none",
-        ghost: "duration-150 hover:bg-accent/80 hover:text-accent-foreground",
+          "bg-secondary text-secondary-foreground shadow-[var(--shadow-raised-sm)] duration-150 hover:text-primary active:shadow-[var(--shadow-pressed)] active:translate-y-px",
+        ghost:
+          "duration-150 hover:shadow-[var(--shadow-raised-sm)] active:shadow-[var(--shadow-pressed)]",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
