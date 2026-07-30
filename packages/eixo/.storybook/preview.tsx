@@ -7,12 +7,10 @@ const preview: Preview = {
   decorators: [
     withThemeByClassName({
       themes: {
-        'reto-light':  'theme-reto',
-        'reto-dark':   'theme-reto dark',
-        'suave-light': 'theme-suave',
-        'suave-dark':  'theme-suave dark',
+        light: 'theme-reto',
+        dark:  'theme-reto dark',
       },
-      defaultTheme: 'reto-light',
+      defaultTheme: 'light',
     }),
   ],
   parameters: {
@@ -21,6 +19,11 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    options: {
+      storySort: {
+        order: ['Foundation', 'Showcases'],
       },
     },
   },

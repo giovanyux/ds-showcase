@@ -1,4 +1,5 @@
-import { addons } from 'storybook/manager-api'
+import React from 'react'
+import { addons, types } from 'storybook/manager-api'
 import { create } from 'storybook/theming/create'
 
 const theme = create({
@@ -10,26 +11,58 @@ const theme = create({
   fontBase: '"Inter", -apple-system, sans-serif',
   fontCode: 'monospace',
 
-  colorPrimary: '#B45309',
-  colorSecondary: '#B45309',
+  colorPrimary: '#4657E9',
+  colorSecondary: '#4657E9',
 
-  appBg: '#FAFAF9',
-  appContentBg: '#FFFFFF',
-  appBorderColor: '#E7E5E4',
-  appBorderRadius: 2,
+  appBg: '#E9EDF2',
+  appContentBg: '#E9EDF2',
+  appBorderColor: 'rgba(163,177,198,0.35)',
+  appBorderRadius: 12,
 
-  textColor: '#1C1917',
+  textColor: '#4A5568',
   textInverseColor: '#FFFFFF',
 
-  barTextColor: '#78716C',
-  barSelectedColor: '#B45309',
-  barHoverColor: '#B45309',
-  barBg: '#FFFFFF',
+  barTextColor: '#5C6980',
+  barSelectedColor: '#4657E9',
+  barHoverColor: '#4657E9',
+  barBg: '#E9EDF2',
 
-  inputBg: '#FFFFFF',
-  inputBorder: '#E7E5E4',
-  inputTextColor: '#1C1917',
-  inputBorderRadius: 2,
+  inputBg: '#E9EDF2',
+  inputBorder: 'rgba(163,177,198,0.35)',
+  inputTextColor: '#4A5568',
+  inputBorderRadius: 10,
 })
 
 addons.setConfig({ theme })
+
+addons.register('eixo/portfolio-link', () => {
+  addons.add('eixo/portfolio-link', {
+    type: types.TOOL,
+    title: 'Portfólio',
+    match: () => true,
+    render: () =>
+      React.createElement(
+        'a',
+        {
+          href: 'https://giovanyux.github.io/portfolio',
+          target: '_blank',
+          rel: 'noreferrer',
+          style: {
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 4,
+            height: 28,
+            padding: '0 10px',
+            marginLeft: 8,
+            borderRadius: 6,
+            fontSize: 12,
+            fontWeight: 600,
+            color: '#4657E9',
+            textDecoration: 'none',
+            whiteSpace: 'nowrap',
+          },
+        },
+        'Portfólio ↗'
+      ),
+  })
+})

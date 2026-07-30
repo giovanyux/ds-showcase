@@ -13,13 +13,13 @@ import { Switch } from '@/components/ui/switch'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const meta: Meta = {
-  title: 'Foundation/Seletor de tema',
+  title: 'Foundation/Visão Geral',
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
         component:
-          'Use o seletor de tema na toolbar do Storybook (ícone de paleta) para alternar entre **Reto** e **Suave** — a marca inteira muda: radius, cor primária e sombras, sem tocar em nenhum componente individualmente.',
+          'Componentes do Eixo reagindo ao token set Neo Tactile — cor primária índigo, radius generoso e profundidade por sombra dupla, tudo vindo de tokens compartilhados. Use o seletor de tema na toolbar (ícone de paleta) pra alternar claro/escuro.',
       },
     },
   },
@@ -33,11 +33,10 @@ export const Default: Story = {
     <div className="min-h-screen bg-background text-foreground p-10 space-y-10">
       <header className="space-y-2">
         <Badge variant="outline">Foundation</Badge>
-        <h1 className="text-3xl font-bold">Seletor de tema</h1>
+        <h1 className="text-3xl font-bold">Neo Tactile</h1>
         <p className="text-muted-foreground max-w-xl">
-          Troque entre os temas <strong>Reto</strong> e <strong>Suave</strong> na toolbar acima
-          (ícone de paleta) e observe cor primária, radius e sombras mudarem juntos nos
-          componentes abaixo.
+          Cor primária, radius e sombras vêm de um único token set — troque claro/escuro na
+          toolbar acima (ícone de paleta) e observe todos os componentes abaixo reagirem juntos.
         </p>
       </header>
 
